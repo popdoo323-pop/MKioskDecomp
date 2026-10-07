@@ -1,0 +1,11 @@
+# Never commit the game binaries or anything extracted from them
+orig/*
+!orig/README.md
+*.rpx
+*.rpl
+extracted/
+build/
+*.gzf
+*.gpr
+*.rep/
+__pycache__/
