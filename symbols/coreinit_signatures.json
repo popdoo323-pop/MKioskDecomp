@@ -1,0 +1,462 @@
+{
+ "library": "coreinit",
+ "note": "Prototypes written from memory of Wii U SDK/wut naming; unverified. Apply to BOTH stub_address and call_alias_address.",
+ "functions": [
+  {
+   "name": "DCFlushRange",
+   "stub_address": "0xc0007558",
+   "call_alias_address": "0x04007558",
+   "prototype": "void DCFlushRange(void *addr, uint size)"
+  },
+  {
+   "name": "DCFlushRangeNoSync",
+   "stub_address": "0xc0007560",
+   "call_alias_address": "0x04007560",
+   "prototype": "void DCFlushRangeNoSync(void *addr, uint size)"
+  },
+  {
+   "name": "DCInvalidateRange",
+   "stub_address": "0xc0007568",
+   "call_alias_address": "0x04007568",
+   "prototype": "void DCInvalidateRange(void *addr, uint size)"
+  },
+  {
+   "name": "DCZeroRange",
+   "stub_address": "0xc0007588",
+   "call_alias_address": "0x04007588",
+   "prototype": "void DCZeroRange(void *addr, uint size)"
+  },
+  {
+   "name": "MEMCreateExpHeapEx",
+   "stub_address": "0xc0008520",
+   "call_alias_address": "0x04008520",
+   "prototype": "void * MEMCreateExpHeapEx(void *start, uint size, ushort flags)"
+  },
+  {
+   "name": "MEMDestroyExpHeap",
+   "stub_address": "0xc0008548",
+   "call_alias_address": "0x04008548",
+   "prototype": "void * MEMDestroyExpHeap(void *heap)"
+  },
+  {
+   "name": "MEMAllocFromExpHeapEx",
+   "stub_address": "0xc00084d8",
+   "call_alias_address": "0x040084d8",
+   "prototype": "void * MEMAllocFromExpHeapEx(void *heap, uint size, int align)"
+  },
+  {
+   "name": "MEMFreeToExpHeap",
+   "stub_address": "0xc0008590",
+   "call_alias_address": "0x04008590",
+   "prototype": "void MEMFreeToExpHeap(void *heap, void *block)"
+  },
+  {
+   "name": "MEMGetAllocatableSizeForExpHeapEx",
+   "stub_address": "0xc00085c0",
+   "call_alias_address": "0x040085c0",
+   "prototype": "uint MEMGetAllocatableSizeForExpHeapEx(void *heap, int align)"
+  },
+  {
+   "name": "MEMGetTotalFreeSizeForExpHeap",
+   "stub_address": "0xc0008620",
+   "call_alias_address": "0x04008620",
+   "prototype": "uint MEMGetTotalFreeSizeForExpHeap(void *heap)"
+  },
+  {
+   "name": "MEMCreateFrmHeapEx",
+   "stub_address": "0xc0008528",
+   "call_alias_address": "0x04008528",
+   "prototype": "void * MEMCreateFrmHeapEx(void *start, uint size, ushort flags)"
+  },
+  {
+   "name": "MEMDestroyFrmHeap",
+   "stub_address": "0xc0008550",
+   "call_alias_address": "0x04008550",
+   "prototype": "void MEMDestroyFrmHeap(void *heap)"
+  },
+  {
+   "name": "MEMAllocFromFrmHeapEx",
+   "stub_address": "0xc00084e0",
+   "call_alias_address": "0x040084e0",
+   "prototype": "void * MEMAllocFromFrmHeapEx(void *heap, uint size, int align)"
+  },
+  {
+   "name": "MEMGetBaseHeapHandle",
+   "stub_address": "0xc00085d8",
+   "call_alias_address": "0x040085d8",
+   "prototype": "void * MEMGetBaseHeapHandle(int arena)"
+  },
+  {
+   "name": "OSBlockMove",
+   "stub_address": "0xc00087d0",
+   "call_alias_address": "0x040087d0",
+   "prototype": "void * OSBlockMove(void *dst, void *src, uint size, int flush)"
+  },
+  {
+   "name": "OSBlockSet",
+   "stub_address": "0xc00087d8",
+   "call_alias_address": "0x040087d8",
+   "prototype": "void * OSBlockSet(void *dst, int val, uint size)"
+  },
+  {
+   "name": "memcpy",
+   "stub_address": "0xc0009768",
+   "call_alias_address": "0x04009768",
+   "prototype": "void * memcpy(void *dst, void *src, uint n)"
+  },
+  {
+   "name": "memmove",
+   "stub_address": "0xc0009770",
+   "call_alias_address": "0x04009770",
+   "prototype": "void * memmove(void *dst, void *src, uint n)"
+  },
+  {
+   "name": "memset",
+   "stub_address": "0xc0009778",
+   "call_alias_address": "0x04009778",
+   "prototype": "void * memset(void *dst, int val, uint n)"
+  },
+  {
+   "name": "OSCreateThread",
+   "stub_address": "0xc0008898",
+   "call_alias_address": "0x04008898",
+   "prototype": "int OSCreateThread(OSThread *thread, void *entry, int argc, char *argv, void *stack, uint stackSize, int priority, ushort attr)"
+  },
+  {
+   "name": "OSExitThread",
+   "stub_address": "0xc00089b0",
+   "call_alias_address": "0x040089b0",
+   "prototype": "void OSExitThread(int result)"
+  },
+  {
+   "name": "OSGetCurrentThread",
+   "stub_address": "0xc0008a90",
+   "call_alias_address": "0x04008a90",
+   "prototype": "OSThread * OSGetCurrentThread(void)"
+  },
+  {
+   "name": "OSGetCoreId",
+   "stub_address": "0xc0008a78",
+   "call_alias_address": "0x04008a78",
+   "prototype": "uint OSGetCoreId(void)"
+  },
+  {
+   "name": "OSGetThreadPriority",
+   "stub_address": "0xc0008b98",
+   "call_alias_address": "0x04008b98",
+   "prototype": "int OSGetThreadPriority(OSThread *thread)"
+  },
+  {
+   "name": "OSJoinThread",
+   "stub_address": "0xc0008ce8",
+   "call_alias_address": "0x04008ce8",
+   "prototype": "int OSJoinThread(OSThread *thread, int *result)"
+  },
+  {
+   "name": "OSResumeThread",
+   "stub_address": "0xc0008e28",
+   "call_alias_address": "0x04008e28",
+   "prototype": "int OSResumeThread(OSThread *thread)"
+  },
+  {
+   "name": "OSSetThreadAffinity",
+   "stub_address": "0xc0008f50",
+   "call_alias_address": "0x04008f50",
+   "prototype": "int OSSetThreadAffinity(OSThread *thread, uint affinity)"
+  },
+  {
+   "name": "OSSetThreadName",
+   "stub_address": "0xc0008f70",
+   "call_alias_address": "0x04008f70",
+   "prototype": "void OSSetThreadName(OSThread *thread, char *name)"
+  },
+  {
+   "name": "OSSetThreadPriority",
+   "stub_address": "0xc0008f78",
+   "call_alias_address": "0x04008f78",
+   "prototype": "int OSSetThreadPriority(OSThread *thread, int priority)"
+  },
+  {
+   "name": "OSSetThreadSpecific",
+   "stub_address": "0xc0008f88",
+   "call_alias_address": "0x04008f88",
+   "prototype": "void OSSetThreadSpecific(int id, void *value)"
+  },
+  {
+   "name": "OSGetThreadSpecific",
+   "stub_address": "0xc0008ba0",
+   "call_alias_address": "0x04008ba0",
+   "prototype": "void * OSGetThreadSpecific(int id)"
+  },
+  {
+   "name": "OSYieldThread",
+   "stub_address": "0xc0009140",
+   "call_alias_address": "0x04009140",
+   "prototype": "void OSYieldThread(void)"
+  },
+  {
+   "name": "OSSleepTicks",
+   "stub_address": "0xc0008fc8",
+   "call_alias_address": "0x04008fc8",
+   "prototype": "void OSSleepTicks(longlong ticks)"
+  },
+  {
+   "name": "OSInitMutex",
+   "stub_address": "0xc0008c40",
+   "call_alias_address": "0x04008c40",
+   "prototype": "void OSInitMutex(OSMutex *mutex)"
+  },
+  {
+   "name": "OSLockMutex",
+   "stub_address": "0xc0008d28",
+   "call_alias_address": "0x04008d28",
+   "prototype": "void OSLockMutex(OSMutex *mutex)"
+  },
+  {
+   "name": "OSTryLockMutex",
+   "stub_address": "0xc0009090",
+   "call_alias_address": "0x04009090",
+   "prototype": "int OSTryLockMutex(OSMutex *mutex)"
+  },
+  {
+   "name": "OSUnlockMutex",
+   "stub_address": "0xc00090c0",
+   "call_alias_address": "0x040090c0",
+   "prototype": "void OSUnlockMutex(OSMutex *mutex)"
+  },
+  {
+   "name": "OSInitCond",
+   "stub_address": "0xc0008c00",
+   "call_alias_address": "0x04008c00",
+   "prototype": "void OSInitCond(OSCond *cond)"
+  },
+  {
+   "name": "OSWaitCond",
+   "stub_address": "0xc00090e0",
+   "call_alias_address": "0x040090e0",
+   "prototype": "void OSWaitCond(OSCond *cond, OSMutex *mutex)"
+  },
+  {
+   "name": "OSSignalCond",
+   "stub_address": "0xc0008fa0",
+   "call_alias_address": "0x04008fa0",
+   "prototype": "void OSSignalCond(OSCond *cond)"
+  },
+  {
+   "name": "OSInitEvent",
+   "stub_address": "0xc0008c20",
+   "call_alias_address": "0x04008c20",
+   "prototype": "void OSInitEvent(OSEvent *event, int initialState, int mode)"
+  },
+  {
+   "name": "OSSignalEvent",
+   "stub_address": "0xc0008fa8",
+   "call_alias_address": "0x04008fa8",
+   "prototype": "void OSSignalEvent(OSEvent *event)"
+  },
+  {
+   "name": "OSWaitEvent",
+   "stub_address": "0xc00090e8",
+   "call_alias_address": "0x040090e8",
+   "prototype": "void OSWaitEvent(OSEvent *event)"
+  },
+  {
+   "name": "OSResetEvent",
+   "stub_address": "0xc0008e08",
+   "call_alias_address": "0x04008e08",
+   "prototype": "void OSResetEvent(OSEvent *event)"
+  },
+  {
+   "name": "OSWaitEventWithTimeout",
+   "stub_address": "0xc00090f0",
+   "call_alias_address": "0x040090f0",
+   "prototype": "int OSWaitEventWithTimeout(OSEvent *event, longlong timeout)"
+  },
+  {
+   "name": "OSFastMutex_Init",
+   "stub_address": "0xc00089d0",
+   "call_alias_address": "0x040089d0",
+   "prototype": "void OSFastMutex_Init(OSFastMutex *mutex, char *name)"
+  },
+  {
+   "name": "OSFastMutex_Lock",
+   "stub_address": "0xc00089d8",
+   "call_alias_address": "0x040089d8",
+   "prototype": "void OSFastMutex_Lock(OSFastMutex *mutex)"
+  },
+  {
+   "name": "OSFastMutex_TryLock",
+   "stub_address": "0xc00089e0",
+   "call_alias_address": "0x040089e0",
+   "prototype": "int OSFastMutex_TryLock(OSFastMutex *mutex)"
+  },
+  {
+   "name": "OSFastMutex_Unlock",
+   "stub_address": "0xc00089e8",
+   "call_alias_address": "0x040089e8",
+   "prototype": "void OSFastMutex_Unlock(OSFastMutex *mutex)"
+  },
+  {
+   "name": "OSInitMessageQueue",
+   "stub_address": "0xc0008c30",
+   "call_alias_address": "0x04008c30",
+   "prototype": "void OSInitMessageQueue(OSMessageQueue *queue, OSMessage *messages, int count)"
+  },
+  {
+   "name": "OSSendMessage",
+   "stub_address": "0xc0008eb8",
+   "call_alias_address": "0x04008eb8",
+   "prototype": "int OSSendMessage(OSMessageQueue *queue, OSMessage *msg, int flags)"
+  },
+  {
+   "name": "OSReceiveMessage",
+   "stub_address": "0xc0008dc0",
+   "call_alias_address": "0x04008dc0",
+   "prototype": "int OSReceiveMessage(OSMessageQueue *queue, OSMessage *msg, int flags)"
+  },
+  {
+   "name": "OSGetTime",
+   "stub_address": "0xc0008bb0",
+   "call_alias_address": "0x04008bb0",
+   "prototype": "longlong OSGetTime(void)"
+  },
+  {
+   "name": "OSGetSystemTime",
+   "stub_address": "0xc0008b70",
+   "call_alias_address": "0x04008b70",
+   "prototype": "longlong OSGetSystemTime(void)"
+  },
+  {
+   "name": "OSGetTick",
+   "stub_address": "0xc0008ba8",
+   "call_alias_address": "0x04008ba8",
+   "prototype": "uint OSGetTick(void)"
+  },
+  {
+   "name": "OSDisableInterrupts",
+   "stub_address": "0xc00088b0",
+   "call_alias_address": "0x040088b0",
+   "prototype": "int OSDisableInterrupts(void)"
+  },
+  {
+   "name": "OSRestoreInterrupts",
+   "stub_address": "0xc0008e20",
+   "call_alias_address": "0x04008e20",
+   "prototype": "int OSRestoreInterrupts(int level)"
+  },
+  {
+   "name": "OSCreateAlarm",
+   "stub_address": "0xc0008888",
+   "call_alias_address": "0x04008888",
+   "prototype": "void OSCreateAlarm(OSAlarm *alarm)"
+  },
+  {
+   "name": "OSSetAlarm",
+   "stub_address": "0xc0008ec8",
+   "call_alias_address": "0x04008ec8",
+   "prototype": "int OSSetAlarm(OSAlarm *alarm, longlong time, void *handler)"
+  },
+  {
+   "name": "OSSetPeriodicAlarm",
+   "stub_address": "0xc0008f30",
+   "call_alias_address": "0x04008f30",
+   "prototype": "int OSSetPeriodicAlarm(OSAlarm *alarm, longlong start, longlong interval, void *handler)"
+  },
+  {
+   "name": "OSCancelAlarm",
+   "stub_address": "0xc00087f0",
+   "call_alias_address": "0x040087f0",
+   "prototype": "int OSCancelAlarm(OSAlarm *alarm)"
+  },
+  {
+   "name": "OSGetAlarmUserData",
+   "stub_address": "0xc0008a28",
+   "call_alias_address": "0x04008a28",
+   "prototype": "void * OSGetAlarmUserData(OSAlarm *alarm)"
+  },
+  {
+   "name": "OSSetAlarmUserData",
+   "stub_address": "0xc0008ee0",
+   "call_alias_address": "0x04008ee0",
+   "prototype": "void OSSetAlarmUserData(OSAlarm *alarm, void *data)"
+  },
+  {
+   "name": "OSConsoleWrite",
+   "stub_address": "0xc0008868",
+   "call_alias_address": "0x04008868",
+   "prototype": "void OSConsoleWrite(char *msg, uint size)"
+  },
+  {
+   "name": "exit",
+   "stub_address": "0xc0009758",
+   "call_alias_address": "0x04009758",
+   "prototype": "void exit(int status)"
+  },
+  {
+   "name": "_Exit",
+   "stub_address": "0xc0009360",
+   "call_alias_address": "0x04009360",
+   "prototype": "void _Exit(int status)"
+  },
+  {
+   "name": "FSInit",
+   "stub_address": "0xc0007b38",
+   "call_alias_address": "0x04007b38",
+   "prototype": "void FSInit(void)"
+  },
+  {
+   "name": "FSShutdown",
+   "stub_address": "0xc0007c88",
+   "call_alias_address": "0x04007c88",
+   "prototype": "void FSShutdown(void)"
+  },
+  {
+   "name": "FSAddClient",
+   "stub_address": "0xc0007968",
+   "call_alias_address": "0x04007968",
+   "prototype": "int FSAddClient(FSClient *client, uint errorMask)"
+  },
+  {
+   "name": "FSDelClient",
+   "stub_address": "0xc00079f8",
+   "call_alias_address": "0x040079f8",
+   "prototype": "int FSDelClient(FSClient *client, uint errorMask)"
+  },
+  {
+   "name": "FSInitCmdBlock",
+   "stub_address": "0xc0007b40",
+   "call_alias_address": "0x04007b40",
+   "prototype": "void FSInitCmdBlock(FSCmdBlock *block)"
+  },
+  {
+   "name": "FSOpenFile",
+   "stub_address": "0xc0007ba8",
+   "call_alias_address": "0x04007ba8",
+   "prototype": "int FSOpenFile(FSClient *client, FSCmdBlock *block, char *path, char *mode, int *handle, uint errorMask)"
+  },
+  {
+   "name": "FSCloseFile",
+   "stub_address": "0xc00079e8",
+   "call_alias_address": "0x040079e8",
+   "prototype": "int FSCloseFile(FSClient *client, FSCmdBlock *block, int handle, uint errorMask)"
+  },
+  {
+   "name": "FSReadFile",
+   "stub_address": "0xc0007bd8",
+   "call_alias_address": "0x04007bd8",
+   "prototype": "int FSReadFile(FSClient *client, FSCmdBlock *block, void *buffer, uint size, uint count, int handle, uint flags, uint errorMask)"
+  },
+  {
+   "name": "FSWriteFile",
+   "stub_address": "0xc0007cb8",
+   "call_alias_address": "0x04007cb8",
+   "prototype": "int FSWriteFile(FSClient *client, FSCmdBlock *block, void *buffer, uint size, uint count, int handle, uint flags, uint errorMask)"
+  },
+  {
+   "name": "FSSetPosFile",
+   "stub_address": "0xc0007c68",
+   "call_alias_address": "0x04007c68",
+   "prototype": "int FSSetPosFile(FSClient *client, FSCmdBlock *block, int handle, uint pos, uint errorMask)"
+  }
+ ]
+}

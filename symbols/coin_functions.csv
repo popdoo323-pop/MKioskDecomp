@@ -1,0 +1,17 @@
+address,proposed_name,category,confidence,notes
+0x02131904,ItemCoin_ctor,item,high,allocs 0x320 bytes; base ctor with type id 7; vtable 0x10015fd8
+0x02133970,ItemCoin_Create,item,medium,thin wrapper over the ctor
+0x02133314,ItemCoin_PoolInit,item,medium,names manager "ItemCoin"; pool size from FUN_0215d9dc; creates N coins
+0x02131994,ItemCoin_LoadModel,item,medium,loads /item/ItemCoin/ItemCoin.bfres
+0x0239993c,RaceKartChecker_ctor,race_state,medium,registers reflected fields mRank / (unnamed) / mCoinNum (mCoinNum at +0x40)
+0x0216e7d0,KartEffect_BindEmitters,effects,medium,binds emitter names (BackFire CoinGet ItemBoxGet TreeHit ...) not coin logic
+0x02510330,CoinHud_SetupAnimGroups,hud,medium,anim names In Out Get_Coin Color_Coin Change_Lap ColorPtn
+0x0251046c,CoinHud_BindPanes,hud,medium,panes T_Coin_00 T_Molec_00 T_Denomi_00
+0x02525904,RaceHud_BuildLayout,hud,high,builds L_ItemBox L_LapCoin L_Rank L_Finish L_Alarm ...
+0x02232a34,CourseObject_LoadModels,course,medium,object id 0x3fa -> Coin/Coin.bfres; 0x3f5 and 0x232f -> ItemBox/ItemBox.bfres
+0x022980cc,N64RTrain_CoinThrown_SE_user,audio,low,not decompiled
+0x022d0ab8,BDSandShip_CoinThrown_SE_user,audio,low,not decompiled
+0x02066730,SoundEffectNames_Init,audio,low,not decompiled
+0x0211b4c4,ItemNameTable_user,item,low,not decompiled; also ItemCoin vtable entry
+0x023c6b98,ItemNameTable_user2,item,low,not decompiled
+0x10015fd8,ItemCoin_vtable,item,high,data; entries at +0x14.. see docs
