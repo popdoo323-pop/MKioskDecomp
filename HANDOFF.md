@@ -48,10 +48,11 @@ and is counted separately.
 
 ## Next steps, in order
 
-1. Remove the 1-byte placeholders in the Data Type Manager. Re-apply the coreinit prototypes with the WUT names
+1. Push the local work to GitHub.
+2. Remove the 1-byte placeholders in the Data Type Manager. Re-apply the coreinit prototypes with the WUT names
    (`OSCondition` replaces the misnamed `OSCond`).
-2. Run the devkitPPC frame-alignment test on the maintainer's PC (`tests/compiler/frame_test.c`) and record the
+3. Run the devkitPPC frame-alignment test on the maintainer's PC (`tests/compiler/frame_test.c`) and record the
    result in `docs/compiler_notes.md`.
-3. Find the rail movement consumer that reads a rail point's segment parameter (`+0x68`), starting from the rail
+4. Find the rail movement consumer that reads a rail point's segment parameter (`+0x68`), starting from the rail
    holder's vtable at `0x10012dd0`.
-4. Match more small functions, one at a time, with the method above.
+5. Match more small functions, one at a time, with the method above.

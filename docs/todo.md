@@ -9,6 +9,11 @@ Last updated 2026-10-08. Each item says what remains and what would close it.
 - Progress tracker: counts only `status=matched` rows. Trivial pipeline tests are reported separately.
 - coreinit prototypes: argument counts match devkitPro WUT headers for 71 of 76. The five not compared are listed below.
 
+## Next up (in order)
+- [ ] Push the local work to GitHub (`git status`, `git add -A`, `git commit`, `git push`).
+- [ ] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond) in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
+- [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
+
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
 - [ ] `symbols/coreinit_signatures.json`: argument types for 71 are not fully compared. Five remain: `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` exist in WUT but were not compared; `memcpy`, `memmove` and `exit` are standard C.
