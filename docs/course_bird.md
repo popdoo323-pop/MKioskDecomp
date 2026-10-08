@@ -2,6 +2,11 @@
 
 Source: content/course/Gu_MarioCircuit/course_muunt.byaml, converted to XML by the maintainer. The bird is used on this track. The raw tables are kept local in private/course_object_ids.csv.
 
+## Authoritative mapping (objflow.byaml, 2026-10-08)
+
+The name for each object ID comes from content/data/objflow.byaml, not from the course name lists. See docs/objflow.md.
+ObjId 1039 is "Bird" with ResName "Bird". The earlier 6003 claims are withdrawn: 6003 is "Start".
+
 ## Current finding (Track Studio check, 2026-10-08)
 
 - The bird is object ID 1039 in Gu_MarioCircuit. Track Studio labels it "Bird (1039)". The course XML has exactly three
