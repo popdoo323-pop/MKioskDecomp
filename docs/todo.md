@@ -1,48 +1,68 @@
 # Open items
 
-Last updated 2026-10-08. Each item says what remains and what would close it.
+Last updated 2026-10-08. Each item says what finishes it. A function is done only when the verifier passes for it.
+Progress numbers come from `python tools/progress.py`, never from this file.
 
-## Resolved in this round
-- `tc_CI_` icon prefix: found at 0x100a6fcc. `FUN_024a54b4` builds `ui/cmn/compeIcon/tc_CI_` + table name + `.tga`. Closes the question in `docs/verification.md`.
-- `.bfgrp` strings: string and byte searches find no "bfgrp" or "grp" text in the binary. The two group files exist on disk, so the loader is still unidentified (see below).
-- `FUN_023839d4` (kart part names, tire model loading): already decompiled. Removed from the open list.
-- Progress tracker: counts only `status=matched` rows. Trivial pipeline tests are reported separately.
-- coreinit prototypes: argument counts match devkitPro WUT headers for 71 of 76. The five not compared are listed below.
+## 1. Decompile more of Turbo.rpx
+Goal: every function in a target class is decompiled and recorded with its address, size, purpose and calls.
 
-## Next up (in order)
-- [ ] Push the local work to GitHub (`git status`, `git add -A`, `git commit`, `git push`).
-- [x] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessage, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond); 41 coreinit prototypes re-applied with WUT names in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
-- [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
+- [ ] ItemCoin: the remaining functions in the class inventory (`docs/class_inventory.md`). Start with `0x0211b830`
+      (77 instructions, one call).
+- [ ] ObjTire: `0x022ee4bc` (update, 111 instructions, no calls) and `0x022ee224` (sound parameters).
+- [ ] TireMark / trail manager: the child constructor `0x021a82b4`, the wheel callbacks `0x021a7bb4` to `0x021a7dd8`,
+      and the rail holder vtable at `0x10012dd0`.
+- [ ] RaceKartChecker: constructor `0x0239993c` (166 instructions, 20 calls) after the call handling is proven on smaller functions.
+- [ ] Bird and rails: the consumer of the rail segment parameter (`+0x68`), reached through the holder's virtual slots.
+- [ ] Record every decompiled function in `docs/decompiled_roundN.md` and mark it `decompiled` in `symbols/matches.csv`
+      (add the status to the progress tool so decompiled bytes are counted separately from matched bytes).
 
-## Done this round
-- [x] FS imports typed from WUT: 14 functions at stub and alias addresses (FSInitCmdBlock alias added). FSFlushQuota has no WUT declaration.
-- [ ] Remaining unsigned coreinit imports: about 60 (see symbols/imports.csv and symbols/function_status.csv).
+## 2. Byte matching
+Goal: each function reproduced byte-for-byte, with `verify_matches.py` passing for every row.
 
-## Repo and notes
-- [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
-- [ ] `symbols/coreinit_signatures.json`: argument types for 71 are not fully compared. Five remain: `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` exist in WUT but were not compared; `memcpy`, `memmove` and `exit` are standard C.
-- [ ] `symbols/ground_state_fields.csv`: field offsets for 11 of 12 fields are unknown. Reflection registers names only.
-- [ ] `include/Game/Item/ItemCoin.hpp`: the base class `ItemBase_` is unnamed.
-- [ ] `include/Game/Race/RaceKartChecker.hpp`: the meaning of the value 999 at +0x38 is unknown.
-- [ ] `include/Game/UI/LapCoinLayout.hpp`: offsets +0x54 and +0x65, the size 0x6c and the constant 3 are unverified.
-- [ ] `include/Obj/ObjTire.hpp`: class name unconfirmed.
-- [ ] `docs/terrain_types_crossref.md`: Glider Activator and Invisible Wall have no binary name. Materials Tec Road, Ocean Floor and Rainbow Road are unmapped. "Rainbow Road (Glass Sound)" is a lead to SNDG_GND_GLASS, not confirmed.
-- [ ] `docs/terrain_types_crossref.md`: the "Bouncy?" special has no binary counterpart.
+- [ ] Write each candidate as assembly by hand from its original bytes, prove it with `asmmatch.py`, and record it in
+      `symbols/matches.csv` with status `matched`.
+- [ ] Re-run `python tools/verify_matches.py --orig orig/Turbo.rpx` and `python tools/audit.py` after every batch.
+      Both must pass before a batch is committed.
+- [ ] Match in this order: leaf and tail-call functions first, then functions with one call, then larger ones.
+- [ ] Windows: set `POWERPC_AS` and `POWERPC_LD` to the devkitPPC `powerpc-eabi-as.exe` and `powerpc-eabi-ld.exe`
+      (see `tools/asmmatch.py`). Without them the verifier reports a missing toolchain, not a failure.
+- [ ] After each batch: `python tools/progress.py` to update `docs/progress.md`, the treemap, the badges and the README.
 
-## Ghidra work (no compiler needed)
-- [ ] Tire mark generator. `RecorderKartTireMark` has no references. Search for the code that calls the TireMark.bfres loader and its slot.
-- [ ] Tire map object bounce response. Start from the vtable slots of `ObjTire`, around 0x100722a0.
-- [ ] Writer of the terrain type read by `FUN_02072608`. Start from `mpCollidedGround` and the ground-hit code. See `docs/kcl_attribute_trace.md`.
-- [ ] Writers of `mCoinNum` (RaceKartChecker +0x40): coin add, cap and loss.
-- [ ] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`.
-- [ ] Callers of the ItemCoin message handler at 0x02132ff4.
-- [ ] `.bfgrp` loader: find the code that loads `content/audio/ground/*.bfgrp` and `mapobj/*/GROUP_*.bfgrp`.
-- [ ] Imports: 662 of 668 still have no alias. Covering them needs GHIDRA_MCP_ALLOW_SCRIPTS=1 (your decision).
+## 3. Clear the NOT YET MATCHED files
+Goal: no file in `include/` or `src/` carries the banner `HAND-WRITTEN, NOT YET MATCHED` unless it is truly unmatched.
 
-## Blocked
-- [ ] Byte matches for any game function. The original compiler is not identified. Stack-frame evidence rules out default GCC/EABI (see docs/compiler_notes.md).
-- [ ] Progress against decomp.dev: no matched functions yet.
+The eight files are:
+- `include/Common/StateMachine.hpp`, `src/Common/StateMachine.cpp`
+- `include/Game/Item/ItemCoinStates.hpp`, `src/Game/Item/ItemCoinStates.cpp`
+- `include/Game/MapObj/RailPath.hpp`, `src/Game/MapObj/RailPath.cpp`
+- `include/Game/MapObj/RailPoint.hpp`, `src/Game/MapObj/RailPoint.cpp`
 
-## Needs your input
-- [ ] Enable Ghidra scripting for the alias pass (yes or no).
-- [ ] Source of a Green Hills sample, if you have one, to test frame layout.
+For each file, one of these must happen:
+- [ ] Map each function to the game function it describes, match that game function in assembly (section 2), and change
+      the banner to `MATCHED` only when every function in the file is matched.
+- [ ] Or keep the banner and say why the function cannot be matched (for example it calls a library routine whose
+      code we have not identified).
+- [ ] Or remove the file if the function is not in the game.
+
+Note: C++ bodies that call library code (such as `RailPoint::SetRotationFromEuler`, which uses cos and sin) cannot be
+byte-matched in C++ without the game's compiler. They can only be matched in assembly against the original function.
+
+The seven PLACEHOLDER headers (`include/Audio/GroundAudio.hpp`, `include/Effect/TireMark.hpp`, `include/Game/Item/ItemCoin.hpp`,
+`include/Game/MapObj/Bird.hpp`, `include/Game/Race/RaceKartChecker.hpp`, `include/Game/UI/LapCoinLayout.hpp`,
+`include/Obj/ObjTire.hpp`) stay as placeholders until their names and offsets are verified.
+
+## 4. Coreinit imports (Ghidra)
+- [ ] 61 coreinit functions are still unsigned. Type them from the WUT headers in batches, as done for the FS functions.
+- [ ] `FSFlushQuota` has no WUT declaration. Leave it unsigned unless another source is found.
+- [ ] Decide whether to enable Ghidra scripting (`GHIDRA_MCP_ALLOW_SCRIPTS=1`) for the alias pass over all 668 imports.
+      Turn it off again afterwards.
+
+## 5. Blocked
+- [ ] Byte matching of compiled C++ needs the game's compiler. Frame test on devkitPPC: 5 of 6 frames are 8 mod 16, so the
+      candidate is not ruled out. A larger test is needed (see `docs/compiler_notes.md`).
+- [ ] Movement along rails needs the function that reads the rail segment parameter.
+
+## 6. Needs your input
+- [ ] Commit and push the pending work: `MKioskDecomp_toolfix.zip`, `MKioskDecomp_fs_round.zip`.
+- [ ] Run the larger frame test on your PC and paste the `findstr stwu` output.
+- [ ] Decide on Ghidra scripting (section 4).
