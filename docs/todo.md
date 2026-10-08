@@ -23,6 +23,8 @@ Goal: each function reproduced byte-for-byte, with `verify_matches.py` passing f
       `symbols/matches.csv` with status `matched`.
 - [ ] Re-run `python tools/verify_matches.py --orig orig/Turbo.rpx` and `python tools/audit.py` after every batch.
       Both must pass before a batch is committed.
+- [x] First C++-linked match: RailPoint::LinkNext = 0x021090a8 (96 bytes, verified).
+- [ ] Next matches, in order (see docs/src_status.md, "Matching map"): ItemCoin reset 0x0211b830, ObjTire update 0x022ee4bc, rotation 0x020fbe88, rail builder 0x02109198.
 - [ ] Match in this order: leaf and tail-call functions first, then functions with one call, then larger ones.
 - [ ] Windows: set `POWERPC_AS` and `POWERPC_LD` to the devkitPPC `powerpc-eabi-as.exe` and `powerpc-eabi-ld.exe`
       (see `tools/asmmatch.py`). Without them the verifier reports a missing toolchain, not a failure.

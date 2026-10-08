@@ -32,3 +32,23 @@ bytes equal the original.
 - C++ files need the game's compiler and flags to produce matching bytes. Until that is identified, they stay unmatched.
 - Individual functions can be matched now with the assembly-first route (see docs/asm_matching.md). A reconstruction can be
   matched function by function once its original bytes are written as assembly and proven with asmmatch.py.
+
+## Matching map (2026-10-08)
+
+Each C++ function is matched against the game function it describes. A file gets the MATCHED banner only when every
+function in it is matched.
+
+| C++ function | Game function | Size | State |
+|---|---|---|---|
+| RailPoint::LinkNext | 0x021090a8 | 96 bytes, no calls | MATCHED (src/asm/Game/MapObj/RailPoint_LinkNext_021090a8.s) |
+| RailPoint::SetRotationFromEuler | 0x020fbe88 | calls cos and sin (0x02933110, 0x02933944) | not started |
+| RailPath::LinkChain | 0x02109198 (builder) | large, several calls and virtual calls | not started |
+| StateMachine::Update | 0x022ee4bc (ObjTire update), same design | 111 instructions, no calls | not started |
+| StateMachine::Reset | 0x0211b830 (ItemCoin reset) | 77 instructions, one call | not started |
+| ItemCoinStates | 0x0211b830 | as above | not started |
+
+Files keep the NOT YET MATCHED banner until every function in them is matched:
+- include/Game/MapObj/RailPoint.hpp and src/Game/MapObj/RailPoint.cpp: waiting on SetRotationFromEuler.
+- include/Game/MapObj/RailPath.hpp and src/Game/MapObj/RailPath.cpp: waiting on LinkChain.
+- include/Common/StateMachine.hpp and src/Common/StateMachine.cpp: waiting on Update and Reset.
+- include/Game/Item/ItemCoinStates.hpp and src/Game/Item/ItemCoinStates.cpp: waiting on the reset path.
