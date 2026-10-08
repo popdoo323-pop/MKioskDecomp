@@ -103,19 +103,23 @@ def readme_block(matches, text_bytes, ghidra_total):
     return '\n'.join(lines)
 
 
-def update_readme(block):
-    """Replace the text between the progress markers in README.md."""
+def replace_between(block, start, end):
+    """Replace the text between two markers in README.md. Returns False if the markers are missing."""
     path = os.path.join(ROOT, 'README.md')
     if not os.path.exists(path):
         return False
     s = open(path).read()
-    start, end = '<!-- progress:start -->', '<!-- progress:end -->'
     if start not in s or end not in s:
         return False
     head, rest = s.split(start, 1)
     _, tail = rest.split(end, 1)
     open(path, 'w').write(head + start + '\n' + block + '\n' + end + tail)
     return True
+
+
+def update_readme(block):
+    """Progress block (treemap, summary and table) between the progress markers."""
+    return replace_between(block, '<!-- progress:start -->', '<!-- progress:end -->')
 
 
 def main():
@@ -187,9 +191,11 @@ def main():
     import treemap
     block = treemap.build(ROOT, total)
     updated = update_readme(block)
+    badges_ok = replace_between(treemap.badge_line(), '<!-- badges:start -->', '<!-- badges:end -->')
     print('\n'.join(lines))
     print(f'wrote {len(rows)} rows to symbols/function_status.csv')
-    print('README progress block updated' if updated else 'README markers not found; block not written')
+    print('README progress block updated' if updated else 'README progress markers not found')
+    print('README badges updated' if badges_ok else 'README badge markers not found')
 
 
 if __name__ == '__main__':

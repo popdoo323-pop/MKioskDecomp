@@ -1,5 +1,9 @@
 # MKioskDecomp
 
+<!-- badges:start -->
+![Code](docs/badges/code.svg) ![Data](docs/badges/data.svg)
+<!-- badges:end -->
+
 Analysis notes, symbol tables, verification tools and class-layout headers for a partial reverse-engineering of
 `Turbo.rpx`, the Wii U (PowerPC Espresso) executable of Turbo's Kiosk Demo.
 
@@ -22,8 +26,6 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 ## Progress
 
 <!-- progress:start -->
-![Code](docs/badges/code.svg) ![Data](docs/badges/data.svg)
-
 ![Progress map](docs/treemap.svg)
 
 **0.0002% matched** (24 of 10,132,008 bytes of code, 2 of about 32,782 functions)

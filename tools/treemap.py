@@ -139,6 +139,11 @@ def badge_svg(label, value, colour_hex):
             f'<text x="{lw + vw / 2}" y="14">{html.escape(value)}</text></g></svg>')
 
 
+def badge_line():
+    """The Code and Data badges, for the top of the README."""
+    return '![Code](docs/badges/code.svg) ![Data](docs/badges/data.svg)'
+
+
 def build(root, ghidra_total):
     """Write the treemap and badges under docs/, and return the README block text."""
     units = load_units(root)
@@ -161,8 +166,6 @@ def build(root, ghidra_total):
         matched_fn = sum(1 for r in csv.DictReader(fh) if r['status'].strip() == 'matched')
 
     lines = [
-        '![Code](docs/badges/code.svg) ![Data](docs/badges/data.svg)',
-        '',
         '![Progress map](docs/treemap.svg)',
         '',
         f'**{code_pct:.4f}% matched** ({code_matched:,} of {code_total:,} bytes of code, '
