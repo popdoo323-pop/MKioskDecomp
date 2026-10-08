@@ -122,6 +122,43 @@ def update_readme(block):
     return replace_between(block, '<!-- progress:start -->', '<!-- progress:end -->')
 
 
+def source_stats():
+    """Counts of hand-written source, split by whether the file is marked as an unmatched reconstruction."""
+    recon = hand = asm = tests = 0
+    banner = 'RECONSTRUCTION, NOT MATCHED'
+    for dirpath, _, files in os.walk(os.path.join(ROOT, 'include')):
+        for name in files:
+            if name.endswith('.hpp'):
+                with open(os.path.join(dirpath, name), encoding='utf-8', errors='replace') as fh:
+                    if banner in fh.read(400):
+                        recon += 1
+                    else:
+                        hand += 1
+    for dirpath, _, files in os.walk(os.path.join(ROOT, 'src')):
+        if os.path.basename(dirpath) == 'asm' or os.sep + 'asm' + os.sep in dirpath + os.sep:
+            asm += sum(1 for f in files if f.endswith('.s'))
+        for name in files:
+            if name.endswith('.cpp'):
+                with open(os.path.join(dirpath, name), encoding='utf-8', errors='replace') as fh:
+                    if banner in fh.read(400):
+                        recon += 1
+                    else:
+                        hand += 1
+    tdir = os.path.join(ROOT, 'tests')
+    if os.path.isdir(tdir):
+        tests = sum(1 for f in os.listdir(tdir) if f.endswith('.cpp'))
+    return {'reconstruction': recon, 'hand_written': hand, 'assembly': asm, 'tests': tests}
+
+
+def source_block(stats):
+    return '\n'.join([
+        '',
+        '**Source files:** %d reconstructions (C++, unmatched), %d assembly-first files, %d host tests. '
+        'Reconstructions are counted separately from matches.' % (
+            stats['reconstruction'], stats['assembly'], stats['tests']),
+    ])
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--ghidra-total', type=int, default=32782, help='function count reported by Ghidra')
@@ -189,7 +226,7 @@ def main():
     with open(os.path.join(DOCS, 'progress.md'), 'w') as fh:
         fh.write('\n'.join(lines))
     import treemap
-    block = treemap.build(ROOT, total)
+    block = treemap.build(ROOT, total) + source_block(source_stats())
     updated = update_readme(block)
     badges_ok = replace_between(treemap.badge_line(), '<!-- badges:start -->', '<!-- badges:end -->')
     print('\n'.join(lines))
