@@ -12,7 +12,7 @@ OSThread, OSMutex, OSCond, OSEvent, OSMessageQueue, OSMessage, OSAlarm, OSFastMu
 - 0xc0008e08 OSResetEvent
 
 ## Prototypes applied (76 coreinit functions)
-See `symbols/coreinit_signatures.json` for the full list. Unverified, written from memory.
+See `symbols/coreinit_signatures.json` for the full list. Checked against devkitPro WUT headers (2026-10-08): argument counts match for 71; 5 names not compared (see docs/todo.md).
 Known weak spots: OSCreateThread argv type (char* makes its caller's param_1 a char*; `void *` is probably better),
 FSReadFile/FSWriteFile/FSOpenFile argument lists, OSBlockMove.
 

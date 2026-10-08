@@ -81,7 +81,10 @@ def main():
                     row = dict(name=m['name'], address=addr, kind='game_func', library='',
                                signed=0, aliased=0, documented=0, matched=0)
                     rows.append(row)
-                row['matched'] = 1
+                if m.get('status', '').strip() == 'matched':
+                    row['matched'] = 1
+                else:
+                    row['trivial'] = 1
 
     with open(os.path.join(SYM, 'function_status.csv'), 'w', newline='') as fh:
         w = csv.writer(fh)
@@ -110,7 +113,7 @@ def main():
         f'| Game functions documented | {len(game)} | {total} (Ghidra total) | {pct(len(game), total)} |',
         f'| Functions matched (byte-identical) | {sum(r["matched"] for r in rows)} | {total} | '
         f'{pct(sum(r["matched"] for r in rows), total)} |',
-        '', 'The matched count includes trivial pipeline tests from symbols/matches.csv. Check its status column.', '',
+        '', f'Trivial pipeline tests (not counted as matches): {sum(r.get("trivial", 0) for r in rows)}.', '',
         'The Ghidra total is auto-analysis output. It is an approximate denominator.', '',
         'Matching needs the original compiler and flags. Compiler: not identified (see docs/compiler_notes.md).', '',
     ]

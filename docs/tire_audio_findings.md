@@ -17,7 +17,7 @@ ITWALL BWALL OUTF DUMMY0 CANNON TRIGGER SOUND VALLEY DUMMY2 DUMMY3 ZONE
   material name, stores it at +0x218, and sets a flag byte at +0x1f1 to -1 for WBOARD, HBOARD or BONE, otherwise -2.
 - Other audio files referenced: audio/turbo_sound_trial.bfsar, audio/bin/slink.bin, audio/bin/turbo_random_id.bsis,
   audio/driver/SNDG_%s.bars, audio/driver_menu/SNDG_M_%s.bars, /audio/driver_open/SNDG_N_%s.bars, audio/body/SNDG_*.
-- Two `.bfgrp` group files exist in the dump: `content/audio/ground/SNDG_Road_Asphalt.bfgrp` and `content/mapobj/BarrelFlower/GROUP_Barrel.bfgrp`. An earlier search found no `.bfgrp` string in the binary. That search was not exhaustive (the extension may come from a format string), so it needs a fresh check.
+- Two `.bfgrp` group files exist in the dump: `content/audio/ground/SNDG_Road_Asphalt.bfgrp` and `content/mapobj/BarrelFlower/GROUP_Barrel.bfgrp`. String and byte searches find no "bfgrp" or "grp" text in the binary. The loader for these files is not identified; they may be loaded by another component or not used by the executable.
 
 ## Strings from the request that do not exist as written
 - `SNDG_Road_Asphalt` is not a `.bars` bank. It exists as the group file `content/audio/ground/SNDG_Road_Asphalt.bfgrp`. The `.bars` asphalt bank is `SNDG_GND_ASPHALT.bars` (ROAD variant 0, ROAD3 variant 1).
@@ -34,6 +34,8 @@ ITWALL BWALL OUTF DUMMY0 CANNON TRIGGER SOUND VALLEY DUMMY2 DUMMY3 ZONE
   WheelSpinSmoke/Tire/Water/Wind, SE_KT_LAND_SKID_1..4, pSE_GND_SLIP.
 - Per-player resource pools (FUN_023a3800): Driver, Emblem, Tire, Body, Arm, Wing models plus DriverSE and BodySE resources.
 
-## Not yet done
-- Decompile FUN_023839d4 (tire model loading), and find who writes the terrain type read by FUN_02072608.
-- Find tire mark generation and the tire object's collision response.
+## Open items
+- Find the tire mark generator. Not located; the `RecorderKartTireMark` string has no references.
+- Find the bounce / collision response of the tire map object. Not located.
+- Find the code that writes the terrain type read by `FUN_02072608`. See `docs/kcl_attribute_trace.md`.
+- Identify the loader for the `.bfgrp` group files. See the note above.

@@ -1,6 +1,6 @@
 {
  "library": "coreinit",
- "note": "Prototypes written from memory of Wii U SDK/wut naming; unverified. Apply to BOTH stub_address and call_alias_address.",
+ "note": "Prototypes written from memory. Argument counts match devkitPro WUT headers for 71 of 76; types not fully compared. Apply to BOTH stub_address and call_alias_address.",
  "functions": [
   {
    "name": "DCFlushRange",
