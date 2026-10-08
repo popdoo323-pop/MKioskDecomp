@@ -1,0 +1,13 @@
+address,proposed_name,category,confidence,notes
+0x02080d0c,GroundSound_GetBankName,audio,high,args (uint* terrainType; int variant) -> .bars name or null; table 0x1014ac48 29x9; returns column variant+1
+0x02392930,GroundSound_LoadAllBanks,audio,high,loops 32 terrain types x 8 variants; builds "%s/%s" from an audio/ground path string; loads via resource manager
+0x02072608,GroundSound_UpdateTerrain,audio,medium,per-frame; tracks type (+0x210) and variant (+0x214); derives short material name; flag at +0x1f1
+0x02066730,SoundEffectNames_Init,audio,low,also calls GroundSound_GetBankName
+0x022ee224,ObjTire_InitSoundParams,map_object,medium,binds pSE_OBJ_TIRE_SLIDE / HIT / COL at +0x12c +0x140 +0x154
+0x022ee1e4,ObjTire_CreateHelper,map_object,low,allocs 0x38 byte helper stored at +0x128
+0x022ee384,ObjTire_Reset,map_object,low,sets state fields; +0x1a4 = param*count
+0x022ee4bc,ObjTire_Update,map_object,low,state-machine update; timer +0x19c limit +0x19e
+0x021814a4,TrailManager_LoadTireMarkResource,effects,medium,loads /race_common/trail/TireMark.bfres into slot +0x330
+0x0238fbd4,RacePreload_CommonResources,loading,medium,preloads env files + TireMark.bfres + two byaml files
+0x023a3800,KartResourceSet_ctor,loading,high,per-player pools: Driver/Emblem/Tire/Body/Arm/Wing models + Driver/Body SE resources
+0x023839d4,KartTireModel_Load,effects,low,uses format "Tire%c_%s"; not decompiled
