@@ -22,15 +22,17 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 ## Progress
 
 <!-- progress:start -->
+![Code](docs/badges/code.svg) ![Data](docs/badges/data.svg)
+
 ![Progress map](docs/treemap.svg)
 
 **0.0002% matched** (24 of 10,132,008 bytes of code, 2 of about 32,782 functions)
 
-| Library | Decompiled | Matched | Linked | Bytes (decompiled / matched / total) |
+| Library | Code matched | Bytes | Functions | Units done |
 | --- | --- | --- | --- | --- |
-| Game (Turbo.rpx `.text`) | 0.0002% | 0.0002% | not measured | 24 / 24 / 10,132,008 |
+| Game (Turbo.rpx `.text`) | 0.0002% | 24 / 10,132,008 | 2 / 32,782 | 0 / 155 |
 
-Decompiled counts functions recorded in symbols/matches.csv with status matched or decompiled. Matched counts functions whose assembled bytes equal the original. Linked needs a full build, which does not exist yet.
+Code matched counts bytes of functions whose assembled bytes equal the original. Data is not measured yet.
 <!-- progress:end -->
 
 ## Layout
