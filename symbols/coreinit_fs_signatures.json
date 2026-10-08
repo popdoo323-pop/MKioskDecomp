@@ -1,0 +1,112 @@
+{
+ "library": "coreinit",
+ "note": "WUT 1.3.2 filesystem.h declarations, applied 2026-10-08 at both stub and alias addresses. const char * is written as char * because the program cannot resolve const. FSFlushQuota has no WUT declaration and is left unsigned.",
+ "functions": [
+  {
+   "name": "FSCloseDir",
+   "stub_address": "0xc00079d8",
+   "alias_address": "0x040079d8",
+   "prototype": "FSStatus FSCloseDir(FSClient *client, FSCmdBlock *block, FSDirectoryHandle handle, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetCwd",
+   "stub_address": "0xc0007a58",
+   "alias_address": "0x04007a58",
+   "prototype": "FSStatus FSGetCwd(FSClient *client, FSCmdBlock *block, char *buffer, uint bufferSize, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetLastError",
+   "stub_address": "0xc0007ab0",
+   "alias_address": "0x04007ab0",
+   "prototype": "FSError FSGetLastError(FSClient *client)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetLastErrorCodeForViewer",
+   "stub_address": "0xc0007ab8",
+   "alias_address": "0x04007ab8",
+   "prototype": "FSError FSGetLastErrorCodeForViewer(FSClient *client)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetMountSource",
+   "stub_address": "0xc0007ac0",
+   "alias_address": "0x04007ac0",
+   "prototype": "FSStatus FSGetMountSource(FSClient *client, FSCmdBlock *cmd, FSMountSourceType type, FSMountSource *out, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetStat",
+   "stub_address": "0xc0007af0",
+   "alias_address": "0x04007af0",
+   "prototype": "FSStatus FSGetStat(FSClient *client, FSCmdBlock *block, char *path, FSStat *stat, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSGetStatFile",
+   "stub_address": "0xc0007b00",
+   "alias_address": "0x04007b00",
+   "prototype": "FSStatus FSGetStatFile(FSClient *client, FSCmdBlock *block, FSFileHandle handle, FSStat *stat, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSMount",
+   "stub_address": "0xc0007b88",
+   "alias_address": "0x04007b88",
+   "prototype": "FSStatus FSMount(FSClient *client, FSCmdBlock *cmd, FSMountSource *source, char *target, uint bytes, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSOpenDir",
+   "stub_address": "0xc0007b98",
+   "alias_address": "0x04007b98",
+   "prototype": "FSStatus FSOpenDir(FSClient *client, FSCmdBlock *block, char *path, FSDirectoryHandle *handle, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSReadDir",
+   "stub_address": "0xc0007bc8",
+   "alias_address": "0x04007bc8",
+   "prototype": "FSStatus FSReadDir(FSClient *client, FSCmdBlock *block, FSDirectoryHandle handle, FSDirectoryEntry *entry, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSReadFileWithPos",
+   "stub_address": "0xc0007be8",
+   "alias_address": "0x04007be8",
+   "prototype": "FSStatus FSReadFileWithPos(FSClient *client, FSCmdBlock *block, uchar *buffer, uint size, uint count, uint pos, FSFileHandle handle, uint unk1, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSSetCmdPriority",
+   "stub_address": "0xc0007c58",
+   "alias_address": "0x04007c58",
+   "prototype": "FSStatus FSSetCmdPriority(FSCmdBlock *block, FSPriority priority)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSSetStateChangeNotification",
+   "stub_address": "0xc0007c78",
+   "alias_address": "0x04007c78",
+   "prototype": "void FSSetStateChangeNotification(FSClient *client, FSStateChangeParams *info)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSUnmount",
+   "stub_address": "0xc0007ca8",
+   "alias_address": "0x04007ca8",
+   "prototype": "FSStatus FSUnmount(FSClient *client, FSCmdBlock *cmd, char *target, FSErrorFlag errorMask)",
+   "applied_in_ghidra": true
+  },
+  {
+   "name": "FSInitCmdBlock",
+   "stub_address": "0xc0007b40",
+   "alias_address": "0x04007b40",
+   "prototype": "void FSInitCmdBlock(FSCmdBlock *block)",
+   "applied_in_ghidra": true,
+   "note": "Already typed earlier; alias added this round."
+  }
+ ]
+}

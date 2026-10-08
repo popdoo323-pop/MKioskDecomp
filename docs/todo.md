@@ -14,6 +14,10 @@ Last updated 2026-10-08. Each item says what remains and what would close it.
 - [x] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessage, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond); 41 coreinit prototypes re-applied with WUT names in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
 - [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
 
+## Done this round
+- [x] FS imports typed from WUT: 14 functions at stub and alias addresses (FSInitCmdBlock alias added). FSFlushQuota has no WUT declaration.
+- [ ] Remaining unsigned coreinit imports: about 60 (see symbols/imports.csv and symbols/function_status.csv).
+
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
 - [ ] `symbols/coreinit_signatures.json`: argument types for 71 are not fully compared. Five remain: `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` exist in WUT but were not compared; `memcpy`, `memmove` and `exit` are standard C.
