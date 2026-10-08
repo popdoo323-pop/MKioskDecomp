@@ -9,3 +9,14 @@ No version string was found. Next: look for compiler-specific idioms in code, an
 
 Third-party code present (source paths embedded in .rodata, from 0x1011b994): Quazal OnlineCore / NetZ, plus Nintendo
 "CAFE/dbg_BreakImpl.cpp" and "../ut/os/./platform/ut_Print_Cafe.cpp".
+
+## Evidence checked 2026-10-08
+
+- The RPX has no `.comment` section and no `.note` or `.ident` section. Its 42 section headers are listed by `tools/rpx_info.py`.
+- No section contains a compiler name (GCC, clang, Metrowerks, CodeWarrior, Green Hills, `ghs`) or a compiler version string.
+- Ghidra's string table has no compiler or runtime version text.
+- The only hit for "Multi" in the binary is `Multi2P`, a game mode string. It is not a compiler.
+- The `__ghs_*` runtime imports are the only compiler-related signal. They are imported by coreinit, which does not prove the game code was built with the same toolchain.
+- Vtables use 8-byte entries, which fits the layout observed for the ItemCoin vtable.
+
+Status: still not identified. Next steps are to compare calling-convention and prologue idioms against the `__ghs` runtime, and to look at how the import stubs are generated.
