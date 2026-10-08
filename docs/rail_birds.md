@@ -30,7 +30,21 @@ The rail-path reader from the course data:
 - The Track Studio tree shows Point 67 as the visible point in Path2. This matches the trigger you described.
 - The panel in the screenshot is headed "Gravity Paths", but its fields are lap-point fields. The header may be a UI label.
 
-## Point-to-image mapping (uncertain)
+## Rail structure (confirmed from the editor tree and the loader)
+
+- The Rail Paths directory lists Path 0 to Path 13. Paths 0, 1 and 2 each have five points, Point 0 to Point 4.
+- A rail is an ordered chain: Point 0 connects to Point 1, which connects to Point 2, then Point 3 and Point 4. Point 4 is
+  the end. The loader reads PathPt in index order, so the chain order is the stored order.
+- Loop (IsClosed) is off on Path 0, so the chain does not wrap from Point 4 back to Point 0.
+- If bird 1 follows Path 0 forward, it moves from Point 0 towards Point 4. This is an inference from the chain and the bird's
+  position near Point 0.
+
+## Point-to-image mapping (now supported by the chain)
+
+- Read in chain order, the positions of images 6, 7, 8 and 9 (taken as Points 4, 3, 2 and 1) and Image 1 (Point 0) form one
+  continuous line. This supports the assumed mapping, which was based on upload order.
+
+## Earlier notes on uncertainty (superseded)
 
 - Image 1 is taken as Path 0 Point 0, the point nearest bird 1.
 - Images 6, 7, 8 and 9 are taken as Points 4, 3, 2 and 1, by upload order. Read in that order, their positions form a
@@ -40,6 +54,7 @@ The rail-path reader from the course data:
 
 ## Open
 
-- Path 1 and Path 2 points, which the uploads do not include.
+- Path 1 and Path 2 point positions, which the uploads do not include. The editor shows both have five points.
+- Paths 3 to 13 exist and are not linked to any bird in these screenshots.
 - Whether Param values on the points set the speed, given that all of them are 0.000.
 - The point reader (the virtual method called from the rail loader), to see which fields are read per point.
