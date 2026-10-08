@@ -2,6 +2,17 @@
 
 Source: content/course/Gu_MarioCircuit/course_muunt.byaml, converted to XML by the maintainer. The bird is used on this track. The raw tables are kept local in private/course_object_ids.csv.
 
+## Correction (course comparison, 2026-10-08)
+
+- ObjId 6003 is not a fixed bird ID. It appears in every course, but each course has its own list of IDs and names.
+  In every course 6003 sits at a different index, and the name at that index is different. In Gu_MarioCircuit the name
+  is Bird. In Gu_Airport it is RelayCar, in Gu_Cake WaterBox, in Gu_City CityBoat, in Gu_Cloud Sun, in Gu_FirstCircuit Coin,
+  in Gu_Techno Start, in Gu_WaterPark TestStart, in Gu_Menu VRMenu and in test_WiFiTest1 ItemBox.
+- The bird resource is present only in Gu_MarioCircuit. This matches the maintainer's observation.
+- The earlier statement that the executable matches the bird by ID 6003 is withdrawn. The meaning of an ID depends on
+  the course's own lists.
+- Caveat: the ID list and the name list differ in length in most courses, so the index pairing is not guaranteed.
+
 ## Verified
 
 - In course_muunt, the Bird is object ID 6003 and it occurs once in the Obj list.
