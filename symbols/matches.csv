@@ -1,2 +1,3 @@
 address,name,source,compiler,flags,size,status,note
 0x02132ff0,ItemCoin_Empty,src/Game/Item/ItemCoin_Empty.c,powerpc-linux-gnu-gcc 13.3.0,-O2 -fno-stack-protector,4,trivial,"Pipeline test. Body is blr. Flags were chosen by testing, so the match does not show the game's toolchain."
+0x02133298,ItemCoin_Vfn_02133298,src/asm/Game/Item/ItemCoin_Vfn_02133298.s,powerpc-linux-gnu-as 2.42,-mbig -a32 -mregnames,12,matched,"Hand-written assembly from the disassembly of the original bytes. Assembled bytes equal the original. No compiler involved."

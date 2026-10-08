@@ -6,6 +6,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02131904,ItemCoin_ctor,game_func,,0,0,1,0
 0x02131994,ItemCoin_LoadModel,game_func,,0,0,1,0
 0x02132ff0,ItemCoin_Empty,game_func,,0,0,0,0
+0x02133298,ItemCoin_Vfn_02133298,game_func,,0,0,0,1
 0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,0
 0x02133970,ItemCoin_Create,game_func,,0,0,1,0
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
