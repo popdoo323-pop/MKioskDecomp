@@ -21,6 +21,7 @@ import csv
 import json
 import os
 import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 SYM = os.path.join(ROOT, 'symbols')
@@ -183,7 +184,13 @@ def main():
     ]
     with open(os.path.join(DOCS, 'progress.md'), 'w') as fh:
         fh.write('\n'.join(lines))
+    import treemap
+    tile_input = [(int(r['address'], 16), int(r['size']), r['status'].strip())
+                  for r in csv.DictReader(open(os.path.join(SYM, 'matches.csv'), newline=''))]
+    blocks = treemap.blocks_from_matches(tile_input, 0x02000020, text_size())
+    treemap.write_svg(os.path.join(DOCS, 'treemap.svg'), blocks)
     block = readme_block(read_matches(), text_size(), total)
+    block = '![Progress map](docs/treemap.svg)\n\n' + block
     updated = update_readme(block)
     print('\n'.join(lines))
     print(f'wrote {len(rows)} rows to symbols/function_status.csv')

@@ -22,6 +22,8 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 ## Progress
 
 <!-- progress:start -->
+![Progress map](docs/treemap.svg)
+
 **0.0002% matched** (24 of 10,132,008 bytes of code, 2 of about 32,782 functions)
 
 | Library | Decompiled | Matched | Linked | Bytes (decompiled / matched / total) |
