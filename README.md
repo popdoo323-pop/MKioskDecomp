@@ -22,11 +22,11 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 ## Progress
 
 <!-- progress:start -->
-**0.0001% matched** (12 of 10,132,008 bytes of code, 1 of about 32,782 functions)
+**0.0002% matched** (24 of 10,132,008 bytes of code, 2 of about 32,782 functions)
 
 | Library | Decompiled | Matched | Linked | Bytes (decompiled / matched / total) |
 | --- | --- | --- | --- | --- |
-| Game (Turbo.rpx `.text`) | 0.0001% | 0.0001% | not measured | 12 / 12 / 10,132,008 |
+| Game (Turbo.rpx `.text`) | 0.0002% | 0.0002% | not measured | 24 / 24 / 10,132,008 |
 
 Decompiled counts functions recorded in symbols/matches.csv with status matched or decompiled. Matched counts functions whose assembled bytes equal the original. Linked needs a full build, which does not exist yet.
 <!-- progress:end -->

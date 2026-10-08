@@ -3,6 +3,8 @@
 
 usage: python tools/asmmatch.py --orig orig/Turbo.rpx --address 0x02133298 --size 12 \
            --source src/asm/Game/Item/ItemCoin_Vfn_02133298.s
+       python tools/asmmatch.py ... --define FUN_023f8f88=0x023f8f88
+           (for branches and calls to other functions; the file is linked at --address)
 
 Exit status 0 means identical. No compiler is involved, so the result does not depend on the
 game's toolchain. A match shows that the assembly encodes to the original bytes.
@@ -24,6 +26,9 @@ def main():
     ap.add_argument('--size', required=True, type=int)
     ap.add_argument('--source', required=True)
     ap.add_argument('--as', dest='assembler', default='powerpc-linux-gnu-as')
+    ap.add_argument('--ld', default='powerpc-linux-gnu-ld')
+    ap.add_argument('--define', action='append', default=[],
+                    help='SYMBOL=ADDRESS for an external symbol; the file is then linked at --address')
     a = ap.parse_args()
 
     addr = int(a.address, 16)
@@ -41,6 +46,16 @@ def main():
         if r.returncode != 0:
             print('assemble failed:\n' + r.stderr)
             return 2
+        if a.define:
+            # link so that relocations (branches to other functions) are resolved at the real address
+            elf = os.path.join(tmp, 'out.elf')
+            cmd = [a.ld, '-m', 'elf32ppc', '-EB', f'-Ttext=0x{addr:08x}', '-e', '0', '-o', elf, obj]
+            cmd += [f'--defsym={d}' for d in a.define]
+            r = subprocess.run(cmd, capture_output=True, text=True)
+            if r.returncode != 0:
+                print('link failed:\n' + r.stderr)
+                return 2
+            obj = elf
         built = rpxlib.load(obj)
         out = next((s for s in built.sections if s.name == '.text'), None)
         built_bytes = out.data if out else b''
