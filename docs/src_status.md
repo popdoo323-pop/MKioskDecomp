@@ -1,7 +1,8 @@
 # src status (2026-10-08)
 
-Every C++ file here is hand-written from the analysis. None is decompiler output. Reconstructions are marked in their
-header and counted separately from matches.
+Every C++ file here is hand-written from the analysis. None is decompiler output. Files are marked in their header as
+HAND-WRITTEN, NOT YET MATCHED and counted separately from matches. A file becomes matched only when its compiled or assembled
+bytes equal the original.
 
 | File | What it is | Evidence | Tests | Status |
 |---|---|---|---|---|
@@ -25,3 +26,9 @@ header and counted separately from matches.
   compiler. The assembly-first route is the one that produces real matches now.
 - RailPath::SegmentAt is a hypothesis. Movement along the rail is not identified.
 - The state machine's ordering is inferred from three classes.
+
+## Path to matched
+
+- C++ files need the game's compiler and flags to produce matching bytes. Until that is identified, they stay unmatched.
+- Individual functions can be matched now with the assembly-first route (see docs/asm_matching.md). A reconstruction can be
+  matched function by function once its original bytes are written as assembly and proven with asmmatch.py.

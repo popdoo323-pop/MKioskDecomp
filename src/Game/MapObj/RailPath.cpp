@@ -1,4 +1,4 @@
-// RECONSTRUCTION, NOT MATCHED. See include/Game/MapObj/RailPath.hpp.
+// HAND-WRITTEN, NOT YET MATCHED. See include/Game/MapObj/RailPath.hpp.
 #include "Game/MapObj/RailPath.hpp"
 
 void RailPath::LinkChain() {

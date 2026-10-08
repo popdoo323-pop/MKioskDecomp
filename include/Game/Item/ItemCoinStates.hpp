@@ -1,5 +1,5 @@
 #pragma once
-// RECONSTRUCTION, NOT MATCHED. ItemCoin's state handling on the shared StateMachine (docs/decompiled_round2.md).
+// HAND-WRITTEN, NOT YET MATCHED. ItemCoin's state handling on the shared StateMachine (docs/decompiled_round2.md).
 // The reset path exits the current state, sets state 0 and enters state 0. Per-state actions are placeholders.
 
 #include "Common/StateMachine.hpp"

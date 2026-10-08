@@ -1,5 +1,5 @@
 #pragma once
-// RECONSTRUCTION, NOT MATCHED. Rail path as built by the rail builder (docs/rail_points.md, docs/rail_birds.md).
+// HAND-WRITTEN, NOT YET MATCHED. Rail path as built by the rail builder (docs/rail_points.md, docs/rail_birds.md).
 // Names are placeholders. Behaviour is the observed linking rule; movement along the rail is not yet established.
 
 #include <cstdint>

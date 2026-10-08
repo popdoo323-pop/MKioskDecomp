@@ -1,5 +1,5 @@
 #pragma once
-// RECONSTRUCTION, NOT MATCHED. Point format from the BYAML reader and the rail builder (docs/rail_points.md).
+// HAND-WRITTEN, NOT YET MATCHED. Point format from the BYAML reader and the rail builder (docs/rail_points.md).
 // Field offsets in comments are the observed ones. Names are placeholders.
 
 struct Vec3 {

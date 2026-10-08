@@ -1,5 +1,5 @@
 #pragma once
-// RECONSTRUCTION, NOT MATCHED. Written by hand from the behaviour observed in ObjTire::Update, ItemCoin's state reset
+// HAND-WRITTEN, NOT YET MATCHED. Written by hand from the behaviour observed in ObjTire::Update, ItemCoin's state reset
 // and the bird's update. The same record-table design appears in all three. Offsets are in docs/decompiled_round2.md.
 // Names are placeholders.
 

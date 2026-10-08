@@ -1,4 +1,4 @@
-// RECONSTRUCTION, NOT MATCHED. See include/Game/MapObj/RailPoint.hpp.
+// HAND-WRITTEN, NOT YET MATCHED. See include/Game/MapObj/RailPoint.hpp.
 #include "Game/MapObj/RailPoint.hpp"
 
 #include <cmath>

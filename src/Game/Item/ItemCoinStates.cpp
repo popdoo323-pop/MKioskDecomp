@@ -1,4 +1,4 @@
-// RECONSTRUCTION, NOT MATCHED. See include/Game/Item/ItemCoinStates.hpp.
+// HAND-WRITTEN, NOT YET MATCHED. See include/Game/Item/ItemCoinStates.hpp.
 #include "Game/Item/ItemCoinStates.hpp"
 
 void ItemCoinStates::OnEnter(int state) {

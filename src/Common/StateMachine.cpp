@@ -1,4 +1,4 @@
-// RECONSTRUCTION, NOT MATCHED. See include/Common/StateMachine.hpp.
+// HAND-WRITTEN, NOT YET MATCHED. See include/Common/StateMachine.hpp.
 #include "Common/StateMachine.hpp"
 
 void StateMachine::Update() {

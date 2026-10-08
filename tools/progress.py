@@ -125,7 +125,7 @@ def update_readme(block):
 def source_stats():
     """Counts of hand-written source, split by whether the file is marked as an unmatched reconstruction."""
     recon = hand = asm = tests = 0
-    banner = 'RECONSTRUCTION, NOT MATCHED'
+    banner = 'HAND-WRITTEN, NOT YET MATCHED'
     for dirpath, _, files in os.walk(os.path.join(ROOT, 'include')):
         for name in files:
             if name.endswith('.hpp'):
