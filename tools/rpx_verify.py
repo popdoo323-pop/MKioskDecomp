@@ -1,55 +1,62 @@
 #!/usr/bin/env python3
-"""Verify an RPX/RPL: print sections, check every section CRC against the
-file's own CRC table, and optionally extract decompressed sections.
+"""Check an RPX or RPL against its own CRC table and, optionally, a known SHA-256.
 
-usage: rpx_verify.py Turbo.rpx [--extract OUTDIR] [--sha256 EXPECTED]
+usage: python tools/rpx_verify.py FILE [--sha256 HASH] [--extract DIR]
+
+--extract writes each non-empty section to DIR/<name>.section.bin (decompressed).
+Exit status is 0 when everything checks out, 1 otherwise.
 """
-import sys, struct, zlib, hashlib, os, argparse
+import argparse
+import hashlib
+import os
+import struct
+import sys
+import zlib
 
-def load(path):
-    d = open(path, 'rb').read()
-    (_, _, _, _, entry, _, shoff, _, _, _, _, shentsize, shnum, shstrndx) = struct.unpack('>16sHHIIIIIHHHHHH', d[:52])
-    secs = []
-    for i in range(shnum):
-        o = shoff + i * shentsize
-        name, typ, flags, addr, off, size, *_ = struct.unpack('>IIIIIIIIII', d[o:o+40])
-        secs.append(dict(i=i, name=name, type=typ, flags=flags, addr=addr, off=off, size=size))
-    def data(s):
-        raw = d[s['off']:s['off'] + s['size']]
-        if s['type'] == 8:
-            return b''
-        if s['flags'] & 0x08000000:
-            return zlib.decompress(raw[4:])
-        return raw
-    shstr = data(secs[shstrndx])
-    for s in secs:
-        s['sname'] = shstr[s['name']:shstr.index(b'\0', s['name'])].decode()
-    return d, entry, secs, data
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import rpxlib  # noqa: E402
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('file'); ap.add_argument('--extract'); ap.add_argument('--sha256')
-    a = ap.parse_args()
-    d, entry, secs, data = load(a.file)
-    h = hashlib.sha256(d).hexdigest()
-    print(f'{a.file}: {len(d)} bytes, sha256={h}, entry=0x{entry:08x}')
-    if a.sha256:
-        print('SHA-256', 'OK' if h.lower() == a.sha256.lower() else 'MISMATCH')
-    crc = [s for s in secs if s['type'] == 0x80000003][0]
-    tab = struct.unpack('>%dI' % (crc['size'] // 4), d[crc['off']:crc['off'] + crc['size']])
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description='Check an RPX/RPL against its CRC table and an optional SHA-256.')
+    ap.add_argument('file')
+    ap.add_argument('--sha256', help='expected SHA-256 of the whole file')
+    ap.add_argument('--extract', metavar='DIR', help='write each section to DIR/<name>.section.bin')
+    args = ap.parse_args(argv)
+
+    f = rpxlib.load(args.file)
+    ok = True
+    digest = hashlib.sha256(f.raw).hexdigest()
+    print(f'{args.file}: {len(f.raw)} bytes, sha256={digest}, entry=0x{f.entry:08x}')
+    if args.sha256:
+        match = digest == args.sha256.lower()
+        ok = ok and match
+        print('SHA-256 OK' if match else 'SHA-256 MISMATCH')
+
+    crc_sec = next((s for s in f.sections if s.type == rpxlib.SHT_CAFE_CRC), None)
+    if crc_sec is None:
+        print('no CRC section found')
+        return 1
+    table = struct.unpack('>%dI' % (len(crc_sec.data) // 4), crc_sec.data)
+
     bad = 0
-    for s in secs:
-        if s['type'] in (0, 0x80000003):
+    for s in f.sections:
+        if s.type in (0, rpxlib.SHT_CAFE_CRC):
             continue
-        calc = zlib.crc32(data(s)) & 0xffffffff
-        ok = calc == tab[s['i']]
-        bad += not ok
-        print(f"{s['i']:>3} {s['sname']:<22} addr=0x{s['addr']:08x} size={len(data(s)):>9} crc={'OK' if ok else 'MISMATCH'}")
-        if a.extract and s['sname'] and s['type'] != 8:
-            os.makedirs(a.extract, exist_ok=True)
-            open(os.path.join(a.extract, s['sname'].lstrip('.') + '.bin'), 'wb').write(data(s))
-    print('CRC mismatches:', bad)
-    sys.exit(1 if bad else 0)
+        calc = 0 if s.type == rpxlib.SHT_NOBITS else zlib.crc32(s.data) & 0xFFFFFFFF
+        expected = table[s.index] if s.index < len(table) else None
+        good = calc == expected
+        bad += not good
+        print(f'{s.index:>3} {s.name:<22} {s.mem_size:>10} bytes  crc {"OK" if good else "MISMATCH"}')
+        if args.extract and s.name and s.type != rpxlib.SHT_NOBITS:
+            os.makedirs(args.extract, exist_ok=True)
+            out = os.path.join(args.extract, s.name.lstrip('.') + '.section.bin')
+            with open(out, 'wb') as fh:
+                fh.write(s.data)
+
+    print(f'CRC mismatches: {bad}')
+    return 0 if (ok and bad == 0) else 1
+
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

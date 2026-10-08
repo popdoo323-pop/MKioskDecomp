@@ -10,7 +10,7 @@ ITWALL BWALL OUTF DUMMY0 CANNON TRIGGER SOUND VALLEY DUMMY2 DUMMY3 ZONE
 ## Ground and wall sound bank lookup
 - `FUN_02080d0c` (0x02080d0c): arguments (uint *terrainType, int variant). Looks the terrain name up in the 32-name list, then scans a table
   of 29 rows x 9 pointers at 0x1014ac48 for a row whose first entry matches that name. It returns table entry (variant + 1) of that row.
-- Full resolved table: `symbols/terrain_sound_table.csv` (row key, then variants 0-7 as bank file names, ".bars" omitted).
+- Full resolved table: local `private/terrain_sound_table.csv` (not in the repo). Row key, then variants 0-7 as bank file names, ".bars" omitted.
 - Wall banks live under the WALL, WALL2, WALL3, LWALL, ITROAD, ITWALL and BWALL rows. BWALL variants: CREAM, BUSH, PLASTIC, LEAF, MORAY, TIRE, then GND_CLOTH and GND_CLOUD.
 - `FUN_02392930` loads every bank: 32 terrain types x 8 variants, path built as "%s/%s" from an audio/ground path string.
 - `FUN_02072608` is the per-frame tracker: it reads current terrain type (+0x210) and variant (+0x214), strips ".bars" and "SNDG_GND_" to get a

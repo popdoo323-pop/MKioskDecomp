@@ -25,40 +25,7 @@ Binary SHA-256 `4dd6b212...409c8d`. Names are proposals; the binary is stripped.
 2. Find the per-frame update slot of vtable 0x10092270 (the function pointer slots are at +0x04, +0x0c, +0x14, ...).
 3. Find the function that copies a byte into the tracker object's +0x210 from the ground state's +0x5c.
 
-## Editor enum vs binary terrain list (from Track Studio screenshots)
-| Editor name | Binary name | Status |
-|---|---|---|
-| Road 1-4 | ROAD, ROAD2, ROAD3, ROAD4 | name |
-| Wall 1-3 | WALL, WALL2, WALL3 | name |
-| Dash | DASH | name |
-| Gravity Pad | GRAVITY | name |
-| Glider Pad | GLIDE | name |
-| Fall Out | OUTF | name |
-| Slippery | ICE | name |
-| Item Road / Item Wall | ITROAD / ITWALL | name |
-| Lakitu Rescue | RESQ | name |
-| Zone | ZONE | name |
-| Sand | SAND | name |
-| Light Offroad | LDIRT | name |
-| Offroad / Offroad 2 | DIRT / DIRT2 | name |
-| Heavy Offroad | HDIRT | name |
-| LWALL / BWALL | LWALL / BWALL | name |
-| Pull | PULL | name |
-| Moving Terrain | BELT | previous guess, now name-consistent |
-| Effect Trigger | TRIGGER | name |
-| Sound Effect | SOUND | name |
-| Dummy2 / Dummy3 | DUMMY2 / DUMMY3 | name |
-| Invisible Wall | not in the 32-entry list | open |
-| Glider Activator | not in the 32-entry list | open |
-| (none in editor) | CANNON, VALLEY, DUMMY0 | not in editor list |
+## Editor names
 
-## Material list (sound/visual variant)
-| Editor material | Binary lead |
-|---|---|
-| Wood Board | WBOARD (flag -1 in tracker) |
-| Rainbow Road (Glass Sound) | likely SNDG_GND_GLASS (ROAD2 variant 2), unconfirmed |
-| Tec Road, Ocean Floor, Rainbow Road | not yet mapped |
-
-## Special dropdown (kart flags, probably a separate bit field)
-None, Trickable, Trickable (Speed Required), High Gravity, High Gravity + Trickable, High Gravity + Bouncy?
-"Bouncy?" with a question mark in the editor. Possibly related to the tire map object's bounce behavior. Unconfirmed.
+The editor-to-binary mapping, including material and special options, is in
+`docs/terrain_types_crossref.md`.

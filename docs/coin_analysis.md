@@ -34,7 +34,6 @@ construction, loading, HUD and effects code. See "Next targets".
 
 ## Inferences (unconfirmed)
 - `T_Molec_00` / `T_Denomi_00` look like numerator / denominator; denominator is set from a byte that is 3 in the HUD builder (likely lap total).
-- Type id 7 may be offset from the name-list order.
 - `SE_OBJ_COIN_GET_PL_n` may vary by player or coin count.
 
 ## Corrections

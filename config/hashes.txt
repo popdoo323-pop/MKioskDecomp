@@ -1,4 +1,6 @@
-4dd6b2122cbb2faeb45c98e161835f36d509e9924347ccf0c1d816c421409c8d  Turbo.rpx   6740928
-48daf714b4664e1fdb03c9f0662c9f86f74c4224ef46f0cf183c8c4ff4595570  mw_igr.rpl   345792
-261a87b728c964dd35c8c9c7d6b478567d6b1ce566c9511ce2ec31681868d4fb  mw_igr_sbc.rpl   21632
-f2d20df86ac1af1f9e587d6e748014d43f2f22985d388c5b011f3c4b7d0e184d  mvplayer.rpl   600704
+# Reference hashes. SHA-256 and byte length, measured with Get-FileHash and Get-Item on the maintainer's dumps.
+# sha256                                                            bytes    file
+4dd6b2122cbb2faeb45c98e161835f36d509e9924347ccf0c1d816c421409c8d  6740928  Turbo.rpx
+48daf714b4664e1fdb03c9f0662c9f86f74c4224ef46f0cf183c8c4ff4595570  345792   mw_igr.rpl
+261a87b728c964dd35c8c9c7d6b478567d6b1ce566c9511ce2ec31681868d4fb  21632    mw_igr_sbc.rpl
+f2d20df86ac1af1f9e587d6e748014d43f2f22985d388c5b011f3c4b7d0e184d  600704   mvplayer.rpl

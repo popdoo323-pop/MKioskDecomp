@@ -1,3 +1,5 @@
+// PLACEHOLDER: class, member and function names here are proposals from decompiler analysis.
+// Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // Coin/lap HUD object ("L_LapCoin_00"). Class name (invented).
 // VERIFIED (FUN_0251046c): +0x58 +0x5c +0x60 +0x66 +0x67.  NOT RE-VERIFIED: +0x54, +0x65, size 0x6c, constant 3 (all from FUN_02525904).

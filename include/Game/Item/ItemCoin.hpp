@@ -1,3 +1,5 @@
+// PLACEHOLDER: class, member and function names here are proposals from decompiler analysis.
+// Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // ItemCoin - layout notes from Turbo.rpx. Offsets re-verified against decompiler output on 2026-10-07. Not matching.
 // Item type id 7; name-table index 8 ("ItemCoin") because the table starts at None = -1 (verified).

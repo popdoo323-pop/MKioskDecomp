@@ -1,3 +1,5 @@
+// PLACEHOLDER: class, member and function names here are proposals from decompiler analysis.
+// Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // Terrain type names come from the game's own 32-entry string list at 0x1014ab4c. Order verified.
 enum TerrainType {
@@ -7,7 +9,7 @@ enum TerrainType {
     TERRAIN_DUMMY0, TERRAIN_CANNON, TERRAIN_TRIGGER, TERRAIN_SOUND, TERRAIN_VALLEY, TERRAIN_DUMMY2, TERRAIN_DUMMY3, TERRAIN_ZONE
 };
 
-// Name-to-bank table: 29 rows x 9 pointers at 0x1014ac48, see symbols/terrain_sound_table.csv.
+// Name-to-bank table: 29 rows x 9 pointers at 0x1014ac48, see the local private/terrain_sound_table.csv (not in the repo).
 const char* GroundSound_GetBankName(const unsigned* terrainType, int variant); // 0x02080d0c
 void GroundSound_LoadAllBanks();                                               // 0x02392930 (32 x 8)
 

@@ -1,3 +1,5 @@
+// PLACEHOLDER: class, member and function names here are proposals from decompiler analysis.
+// Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // RaceKartChecker - FUN_0239993c (0x0239993c). Offsets re-verified against decompiler output. Not matching.
 

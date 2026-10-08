@@ -1,3 +1,5 @@
+// PLACEHOLDER: class, member and function names here are proposals from decompiler analysis.
+// Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // Tire map object. Class name unconfirmed ("ObjTirePiece" string at 0x10071a90 has no references). Offsets observed, unverified.
 class ObjTire {

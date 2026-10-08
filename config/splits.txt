@@ -1,4 +1,0 @@
-# Placeholder. Maps source files to address ranges once we decide on a build/compare tool.
-# Game/Item/ItemCoin.cpp:       .text start:0x02131904 end:0x02133970+  (ranges to be confirmed)
-# Game/Race/RaceKartChecker.cpp .text start:0x0239993c end:TBD
-# Game/UI/LapCoinLayout.cpp     .text start:0x02510330 end:TBD

@@ -1,17 +1,18 @@
 # Repository structure
 
-Modeled on SMGCommunity/Petari, adapted for a Wii U RPX.
+| Path | Tracked | Contents |
+|---|---|---|
+| `README.md`, `LICENSE`, `.gitignore`, `.gitattributes` | yes | project info, licensing, ignore rules |
+| `config/hashes.txt` | yes | reference SHA-256 and sizes for the binaries |
+| `docs/` | yes | analysis notes and verification logs. Each file says what is verified and what is not |
+| `symbols/` | yes | function, import and field tables with addresses and proposed names |
+| `include/` | yes | class layouts with observed offsets. Placeholder names are marked in each file |
+| `tools/` | yes | RPX reader (`rpxlib.py`), section listing (`rpx_info.py`) and verification (`rpx_verify.py`) |
+| `orig/` | only `README.md` | your own dumps go here. Git-ignored |
+| `private/` | no | raw tables and name lists extracted from the game. Local reference only, git-ignored |
 
-| Path | Purpose |
-|---|---|
-| `include/Game/<System>/` | headers, one class per file, grouped by system (Item, Race, UI, ...) |
-| `src/Game/<System>/` | implementations, mirroring `include/` |
-| `config/symbols.txt`, `config/splits.txt` | address to name map, and which source file owns which address range |
-| `symbols/`, `docs/` | our analysis notes (already in repo) |
-| `tools/` | RPX verify/inspect scripts (already in repo) |
-| `orig/` | your own dump, git-ignored |
+There is no `src/` tree yet. Function bodies are not written. The function addresses to match are listed in
+`symbols/coin_functions.csv` and `symbols/tire_audio_functions.csv`. Source files will be added once there is code to
+compare against a build.
 
-Open items before this can be a real matching project:
-1. Identify the compiler and flags used for the original build.
-2. Pick a build + compare toolchain that supports PowerPC Cafe OS RPX (Petari's tooling targets GameCube/Wii DOL; check support).
-3. Replace TODO bodies by hand and compare with objdiff or equivalent.
+The layout is loosely inspired by SMGCommunity/Petari, but no code is copied from it.

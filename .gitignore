@@ -3,10 +3,13 @@ orig/*
 !orig/README.md
 *.rpx
 *.rpl
-extracted/
-dec/
-content/
-*.bin
+*.section.bin
+
+# ---- Local-only folders (not tracked) ----
+/private/
+/extracted/
+/dec/
+/content/
 
 # ---- Game assets (Nintendo's files) ----
 *.bfres

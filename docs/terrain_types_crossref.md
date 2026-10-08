@@ -1,37 +1,53 @@
-# Terrain types: binary vs Track Studio documentation
+# Terrain types: binary names vs Track Studio editor
 
-Source for the Track Studio side: https://mapstudioproject.github.io/TrackStudioDocs/col/Collison.html (third-party docs for the
-course collision `.kcl` format). Our side is the 32-entry terrain name list at 0x1014ab4c in Turbo.rpx.
-Matches are by name or obvious meaning. Anything marked "guess" is not confirmed.
+Sources: the editor's collision attribute list (screenshots) and the Track Studio collision documentation
+(https://mapstudioproject.github.io/TrackStudioDocs/col/Collison.html). Binary side: the 32-entry terrain name list in
+Turbo.rpx at 0x1014ab4c, read from memory. The order is verified.
 
-| Binary name | Track Studio term | Match |
+## Editor attribute to binary name
+
+| Editor attribute | Binary name | Confidence |
 |---|---|---|
-| ROAD, ROAD2, ROAD3, ROAD4 | Road 1 - 4 | name |
-| WALL, WALL2, WALL3 | Wall 1 - 3 | name |
-| DASH | Dash | name |
-| GRAVITY | Gravity Pad | name |
-| GLIDE | Glider Pad | name |
-| PULL | Pull | name |
-| ITROAD / ITWALL | Item Road / Item Wall | name |
-| SAND | Sand | name |
-| LDIRT | Light Offroad | guess |
-| DIRT, DIRT2 | Offroad 1 - 2 | guess |
-| HDIRT | Heavy Offroad | guess |
-| ICE | Slippery | guess |
-| BELT | Moving Terrain | guess |
-| OUTF | Fall Out | guess |
-| LWALL, BWALL | LWALL, BWALL | name (docs say effect unknown) |
-| TRIGGER | Effect Trigger | guess |
-| SOUND | Sounds Trigger | guess |
-| DUMMY2, DUMMY3 | Dummy2, Dummy3 | name |
-| RESQ, DUMMY0, CANNON, VALLEY, ZONE | not listed | unknown |
+| Road 1 - 4 | ROAD, ROAD2, ROAD3, ROAD4 | name |
+| Wall 1 - 3 | WALL, WALL2, WALL3 | name |
+| Dash | DASH | name |
+| Gravity Pad | GRAVITY | name |
+| Glider Pad | GLIDE | name |
+| Fall Out | OUTF | name |
+| Slippery | ICE | name |
+| Item Road | ITROAD | name |
+| Item Wall | ITWALL | name |
+| Lakitu Rescue | RESQ | name |
+| Zone | ZONE | name |
+| Sand | SAND | name |
+| Light Offroad | LDIRT | name |
+| Offroad | DIRT | order match (Offroad 1) |
+| Offroad 2 | DIRT2 | order match |
+| Heavy Offroad | HDIRT | name |
+| LWALL | LWALL | name |
+| BWALL | BWALL | name |
+| Pull | PULL | name |
+| Moving Terrain | BELT | name |
+| Effect Trigger | TRIGGER | name |
+| Sound Effect | SOUND | name |
+| Dummy2 / Dummy3 | DUMMY2 / DUMMY3 | name |
+| Glider Activator | not in the 32-entry list | open |
+| Invisible Wall | not in the 32-entry list | open |
 
-## What it confirms
-- Road and wall types have "8 different materials" each. This matches the 8 variants per terrain type that the ground-sound
-  loader iterates (32 types x 8 variants) and the 8 columns of the sound table (`symbols/terrain_sound_table.csv`).
-- The docs say mesh/material IDs can be written as `COL_##` in hex (example `COL_C` = 0x000C). The exact bit layout of that ID is not
-  stated there. Our code treats terrain type as 0..31 and variant as 0..7, which fits a small packed ID but is not confirmed.
-- Docs say Invisible Wall has no particles or sound: not yet mapped to a binary name.
+Binary entries with no editor attribute: CANNON, VALLEY, DUMMY0.
 
-## Not yet read
-Only the Collision and Materials pages were read. The Track Studio index and the Map Objects / Sound Objects pages were not.
+## Material list (sound and visual variant)
+
+| Editor material | Binary lead |
+|---|---|
+| Wood Board | WBOARD (the tracker sets a flag for WBOARD, HBOARD and BONE) |
+| Rainbow Road (Glass Sound) | likely SNDG_GND_GLASS (ROAD2 row, variant 2); unconfirmed |
+| Tec Road, Ocean Floor, Rainbow Road | not yet mapped |
+
+The material dropdown contains several "None" entries, which look like unused slots.
+
+## Special dropdown (probably a separate bit field stored with the attribute)
+
+None, Trickable, Trickable (Speed Required), High Gravity, High Gravity + Trickable, High Gravity + Bouncy?
+
+"Bouncy?" is marked with a question mark in the editor. It may relate to the tire map object's bounce; unconfirmed.
