@@ -1,0 +1,13 @@
+offset,field,type_hint,status,notes
+0x5c,mGndAttr,u8,verified,"puVar4[0x4e]=param_1+0x5c and *(u8*)(param_1+0x5c)=0 in FUN_023c9460; likely terrain attribute"
+,mpDriveSpeed,ptr,offset unknown,registered by name only
+,mpDriveSpeedRatio,ptr,offset unknown,registered by name only
+,mpGravityVec,ptr,offset unknown,registered by name only
+,mpMoveMtx,ptr,offset unknown,registered by name only
+,mpCollidedGround,ptr,offset unknown,registered by name only (object vtable 0x1008cb04; size 0x13c)
+,mpCollidedWall,ptr,offset unknown,registered by name only
+,mpGroundPos,ptr,offset unknown,registered by name only
+,mpAirCounter,ptr,offset unknown,registered by name only
+,mOnDirtRate,float,offset unknown,registered by name only
+,mbAntiGColSpin,ptr,offset unknown,registered by name only
+,mpCollidedWallObject,ptr,offset unknown,registered by name only
