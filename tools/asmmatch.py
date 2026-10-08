@@ -11,9 +11,28 @@ game's toolchain. A match shows that the assembly encodes to the original bytes.
 """
 import argparse
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
+
+EXIT_TOOLCHAIN_MISSING = 2
+
+
+def find_tool(name, env_var):
+    """Return the path to an assembler/linker, or None.
+
+    Order: the environment variable (full path), then the name on PATH, then the devkitPPC name on PATH
+    (powerpc-eabi-*, with .exe on Windows).
+    """
+    explicit = os.environ.get(env_var)
+    if explicit:
+        return explicit if os.path.exists(explicit) else None
+    found = shutil.which(name)
+    if found:
+        return found
+    alt = name.replace('powerpc-linux-gnu-', 'powerpc-eabi-')
+    return shutil.which(alt) or shutil.which(alt + '.exe')
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rpxlib  # noqa: E402
@@ -25,11 +44,26 @@ def main():
     ap.add_argument('--address', required=True)
     ap.add_argument('--size', required=True, type=int)
     ap.add_argument('--source', required=True)
-    ap.add_argument('--as', dest='assembler', default='powerpc-linux-gnu-as')
-    ap.add_argument('--ld', default='powerpc-linux-gnu-ld')
+    ap.add_argument('--as', dest='assembler', default=None,
+                    help='assembler (default: POWERPC_AS, or powerpc-linux-gnu-as, or powerpc-eabi-as)')
+    ap.add_argument('--ld', default=None,
+                    help='linker (default: POWERPC_LD, or powerpc-linux-gnu-ld, or powerpc-eabi-ld)')
     ap.add_argument('--define', action='append', default=[],
                     help='SYMBOL=ADDRESS for an external symbol; the file is then linked at --address')
     a = ap.parse_args()
+
+    asm = find_tool(a.assembler or 'powerpc-linux-gnu-as', 'POWERPC_AS')
+    if asm is None:
+        print('toolchain missing: no assembler found. Install binutils for PowerPC, or set POWERPC_AS to the full path '
+              'of powerpc-eabi-as (devkitPPC) or powerpc-linux-gnu-as.')
+        return EXIT_TOOLCHAIN_MISSING
+    a.assembler = asm
+    if a.define:
+        ld = find_tool(a.ld or 'powerpc-linux-gnu-ld', 'POWERPC_LD')
+        if ld is None:
+            print('toolchain missing: no linker found. Set POWERPC_LD to the full path of powerpc-eabi-ld or powerpc-linux-gnu-ld.')
+            return EXIT_TOOLCHAIN_MISSING
+        a.ld = ld
 
     addr = int(a.address, 16)
     f = rpxlib.load(a.orig)

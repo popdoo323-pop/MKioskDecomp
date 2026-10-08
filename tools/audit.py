@@ -13,11 +13,17 @@ import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 results = []
+skipped = []
 
 
 def check(name, ok, detail=''):
     results.append(ok)
     print(f"{'PASS' if ok else 'FAIL'}  {name}" + (f'  ({detail})' if detail else ''))
+
+
+def skip(name, reason):
+    skipped.append(name)
+    print(f'SKIP  {name}  ({reason})')
 
 
 def read(path):
@@ -32,7 +38,7 @@ if os.path.exists(orig):
     ref = re.search(r'([0-9a-f]{64})\s+\d+\s+Turbo\.rpx', read('config/hashes.txt'))
     check('orig/Turbo.rpx matches config/hashes.txt', bool(ref) and ref.group(1) == h)
 else:
-    print('SKIP  orig/Turbo.rpx hash (no dump present)')
+    skip('orig/Turbo.rpx hash', 'no dump present')
 
 # 2. Every matched row has a source file that exists, and only known statuses are used.
 rows = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'matches.csv'), newline='')))
@@ -73,7 +79,7 @@ try:
               and not t.endswith('README.md')]
     check('no game data or private files are tracked by git', not banned, ', '.join(banned))
 except (subprocess.CalledProcessError, FileNotFoundError):
-    print('SKIP  git tracked-file check (not a git work tree)')
+    skip('git tracked-file check', 'not a git work tree')
 
 # 6. The symbol table covers all imports.
 imports = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'imports.csv'), newline='')))
@@ -81,5 +87,16 @@ status_rows = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'function_s
 check('function_status.csv includes every import', sum(1 for r in status_rows if r['kind'].startswith('import_')) == len(imports),
       f"{len(imports)} imports")
 
-print(f"\n{sum(results)} of {len(results)} checks passed")
+# 7. Every matched function re-verifies from its source (needs the PowerPC assembler).
+vm = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'verify_matches.py')] +
+                    (['--orig', os.path.join(ROOT, 'orig', 'Turbo.rpx')] if os.path.exists(orig) else []),
+                    capture_output=True, text=True)
+if vm.returncode == 2:
+    skip('matched functions re-verify', 'toolchain missing: set POWERPC_AS, see tools/asmmatch.py')
+elif os.path.exists(orig):
+    check('matched functions re-verify from source', vm.returncode == 0, vm.stdout.strip().splitlines()[-1])
+else:
+    skip('matched functions re-verify', 'no dump present to verify against')
+
+print(f"\n{sum(results)} passed, {sum(not r for r in results)} failed, {len(skipped)} skipped")
 sys.exit(0 if all(results) else 1)

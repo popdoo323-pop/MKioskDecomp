@@ -17,6 +17,7 @@ import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 sys.path.insert(0, os.path.join(ROOT, 'tools'))
+import asmmatch  # noqa: E402
 import rpxlib  # noqa: E402
 
 
@@ -33,6 +34,10 @@ def main():
         return 1
     text = next(s for s in rpxlib.load(args.orig).sections if s.name == '.text')
 
+    if asmmatch.find_tool('powerpc-linux-gnu-as', 'POWERPC_AS') is None:
+        print('toolchain missing: cannot verify matches. Set POWERPC_AS to the full path of an assembler.')
+        return asmmatch.EXIT_TOOLCHAIN_MISSING
+
     rows = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'matches.csv'), newline='')))
     matched = [r for r in rows if r['status'].strip() == 'matched']
     trivial = [r for r in rows if r['status'].strip() == 'trivial']
@@ -46,6 +51,9 @@ def main():
         for name, val in defines_from(r['flags']):
             cmd += ['--define', f'{name}={val}']
         res = subprocess.run(cmd, capture_output=True, text=True)
+        if res.returncode == asmmatch.EXIT_TOOLCHAIN_MISSING:
+            print(res.stdout.strip())
+            return asmmatch.EXIT_TOOLCHAIN_MISSING
         ok = res.returncode == 0 and 'MATCH' in res.stdout and 'DIFFERENT' not in res.stdout
         print(f"{'OK  ' if ok else 'FAIL'} {r['name']:<34} {r['address']} {size} bytes")
         if not ok:
