@@ -61,3 +61,46 @@ Caveats:
 Next test: a larger set of functions (leaves, calls, and functions that save registers), then compare the ratio and the
 prologue pattern with the game's prologues. The game's ObjTire helper at 0x022ee1e4 is a useful reference: mflr r0; stwu
 r1,-0x10(r1); stw r31,0xc(r1); ... stw r0,0x14(r1).
+
+## Larger frame test: how to judge a candidate (2026-10-08)
+
+Two checks, both run by tests/compiler/run_frame_test.sh:
+
+1. Frame share. The game's prologues are 46.5% 8 mod 16 (11,395 of 24,489). Default GCC gives 0% at -O1, -O2, -O3 and -Os
+   (control run, 36 frames each). A candidate needs a share in the same range as the game.
+2. Prologue order. In the game, the link-register save (`stw r0,N(r1)`) comes after the first callee-saved register save,
+   not immediately after `stwu`. The matched bird helper (0x021f9bb8) and the ObjTire helper (0x022ee1e4) both show this.
+   Default GCC saves the link register immediately after `stwu` (see saves_1 in the control output). A candidate that saves
+   the link register late, as the game does, is a stronger match.
+
+A candidate that passes both checks is worth a closer look. A candidate that fails check 2 is ruled out, whatever its share.
+
+## devkitPPC result, larger test (2026-10-08, maintainer's PC)
+
+Compiler: powerpc-eabi-gcc from devkitPro, run with tests/compiler/run_frame_test.sh.
+
+| level | frames | 8 mod 16 | share |
+|---|---|---|---|
+| -O1 | 36 | 28 | 77.8% |
+| -O2 | 36 | 24 | 66.7% |
+| -O3 | 36 | 24 | 66.7% |
+| -Os | 36 | 28 | 77.8% |
+
+Game (Turbo.rpx): 46.5%. The devkitPPC share is well above the game's, so the share alone does not match.
+
+Link-register placement, checked on the -O2 output of saves_1 (the other functions were not counted in that run):
+the link register is saved right after mflr, before the register saves. This is the GCC pattern, not the game's. The full
+placement count was added to the script afterwards; it has not been run on the devkitPPC output yet.
+
+Status: unlikely to be the game's compiler, not yet ruled out. The full placement count over all 36 functions decides it.
+Rerun the updated script on the devkitPPC compiler to get that count.
+
+## devkitPPC result, final (2026-10-08)
+
+Full placement count over all 36 functions at -O2: link register saved early in 32, late in 4 (89% early).
+The game saves it late in 97.6% of its prologues (14,433 of 14,780), and early in 1.7%.
+The frame share is 66.7% to 77.8%, against the game's 46.5%.
+
+Status: devkitPPC (GCC-based) is ruled out as the game's compiler by both checks. The same result applies to default GCC.
+The game's compiler is still unidentified. The leading hypothesis is Green Hills (the __ghs_* runtime imports and the
+OSThreadGHSExceptionHandling type in WUT), but no Green Hills output is available to test against.

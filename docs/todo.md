@@ -60,8 +60,8 @@ The seven PLACEHOLDER headers (`include/Audio/GroundAudio.hpp`, `include/Effect/
       Turn it off again afterwards.
 
 ## 5. Blocked
-- [ ] Byte matching of compiled C++ needs the game's compiler. Frame test on devkitPPC: 5 of 6 frames are 8 mod 16, so the
-      candidate is not ruled out. A larger test is needed (see `docs/compiler_notes.md`).
+- [x] devkitPPC (GCC-based) ruled out as the game's compiler by the larger frame test (see `docs/compiler_notes.md`).
+- [ ] Compiler still unidentified. Leading hypothesis: Green Hills. Needs a Green Hills sample to test against.
 - [ ] Movement along rails needs the function that reads the rail segment parameter.
 
 ## 6. Needs your input
