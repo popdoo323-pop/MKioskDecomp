@@ -1,0 +1,6 @@
+address,proposed_name,category,confidence,notes
+0x021fe554,Bird_SetupAnimations,mapobj,medium,looks up GroundWaitA GroundWaitB Fly Turn; reads +0x122 index
+0x021fe6a4,Bird_Update,mapobj,medium,state machine update; same design as ObjTire and ItemCoin
+0x021f9bb8,Bird_CreateHelper,mapobj,low,builds helper at +0x78 via FUN_023f9034
+0x1002ec40,Bird_Vtable,mapobj,medium,vtable; slot 3 = SetupAnimations
+0x02393bc0,MapObj_LoadResources,loading,high,loads course_muunt.byaml and mapobj/<name>/<name>.bfres
