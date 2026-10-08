@@ -38,3 +38,26 @@ The uploaded packages (wut headers, wiiu-cmake, wiiu-pkg-config) do not include 
 
 Record the N values. If every N is a multiple of 16, this compiler is ruled out the same way default GCC was.
 If some N are 8 mod 16, it is a candidate and needs a further check.
+
+## devkitPPC result (2026-10-08, maintainer's PC)
+
+Compiler: powerpc-eabi-gcc 16.1.0 from devkitPro, `-O2 -c tests/compiler/frame_test.c`.
+Frame sizes from `powerpc-eabi-objdump -d`:
+
+    stwu r1,-40(r1)   8 mod 16
+    stwu r1,-40(r1)   8 mod 16
+    stwu r1,-48(r1)   0 mod 16
+    stwu r1,-24(r1)   8 mod 16
+    stwu r1,-56(r1)   8 mod 16
+    stwu r1,-56(r1)   8 mod 16
+
+Five of six frames are 8 mod 16, which default GCC/EABI never produced. So this compiler is not ruled out. It is a candidate.
+
+Caveats:
+- Six functions is too few to compare with the game's 46% ratio.
+- The test does not yet compare prologue shape (mflr/stwu order, register saves) with the game's prologues.
+- The result does not identify the game's compiler. Other compilers may also give 8-mod-16 frames.
+
+Next test: a larger set of functions (leaves, calls, and functions that save registers), then compare the ratio and the
+prologue pattern with the game's prologues. The game's ObjTire helper at 0x022ee1e4 is a useful reference: mflr r0; stwu
+r1,-0x10(r1); stw r31,0xc(r1); ... stw r0,0x14(r1).
