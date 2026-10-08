@@ -1,6 +1,6 @@
 # Bird object: course data and loader (2026-10-08)
 
-Source: course_muunt.byaml (converted to XML by the maintainer). The raw tables are kept local in private/course_object_ids.csv.
+Source: content/course/Gu_MarioCircuit/course_muunt.byaml, converted to XML by the maintainer. The bird is used on this track. The raw tables are kept local in private/course_object_ids.csv.
 
 ## Verified
 
@@ -17,6 +17,12 @@ Source: course_muunt.byaml (converted to XML by the maintainer). The raw tables 
 - The name list says 9007 is "Kuribo" at index 0. The loader groups 0x232F (9007) with ItemBox. Both cannot be right.
   The name list may be off by one for index 0, or 9007 may be a special-case ID. Do not use either label until this
   is checked.
+
+## Other courses
+
+The file list has ten course folders with a course_muunt.byaml: Gu_Airport, Gu_Cake, Gu_City, Gu_Cloud, Gu_FirstCircuit,
+Gu_MarioCircuit, Gu_Menu, Gu_Techno, Gu_WaterPark and test_WiFiTest1. Only Gu_MarioCircuit has been read. The bird's
+presence in the other nine is unknown until their course files are provided.
 
 ## Still open
 
