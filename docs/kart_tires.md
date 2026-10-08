@@ -20,7 +20,7 @@ Arm resources:
 ## Corrections to the earlier notes
 
 - The three-wheeled kart (T) uses `ArmK_*` arms, not its own arm files.
-- The Btn (Button) entry links to the Cushion page on mariowiki, which is the same page as Fun. Check the Button page separately.
+- The Btn (Button) entry should link to https://www.mariowiki.com/Button_(tire). An earlier note pointed it at the Cushion page, which is the Fun entry.
 
 ## Table
 
