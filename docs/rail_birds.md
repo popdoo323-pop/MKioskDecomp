@@ -58,3 +58,21 @@ The rail-path reader from the course data:
 - Paths 3 to 13 exist and are not linked to any bird in these screenshots.
 - Whether Param values on the points set the speed, given that all of them are 0.000.
 - The point reader (the virtual method called from the rail loader), to see which fields are read per point.
+
+
+## Path 1 and Path 2 points (added 2026-10-08)
+
+Mapped from the screenshots by the scale pattern and the chain test. Each rail's segment lengths fall between about 235
+and 297 units, which supports the assignment.
+
+- Path 1: images 9, 8, 7, 6, 5 are Points 0 to 4. Segment lengths 266, 269, 256, 297.
+- Path 2: images 4, 3, 2, 1, 10 are Points 0 to 4. Segment lengths 295, 236, 265, 290.
+- Path 0 (earlier): segment lengths 252, 209, 250, 275.
+
+Each bird sits closest to its own rail's first point:
+- Bird 1 is 40 units from Path 0 Point 0, and 943 from Path 1 Point 0.
+- Bird 2 is 75 units from Path 1 Point 0, and 420 from Path 2 Point 0.
+- Bird 3 is 24 units from Path 2 Point 0, and 338 from Path 1 Point 0.
+
+Positions are in private/mario_circuit_rail_points.csv. The assignment is inferred from the screenshots, not from the game
+data. The point format is in docs/rail_points.md.
