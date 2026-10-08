@@ -40,3 +40,8 @@ Positions are game data and are kept in private/mario_circuit_rail_points.csv.
   value is not identified.
 - What the ushort at +0x62 holds. The builder reads it from the next point, and the reader does not set it.
 - The consumer of +0x68, which drives movement along the segment.
+
+## Holder slots (added in round 4)
+
+The rail holder's wrapping getter (0x02101f84) returns the point at index mod the point count. The builder uses it, so
+the last point is handled by the path slot rather than by index. See docs/decompiled_round4.md.

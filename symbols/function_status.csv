@@ -10,13 +10,13 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02132ff0,ItemCoin_Empty,game_func,,0,0,0,0
 0x02133298,ItemCoin_Vfn_02133298,game_func,,0,0,0,1
 0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,0
-0x02133970,ItemCoin_Create,game_func,,0,0,1,0
+0x02133970,ItemCoin_Create,game_func,,0,0,1,1
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,0
 0x02232a34,CourseObject_LoadModels,game_func,,0,0,1,0
 0x022980cc,N64RTrain_CoinThrown_SE_user,game_func,,0,0,1,0
 0x022d0ab8,BDSandShip_CoinThrown_SE_user,game_func,,0,0,1,0
-0x022ee1e4,ObjTire_CreateHelper,game_func,,0,0,1,0
+0x022ee1e4,ObjTire_CreateHelper,game_func,,0,0,1,1
 0x022ee224,ObjTire_InitSoundParams,game_func,,0,0,1,0
 0x022ee384,ObjTire_Reset,game_func,,0,0,1,0
 0x022ee4bc,ObjTire_Update,game_func,,0,0,1,0
