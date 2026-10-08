@@ -39,7 +39,7 @@ Code matched counts bytes of functions whose assembled bytes equal the original.
 
 ## Layout
 
-See `docs/repo_structure.md`.
+See `docs/repo_structure.md`. Code conventions (C++, naming, headers, and what counts as matched) are in `docs/conventions.md`.
 
 ## Verify your dump
 

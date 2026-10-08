@@ -2,7 +2,7 @@
 """Compile one source file and compare its .text with the original bytes in your RPX.
 
 usage: python tools/bytematch.py --orig orig/Turbo.rpx --address 0x02132ff0 --size 4 \
-           --source src/Game/Item/ItemCoin_Empty.c [--cc powerpc-linux-gnu-gcc] [--cflags "-O2"]
+           --source src/Game/Item/ItemCoin_Empty.cpp [--cc powerpc-linux-gnu-gcc] [--cflags "-O2"]
 
 The original bytes come from the .text section of your own dump. Exit status 0 means identical.
 A match only shows that this compiler produces these bytes for this function. It does not prove the
