@@ -27,3 +27,14 @@ Status: still not identified. Next steps are to compare calling-convention and p
 - Control: GCC 13.3 for powerpc-linux-gnu at `-O2` keeps every frame at 16 bytes (`stwu r1,-16(r1)`), as the PowerPC EABI requires.
 - Conclusion: the game's compiler does not keep 16-byte frame alignment, so it is not GCC with the EABI default. That argues against a GCC-based toolchain such as devkitPPC/WUT.
 - This does not confirm Green Hills. The Green Hills frame rule is not checked here; it needs a Green Hills sample to compare against.
+
+## Pending: devkitPPC frame-alignment test (2026-10-08)
+
+The toolchain the user installed is devkitPro (devkitPPC, GCC-based), via `pacman -S wiiu-dev` in MSYS2.
+The uploaded packages (wut headers, wiiu-cmake, wiiu-pkg-config) do not include the compiler. To run the test:
+
+    powerpc-eabi-gcc -O2 -c tests/compiler/frame_test.c -o frame_test.o
+    powerpc-eabi-objdump -d frame_test.o | findstr stwu
+
+Record the N values. If every N is a multiple of 16, this compiler is ruled out the same way default GCC was.
+If some N are 8 mod 16, it is a candidate and needs a further check.
