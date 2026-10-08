@@ -19,7 +19,7 @@
 <rect x="100.4" y="1.0" width="47.7" height="50.5" fill="#0074d9" stroke="#161a1f"><title>block_0x02100020 | 65,536 bytes | 0.1465% matched | 0x02100020-0x0211001f</title></rect>
 <rect x="100.4" y="53.5" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02110020 | 65,536 bytes | 0.0000% matched | 0x02110020-0x0212001f</title></rect>
 <rect x="100.4" y="106.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02120020 | 65,536 bytes | 0.0000% matched | 0x02120020-0x0213001f</title></rect>
-<rect x="100.4" y="158.5" width="47.7" height="50.5" fill="#0074d9" stroke="#161a1f"><title>block_0x02130020 | 65,536 bytes | 0.1038% matched | 0x02130020-0x0214001f</title></rect>
+<rect x="100.4" y="158.5" width="47.7" height="50.5" fill="#0074d9" stroke="#161a1f"><title>block_0x02130020 | 65,536 bytes | 0.2075% matched | 0x02130020-0x0214001f</title></rect>
 <rect x="100.4" y="211.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02140020 | 65,536 bytes | 0.0000% matched | 0x02140020-0x0215001f</title></rect>
 <rect x="100.4" y="263.5" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02150020 | 65,536 bytes | 0.0000% matched | 0x02150020-0x0216001f</title></rect>
 <rect x="100.4" y="316.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02160020 | 65,536 bytes | 0.0000% matched | 0x02160020-0x0217001f</title></rect>
@@ -31,7 +31,7 @@
 <rect x="150.0" y="211.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x021c0020 | 65,536 bytes | 0.0000% matched | 0x021c0020-0x021d001f</title></rect>
 <rect x="150.0" y="263.5" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x021d0020 | 65,536 bytes | 0.0000% matched | 0x021d0020-0x021e001f</title></rect>
 <rect x="150.0" y="316.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x021e0020 | 65,536 bytes | 0.0000% matched | 0x021e0020-0x021f001f</title></rect>
-<rect x="150.0" y="368.5" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x021f0020 | 65,536 bytes | 0.0000% matched | 0x021f0020-0x0220001f</title></rect>
+<rect x="150.0" y="368.5" width="47.7" height="50.5" fill="#0074d9" stroke="#161a1f"><title>block_0x021f0020 | 65,536 bytes | 0.2319% matched | 0x021f0020-0x0220001f</title></rect>
 <rect x="199.7" y="1.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02200020 | 65,536 bytes | 0.0000% matched | 0x02200020-0x0221001f</title></rect>
 <rect x="199.7" y="53.5" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02210020 | 65,536 bytes | 0.0000% matched | 0x02210020-0x0222001f</title></rect>
 <rect x="199.7" y="106.0" width="47.7" height="50.5" fill="#3a3f47" stroke="#161a1f"><title>block_0x02220020 | 65,536 bytes | 0.0000% matched | 0x02220020-0x0223001f</title></rect>

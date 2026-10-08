@@ -15,6 +15,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02133970,ItemCoin_Create,game_func,,0,0,1,1
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,0
+0x021f9bb8,Bird_CreateHelper_021f9bb8,game_func,,0,0,0,1
 0x02232a34,CourseObject_LoadModels,game_func,,0,0,1,0
 0x022980cc,N64RTrain_CoinThrown_SE_user,game_func,,0,0,1,0
 0x022d0ab8,BDSandShip_CoinThrown_SE_user,game_func,,0,0,1,0
