@@ -70,6 +70,19 @@ def main():
     for addr, r in sorted(documented.items()):
         rows.append(dict(r, signed=0, aliased=0, documented=1, matched=0))
 
+    # byte-identical matches recorded in symbols/matches.csv
+    match_path = os.path.join(SYM, 'matches.csv')
+    if os.path.exists(match_path):
+        with open(match_path, newline='') as fh:
+            for m in csv.DictReader(fh):
+                addr = int(m['address'], 16)
+                row = next((r for r in rows if r['address'] == addr), None)
+                if row is None:
+                    row = dict(name=m['name'], address=addr, kind='game_func', library='',
+                               signed=0, aliased=0, documented=0, matched=0)
+                    rows.append(row)
+                row['matched'] = 1
+
     with open(os.path.join(SYM, 'function_status.csv'), 'w', newline='') as fh:
         w = csv.writer(fh)
         w.writerow(['address', 'name', 'kind', 'library', 'signed', 'aliased', 'documented', 'matched'])
@@ -95,7 +108,9 @@ def main():
         f'| Import functions aliased in Ghidra | {sum(r["aliased"] for r in imp_funcs)} | {len(imp_funcs)} | '
         f'{pct(sum(r["aliased"] for r in imp_funcs), len(imp_funcs))} |',
         f'| Game functions documented | {len(game)} | {total} (Ghidra total) | {pct(len(game), total)} |',
-        f'| Functions matched (byte-identical) | 0 | {total} | 0.0% |', '',
+        f'| Functions matched (byte-identical) | {sum(r["matched"] for r in rows)} | {total} | '
+        f'{pct(sum(r["matched"] for r in rows), total)} |',
+        '', 'The matched count includes trivial pipeline tests from symbols/matches.csv. Check its status column.', '',
         'The Ghidra total is auto-analysis output. It is an approximate denominator.', '',
         'Matching needs the original compiler and flags. Compiler: not identified (see docs/compiler_notes.md).', '',
     ]

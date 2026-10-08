@@ -1,0 +1,2 @@
+address,name,source,compiler,flags,size,status,note
+0x02132ff0,ItemCoin_Empty,src/Game/Item/ItemCoin_Empty.c,powerpc-linux-gnu-gcc 13.3.0,-O2 -fno-stack-protector,4,trivial,"Pipeline test. Body is blr. Flags were chosen by testing, so the match does not show the game's toolchain."
