@@ -1,6 +1,6 @@
 {
  "library": "coreinit",
- "note": "Prototypes written from memory. Argument counts match devkitPro WUT headers for 71 of 76; types not fully compared. Apply to BOTH stub_address and call_alias_address.",
+ "note": "Prototypes use the devkitPro WUT 1.3.2 type names (OSCondition, not OSCond). Applied in Ghidra 2026-10-08.",
  "functions": [
   {
    "name": "DCFlushRange",
@@ -228,19 +228,19 @@
    "name": "OSInitCond",
    "stub_address": "0xc0008c00",
    "call_alias_address": "0x04008c00",
-   "prototype": "void OSInitCond(OSCond *cond)"
+   "prototype": "void OSInitCond(OSCondition *cond)"
   },
   {
    "name": "OSWaitCond",
    "stub_address": "0xc00090e0",
    "call_alias_address": "0x040090e0",
-   "prototype": "void OSWaitCond(OSCond *cond, OSMutex *mutex)"
+   "prototype": "void OSWaitCond(OSCondition *cond, OSMutex *mutex)"
   },
   {
    "name": "OSSignalCond",
    "stub_address": "0xc0008fa0",
    "call_alias_address": "0x04008fa0",
-   "prototype": "void OSSignalCond(OSCond *cond)"
+   "prototype": "void OSSignalCond(OSCondition *cond)"
   },
   {
    "name": "OSInitEvent",

@@ -11,7 +11,7 @@ Last updated 2026-10-08. Each item says what remains and what would close it.
 
 ## Next up (in order)
 - [ ] Push the local work to GitHub (`git status`, `git add -A`, `git commit`, `git push`).
-- [ ] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond) in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
+- [x] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessage, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond); 41 coreinit prototypes re-applied with WUT names in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
 - [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
 
 ## Repo and notes
