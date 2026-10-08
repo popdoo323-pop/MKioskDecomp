@@ -33,3 +33,23 @@ has not been found. Names are placeholders.
 
 The 3DWDecomp repository (github.com/shibbo/3DWDecomp) is a different game and has no stated license. Its code was not read or
 used here. Our layout and naming follow docs/conventions.md.
+
+## Verified against the extracted Bird assets (2026-10-08)
+
+Source: the maintainer's extraction of content/mapobj/Bird. Only names and counts are recorded here. The files
+are not committed.
+
+- Animations: Fly, GroundWaitA, GroundWaitB and Turn are present as Maya animation exports. Each one has tracks for
+  SklRoot, Head, WingL and WingR. This matches the four animations loaded by FUN_021fe554.
+- Sound bank: the parameter file names the events pSE_OBJ_BIRD_CHIRP_RND1..3 and pSE_OBJ_BIRD_FLY_RND1..3. It also names
+  three flap sounds (littleBird_flap0_delay, littleBird_flap2, littleBird_flap3_delay).
+- The executable contains no BIRD string in ASCII or UTF-16. It does contain literal pSE_OBJ_ names for other map objects.
+  This suggests the bird's sound events are defined in the bank data and referenced indirectly. This is an inference.
+- Model: Bird.dae contains six nodes.
+- Shader: the bird uses Turbo_UBER.bfsha, the same shader as the other Turbo models.
+
+## Still open
+
+- How the sound bank is selected at runtime. The loader builds its paths from the object name, but the exact name
+  pattern is not confirmed.
+- The factory link from the course data name to the class (see above).
