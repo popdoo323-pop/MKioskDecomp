@@ -9,6 +9,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02132ac4,ItemCoin_BindEmitter_02132ac4,game_func,,0,0,0,1
 0x02132ae4,ItemCoin_Tail_02132ae4,game_func,,0,0,0,1
 0x02132ff0,ItemCoin_Empty,game_func,,0,0,0,0
+0x02132ff4,ItemCoin_Message_02132ff4,game_func,,0,0,0,1
 0x02133298,ItemCoin_Vfn_02133298,game_func,,0,0,0,1
 0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,0
 0x02133970,ItemCoin_Create,game_func,,0,0,1,1
