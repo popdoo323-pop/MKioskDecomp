@@ -2,6 +2,18 @@
 
 Source: content/course/Gu_MarioCircuit/course_muunt.byaml, converted to XML by the maintainer. The bird is used on this track. The raw tables are kept local in private/course_object_ids.csv.
 
+## Current finding (Track Studio check, 2026-10-08)
+
+- The bird is object ID 1039 in Gu_MarioCircuit. Track Studio labels it "Bird (1039)". The course XML has exactly three
+  objects with ObjId 1039, and their positions and rotations match the three screenshots.
+- ID 1039 occurs in no other course, which agrees with the maintainer's observation.
+- Rotations in the XML are radians. For example, a Z value of 0.5267 rad is 30.18 degrees, as shown in the editor.
+- The earlier index pairing was wrong. It put McJump at position 26, where ID 1039 sits in the list, but the editor shows
+  Bird. The names list is not aligned with the ID list.
+- The earlier 6003 conclusions are withdrawn with the index pairing they depended on.
+- The code side: FUN_02232a34 has no branch for 0x40F (1039). The bird therefore takes the generic branch. The name that
+  produces mapobj/Bird/Bird.bfres still has to be found in the object data.
+
 ## Correction (course comparison, 2026-10-08)
 
 - ObjId 6003 is not a fixed bird ID. It appears in every course, but each course has its own list of IDs and names.
