@@ -20,6 +20,7 @@ import argparse
 import csv
 import json
 import os
+import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 SYM = os.path.join(ROOT, 'symbols')
@@ -51,6 +52,69 @@ def read_documented():
                 if is_code_address(addr):
                     docs[addr] = dict(name=r['proposed_name'], address=addr, kind='game_func', library='')
     return docs
+
+
+FALLBACK_TEXT_BYTES = 10132008  # .text size from docs/binary_info.md
+
+
+def text_size():
+    """Size of .text in bytes, read from orig/Turbo.rpx when present."""
+    orig = os.path.join(ROOT, 'orig', 'Turbo.rpx')
+    if os.path.exists(orig):
+        sys.path.insert(0, os.path.join(ROOT, 'tools'))
+        import rpxlib
+        f = rpxlib.load(orig)
+        return next(s.mem_size for s in f.sections if s.name == '.text')
+    return FALLBACK_TEXT_BYTES
+
+
+def read_matches():
+    """Rows from symbols/matches.csv that count as code: (name, size, status)."""
+    path = os.path.join(SYM, 'matches.csv')
+    rows = []
+    if os.path.exists(path):
+        with open(path, newline='') as fh:
+            for m in csv.DictReader(fh):
+                rows.append((m['name'], int(m['size']), m['status'].strip()))
+    return rows
+
+
+def readme_block(matches, text_bytes, ghidra_total):
+    decompiled = sum(sz for _, sz, st in matches if st in ('matched', 'decompiled'))
+    matched = sum(sz for _, sz, st in matches if st == 'matched')
+    n_matched = sum(1 for _, _, st in matches if st == 'matched')
+
+    def pct(n):
+        return f'{100.0 * n / text_bytes:.4f}%'
+
+    lines = [
+        f'**{pct(matched)} matched** ({matched:,} of {text_bytes:,} bytes of code, '
+        f'{n_matched} of about {ghidra_total:,} functions)',
+        '',
+        '| Library | Decompiled | Matched | Linked | Bytes (decompiled / matched / total) |',
+        '| --- | --- | --- | --- | --- |',
+        f'| Game (Turbo.rpx `.text`) | {pct(decompiled)} | {pct(matched)} | not measured | '
+        f'{decompiled:,} / {matched:,} / {text_bytes:,} |',
+        '',
+        'Decompiled counts functions recorded in symbols/matches.csv with status matched or decompiled. Matched counts '
+        'functions whose assembled bytes equal the original. Linked needs a full build, which does not exist yet.',
+    ]
+    return '\n'.join(lines)
+
+
+def update_readme(block):
+    """Replace the text between the progress markers in README.md."""
+    path = os.path.join(ROOT, 'README.md')
+    if not os.path.exists(path):
+        return False
+    s = open(path).read()
+    start, end = '<!-- progress:start -->', '<!-- progress:end -->'
+    if start not in s or end not in s:
+        return False
+    head, rest = s.split(start, 1)
+    _, tail = rest.split(end, 1)
+    open(path, 'w').write(head + start + '\n' + block + '\n' + end + tail)
+    return True
 
 
 def main():
@@ -119,8 +183,11 @@ def main():
     ]
     with open(os.path.join(DOCS, 'progress.md'), 'w') as fh:
         fh.write('\n'.join(lines))
+    block = readme_block(read_matches(), text_size(), total)
+    updated = update_readme(block)
     print('\n'.join(lines))
     print(f'wrote {len(rows)} rows to symbols/function_status.csv')
+    print('README progress block updated' if updated else 'README markers not found; block not written')
 
 
 if __name__ == '__main__':
