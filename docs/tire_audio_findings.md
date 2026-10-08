@@ -17,10 +17,10 @@ ITWALL BWALL OUTF DUMMY0 CANNON TRIGGER SOUND VALLEY DUMMY2 DUMMY3 ZONE
   material name, stores it at +0x218, and sets a flag byte at +0x1f1 to -1 for WBOARD, HBOARD or BONE, otherwise -2.
 - Other audio files referenced: audio/turbo_sound_trial.bfsar, audio/bin/slink.bin, audio/bin/turbo_random_id.bsis,
   audio/driver/SNDG_%s.bars, audio/driver_menu/SNDG_M_%s.bars, /audio/driver_open/SNDG_N_%s.bars, audio/body/SNDG_*.
-- No ".bfgrp" string exists in the binary.
+- Two `.bfgrp` group files exist in the dump: `content/audio/ground/SNDG_Road_Asphalt.bfgrp` and `content/mapobj/BarrelFlower/GROUP_Barrel.bfgrp`. An earlier search found no `.bfgrp` string in the binary. That search was not exhaustive (the extension may come from a format string), so it needs a fresh check.
 
 ## Strings from the request that do not exist as written
-- `SNDG_Road_Asphalt` is not present. The asphalt bank is `SNDG_GND_ASPHALT.bars` (ROAD variant 0, ROAD3 variant 1).
+- `SNDG_Road_Asphalt` is not a `.bars` bank. It exists as the group file `content/audio/ground/SNDG_Road_Asphalt.bfgrp`. The `.bars` asphalt bank is `SNDG_GND_ASPHALT.bars` (ROAD variant 0, ROAD3 variant 1).
 - Strings found as `.bars` names: GND_GRASS, GND_STONE, GND_ASPHALT, GND_CARPET, WALL_BUSH, WALL_PLASTIC, WALL_SNOW, WALL_WOOD.
 
 ## Tire map object (class name unconfirmed; "ObjTirePiece" string at 0x10071a90, no references found)

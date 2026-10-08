@@ -31,3 +31,18 @@
 
 - `mvplayer.rpl` is imported by Turbo (`.fimport_mvplayer`, `.dimport_mvplayer`).
 - `mw_igr.rpl` / `mw_igr_sbc.rpl` are a separate pair (`mw_igr_sbc` imports `mw_igr`).
+
+## Package metadata (from code.zip and meta.zip)
+
+| Item | Value | Source |
+|---|---|---|
+| Product code | WUP-B-AMKA | meta.xml |
+| Title ID | 000500021017BD00 | app.xml, meta.xml |
+| Group ID | 000017BD | app.xml |
+| App version | 15 | app.xml |
+| SDK version | 21011 | app.xml |
+| OS version | 000500101000400A | app.xml |
+| Company code | 0001 | meta.xml |
+| Command argument | Turbo.rpx | cos.xml |
+
+The four binaries in `code.zip` (Turbo.rpx and three .rpl) match the reference hashes in `config/hashes.txt`.

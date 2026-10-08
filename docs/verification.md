@@ -20,3 +20,18 @@ Limits: decompiler output is an interpretation of machine code. Nothing here is 
 ## Corrections made
 - "4ItemCoin" / "4CoinGet" are `ItemCoin` / `CoinGet` (leading `4` belongs to a preceding pointer).
 - Earlier guess that type id 7 might be offset from the name list is resolved: name index = type id + 1.
+
+## Checks against the full file listing (2026-10-08)
+
+The listing covers 3,370 files under `content/`, plus `code/` and `meta/`. It is kept locally, not in the repo.
+
+| Claim | Result |
+|---|---|
+| All 66 terrain bank names in the sound table are files on disk | confirmed (66 of 66) |
+| `content/race_common/item/ItemCoin/ItemCoin.bfres` exists | confirmed |
+| `content/race_common/Coin/Coin.bfres` exists | confirmed |
+| `content/ui/cmn/compeIcon/tc_CI_It_Coin.tga` exists | confirmed |
+| `content/race_common/trail/TireMark.bfres` exists | confirmed |
+| `code/` binaries match the reference hashes | confirmed |
+| "No `.bfgrp` string in the binary" | corrected: two .bfgrp files exist; the binary check needs redoing |
+| "`SNDG_Road_Asphalt` is not present" | corrected: it exists as a .bfgrp group file |
