@@ -17,7 +17,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02132ff0,ItemCoin_Empty,game_func,,0,0,0,0
 0x02132ff4,ItemCoin_Message_02132ff4,game_func,,0,0,0,1
 0x02133298,ItemCoin_Vfn_02133298,game_func,,0,0,0,1
-0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,0
+0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,1
 0x02133970,ItemCoin_Create,game_func,,0,0,1,1
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,0
