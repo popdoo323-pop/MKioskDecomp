@@ -198,3 +198,18 @@ RailHolder_GetPoint_02101f84 (52 bytes) compiles to the original's 13 instructio
 Together with the message handler, this is a consistent pattern: the operations and their order match, and the register
 choices do not, at every optimisation level. No level fixes it, so the difference is probably a register-allocation option
 or a declaration detail, not the level. Next: search the option lists for register-allocation or scheduling settings.
+
+## Register-allocation search: stopped (2026-10-10)
+
+Three C++ reconstructions reproduce the original's operations and their order, but the compiler chooses different
+register numbers: the message handler, RailHolder_GetPoint_02101f84 and the bind-emitter-style branches.
+Tested without success:
+- all three optimisation levels (-Ogeneral, -Ospeed, -Ospace)
+- pointer signedness (-signedptr, -unsignedptr); no change at all
+- source variants of the message handler (three versions)
+
+The option list (ghs_c_options.bod) has no register-allocation control. Stopped the search here. The remaining cause is
+not identified: a different compiler build, a different register-allocation setting not exposed in these lists, or source
+types we have not reproduced.
+Decision: C++ byte matches are recorded only where the verifier passes. Further work goes to assembly matching, which is
+verified and does not depend on this question.
