@@ -39,7 +39,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x023a3800,KartResourceSet_ctor,game_func,,0,0,1,0
 0x023c6b98,ItemNameTable_user2,game_func,,0,0,1,0
 0x02510330,CoinHud_SetupAnimGroups,game_func,,0,0,1,1
-0x0251046c,CoinHud_BindPanes,game_func,,0,0,1,0
+0x0251046c,CoinHud_BindPanes,game_func,,0,0,1,1
 0x02525904,RaceHud_BuildLayout,game_func,,0,0,1,0
 0xc0009808,MEMAllocFromDefaultHeap,import_data,coreinit,0,0,0,0
 0xc0009810,MEMAllocFromDefaultHeapEx,import_data,coreinit,0,0,0,0
