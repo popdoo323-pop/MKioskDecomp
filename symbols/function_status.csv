@@ -10,6 +10,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02109198,RailPath_Build_02109198,game_func,,0,0,0,1
 0x0210941c,RailHolder_NewPoint_0210941c,game_func,,0,0,0,1
 0x02119264,ItemCoin_SharedReset_02119264,game_func,,0,0,0,1
+0x021193f8,ItemCoin_StateCheck_021193f8,game_func,,0,0,0,1
 0x0211b4c4,ItemNameTable_user,game_func,,0,0,1,1
 0x0211b82c,ItemCoin_SharedResetThunk_0211b82c,game_func,,0,0,0,1
 0x0211b830,ItemCoin_StateReset_0211b830,game_func,,0,0,0,1
