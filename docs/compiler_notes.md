@@ -104,3 +104,17 @@ The frame share is 66.7% to 77.8%, against the game's 46.5%.
 Status: devkitPPC (GCC-based) is ruled out as the game's compiler by both checks. The same result applies to default GCC.
 The game's compiler is still unidentified. The leading hypothesis is Green Hills (the __ghs_* runtime imports and the
 OSThreadGHSExceptionHandling type in WUT), but no Green Hills output is available to test against.
+
+## Green Hills candidate (2026-10-08)
+
+- Wiki (Zenith, Green Hills Software page, CC BY-NC; facts only are recorded here): GHS MULTI is the compiler toolchain used
+  for Wii U games, as part of the Cafe SDK. It uses a proprietary ABI and the EDG C++ frontend, supports up to C++98, and
+  has custom intrinsics for paired singles.
+- Tachyon setup page (Zenith, CC BY-NC; facts only): the NSMBU build uses Green Hills Software MULTI PowerPC v5.3.27 from the
+  Wii U SDK.
+- The maintainer's install is folder multi5327 (MULTI 5.3.27). It contains ccppc.exe (C) and cxppc.exe (C++).
+- The game's runtime imports (__ghs_*) and the WUT type OSThreadGHSExceptionHandling both point the same way.
+
+Status: Green Hills MULTI 5.3.27 is the leading candidate. Not confirmed for Turbo. Test it with the same two checks
+(frame share and link-register placement) on the maintainer's own compiler, using tests/compiler/frame_test_large.c.
+Calls and data are unresolved in an object file, so the placement check is the one to trust.

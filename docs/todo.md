@@ -61,7 +61,7 @@ The seven PLACEHOLDER headers (`include/Audio/GroundAudio.hpp`, `include/Effect/
 
 ## 5. Blocked
 - [x] devkitPPC (GCC-based) ruled out as the game's compiler by the larger frame test (see `docs/compiler_notes.md`).
-- [ ] Compiler still unidentified. Leading hypothesis: Green Hills. Needs a Green Hills sample to test against.
+- [ ] Compiler still unidentified. Leading hypothesis: Green Hills MULTI 5.3.27 (the maintainer's install, multi5327). Test it with the frame and link-register checks on ccppc.exe / cxppc.exe.
 - [ ] Movement along rails needs the function that reads the rail segment parameter.
 
 ## 6. Needs your input
