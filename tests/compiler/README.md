@@ -69,3 +69,13 @@ Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
       --define FUN_020db0e4=0x020db0e4 --define kBindEmitterName=0x10015f70
 
 Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
+
+## ItemCoin pool initialiser (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02133314 --size 376 `
+      --source tests\compiler\itemcoin_poolinit_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include `
+      --define PoolSetup=0x02620314 --define ItemIdCount=0x0215d9dc --define CreateItem=0x02133970 `
+      --define SysGetter=0x0261c858 --define g_sys_ptr=0x1015265c --define kPoolName=0x101063b0
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.

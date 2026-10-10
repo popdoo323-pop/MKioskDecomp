@@ -166,3 +166,14 @@ Level evidence so far:
 - -Ospace: matches the getter, the tail call and the bind emitter, but produced helper calls for LinkNext and a different
   structure for the message handler. It is less likely, but not ruled out by these tests.
 - No level has yet matched LinkNext, so its source shape may still differ.
+
+## Pool initialiser: level evidence (2026-10-10)
+
+ItemCoin_PoolInit_02133314 (376 bytes, loop with a varargs setup call) is not byte-matched at any level.
+- -Ospace: ruled out for this function, since it calls _savegpr_30_l and _restgpr_30_l, which the game's version doesn't.
+- -Ogeneral: 340 bytes, not 376. The loops are lowered differently, so it does not fit this source.
+- -Ospeed: 376 bytes, the same as the original. Remaining differences: register choice at the start (r31 saved where the
+  original saves r30) and the order of an independent lis and or.
+
+-Ospeed is the leading candidate for the game's optimisation level. This is evidence from one function, not a match, and
+the remaining differences may be source-shape choices rather than the level.
