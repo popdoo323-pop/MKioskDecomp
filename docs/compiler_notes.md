@@ -189,3 +189,12 @@ ItemCoin_Effects_021212c4 (448 bytes, loop over seven entries) is not matched at
 This function does not favour either remaining level. The frame difference points to the source holding fewer live values
 across calls than the original, which is a source-shape problem. Combined with the pool initialiser (-Ospeed matched the
 length there), the level is still not determined.
+
+## Rail holder getter: register-only difference (2026-10-10)
+
+RailHolder_GetPoint_02101f84 (52 bytes) compiles to the original's 13 instructions in the same order at -Ogeneral,
+-Ospeed and -Ospace. Only register numbers differ (for example the count is loaded into r0 where the original uses r9).
+
+Together with the message handler, this is a consistent pattern: the operations and their order match, and the register
+choices do not, at every optimisation level. No level fixes it, so the difference is probably a register-allocation option
+or a declaration detail, not the level. Next: search the option lists for register-allocation or scheduling settings.

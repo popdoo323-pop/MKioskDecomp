@@ -92,3 +92,11 @@ Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
       --define kFlagB=0x101798cb --define kFlagA=0x10170f84 --define kFlagAnext=0x10170f88
 
 Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
+
+## Rail holder wrapping getter (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02101f84 --size 52 `
+      --source tests\compiler\railholder_getpoint_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
