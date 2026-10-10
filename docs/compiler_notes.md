@@ -213,3 +213,8 @@ not identified: a different compiler build, a different register-allocation sett
 types we have not reproduced.
 Decision: C++ byte matches are recorded only where the verifier passes. Further work goes to assembly matching, which is
 verified and does not depend on this question.
+
+## Bird animation setup: size correction (2026-10-10)
+
+The bird animation setup at 0x021fe554 returns at 0x021fe674, so it is 292 bytes. The earlier 336-byte estimate ran into
+the next method (Bird_Reset_021fe678, already matched).
