@@ -53,3 +53,9 @@ __pycache__/
 .idea/
 Thumbs.db
 .DS_Store
+
+calib*/
+*.o
+*.inf
+breakdown*.txt
+ghs_help.txt
