@@ -53,6 +53,10 @@ address,name,kind,library,signed,aliased,documented,matched
 0x021f9ec8,Bird_Update_021f9ec8,game_func,,0,0,0,1
 0x021f9f34,Bird_TwoVirtual_021f9f34,game_func,,0,0,0,1
 0x021f9f90,Bird_TailDispatch_021f9f90,game_func,,0,0,0,1
+0x021f9fb0,Bird_Method_021f9fb0,game_func,,0,0,0,1
+0x021fa348,Bird_Method_021fa348,game_func,,0,0,0,1
+0x021fa598,Bird_Method_021fa598,game_func,,0,0,0,1
+0x021fa778,Bird_Method_021fa778,game_func,,0,0,0,1
 0x021fe554,Bird_SetupAnims_021fe554,game_func,,0,0,0,1
 0x021fe678,Bird_Reset_021fe678,game_func,,0,0,0,1
 0x021fe6a4,Bird_FrameUpdate_021fe6a4,game_func,,0,0,0,1
@@ -71,6 +75,9 @@ address,name,kind,library,signed,aliased,documented,matched
 0x0239993c,RaceKartChecker_ctor,game_func,,0,0,1,0
 0x023a3800,KartResourceSet_ctor,game_func,,0,0,1,0
 0x023c6b98,ItemNameTable_user2,game_func,,0,0,1,0
+0x0249e9fc,Driver_Register3_0249e9fc,game_func,,0,0,0,1
+0x024a0cb8,Driver_Register2_024a0cb8,game_func,,0,0,0,1
+0x024a216c,Driver_Register_024a216c,game_func,,0,0,0,1
 0x02510330,CoinHud_SetupAnimGroups,game_func,,0,0,1,1
 0x0251046c,CoinHud_BindPanes,game_func,,0,0,1,1
 0x02525904,RaceHud_BuildLayout,game_func,,0,0,1,0
