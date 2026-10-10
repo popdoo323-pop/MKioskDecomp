@@ -1,17 +1,19 @@
 #pragma once
-
-#include <cstdint>
 // HAND-WRITTEN, NOT YET MATCHED. Point format from the BYAML reader and the rail builder (docs/rail_points.md).
 // Field offsets in comments are the observed ones. Names are placeholders.
 
 struct Vec3 {
-    float x = 0.0f;
-    float y = 0.0f;
-    float z = 0.0f;
+    Vec3() : x(0.0f), y(0.0f), z(0.0f) {}
+    float x;
+    float y;
+    float z;
 };
 
 class RailPoint {
 public:
+    RailPoint() : prm1(0.0f), prm2(0.0f), pad5c(0), baseValue(0), nextValue(0), segmentRecip(0.0f) {
+        for (int i = 0; i < 9; ++i) rotation[i] = 0.0f;
+    }
     // Sets the rotation matrix (row-major, 9 values) from Euler angles in radians (x, y, z).
     void SetRotationFromEuler(float x, float y, float z);
 
@@ -22,11 +24,11 @@ public:
     Vec3 translate;            // +0x00
     Vec3 controlPoints[2];     // +0x0c, +0x18; default to translate when absent
     Vec3 scale;                // +0x24
-    float rotation[9] = {};    // +0x30 .. +0x50
-    float prm1 = 0.0f;         // +0x54, editor Param 1 (use not yet known)
-    float prm2 = 0.0f;         // +0x58, editor Param 2 (use not yet known)
-    uint32_t pad5c = 0;        // +0x5c, unidentified 4 bytes; present so the fields below sit at their game offsets
-    int baseValue = 0;         // +0x60
-    int nextValue = 0;         // +0x64
-    float segmentRecip = 0.0f; // +0x68
+    float rotation[9];         // +0x30 .. +0x50
+    float prm1;                // +0x54, editor Param 1 (use not yet known)
+    float prm2;                // +0x58, editor Param 2 (use not yet known)
+    unsigned int pad5c;        // +0x5c, unidentified 4 bytes; present so the fields below sit at their game offsets
+    int baseValue;             // +0x60
+    int nextValue;             // +0x64
+    float segmentRecip;        // +0x68
 };

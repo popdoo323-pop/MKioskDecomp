@@ -13,3 +13,17 @@ Run in MSYS2 from the repo root (the devkitPPC compiler is installed by `pacman 
     sh tests/compiler/run_frame_test.sh /opt/devkitpro/devkitPPC/bin/powerpc-eabi-gcc
 
 Paste the whole output into the chat.
+
+## Matching RailPoint::LinkNext with the platform compiler
+
+The game's constants are at fixed addresses, so the test links the object at the function's real address and defines
+the two constants there:
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x021090a8 --size 96 `
+      --source tests\compiler\linknext_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Omaxdebug" --incdir include `
+      --define kRailZero=0x100137c0 --define kRailOne=0x100137c4
+
+The linker must be on PATH or set with POWERPC_LD (for example devkitPro's powerpc-eabi-ld.exe).
+A MATCH means this compiler reproduces the game's bytes for this function. A DIFFERENT line names the first differing
+instruction.
