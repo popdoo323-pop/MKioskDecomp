@@ -118,3 +118,18 @@ OSThreadGHSExceptionHandling type in WUT), but no Green Hills output is availabl
 Status: Green Hills MULTI 5.3.27 is the leading candidate. Not confirmed for Turbo. Test it with the same two checks
 (frame share and link-register placement) on the maintainer's own compiler, using tests/compiler/frame_test_large.c.
 Calls and data are unresolved in an object file, so the placement check is the one to trust.
+
+## Byte-level test: RailPoint::LinkNext (2026-10-10)
+
+Two C++ versions of LinkNext were compiled with the platform flags (-pnone -Onoinline -gtws --unsigned_pointer --tdeh)
+and linked at 0x021090a8, with the constants at 0x100137c0 and 0x100137c4. Neither matches the game's 96 bytes.
+
+- Version 1 (signed difference, nextValue stored first): first difference at +0x4. The original loads baseValue into
+  r10. The compiled version saves r31 and keeps this there.
+- Version 2 (signed difference, difference computed first): same first difference.
+- Neither version emits the sign-flip (xoris 0x8000) before the magic-double conversion that the original uses. The
+  conversion strategy is a second, unexplained difference.
+
+Interpretation: the compiler reproduces the logic but not the bytes. This is a failed test for these flags and these
+sources. It does not rule Green Hills out: the game may have been built with options not in our list, or its source may
+convert the difference differently. Search stopped at two variants by design.
