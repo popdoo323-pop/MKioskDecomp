@@ -133,3 +133,18 @@ and linked at 0x021090a8, with the constants at 0x100137c0 and 0x100137c4. Neith
 Interpretation: the compiler reproduces the logic but not the bytes. This is a failed test for these flags and these
 sources. It does not rule Green Hills out: the game may have been built with options not in our list, or its source may
 convert the difference differently. Search stopped at two variants by design.
+
+## First C++ byte match (2026-10-10)
+
+ItemCoin_Vfn_02133298 (12 bytes) is byte-identical to the original when compiled with cxppc (GHS MULTI 5.3.27) using
+-pnone -Onoinline -gtws --unsigned_pointer --tdeh together with -Ogeneral, -Ospeed or -Ospace. The platform default (no
+-O level) gives an extra copy and does not match. The function is too simple to tell the three optimisation levels apart.
+Recorded in symbols/cpp_matches.csv. The verifier only checks assembly, so C++ matches are checked by rerunning the
+bytematch command in tests/compiler/README.md.
+
+## Second C++ byte match (2026-10-10)
+
+ItemCoin_Tail_02132ae4 (12 bytes: li, or, b to FUN_023f8f88) is byte-identical at -Ogeneral, -Ospeed and -Ospace.
+Like the getter, it does not separate the three levels. -Ospace produced runtime helper calls for LinkNext (ruled out:
+the game's LinkNext has none). The level is still not identified; a function with a stack frame and register saves, such as
+ItemCoin_Message_02132ff4 or the ItemCoin bind emitter, is the next test that can separate the levels.

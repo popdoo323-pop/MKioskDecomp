@@ -27,3 +27,22 @@ the two constants there:
 The linker must be on PATH or set with POWERPC_LD (for example devkitPro's powerpc-eabi-ld.exe).
 A MATCH means this compiler reproduces the game's bytes for this function. A DIFFERENT line names the first differing
 instruction.
+
+## Matching the ItemCoin float getter (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02133298 --size 12 `
+      --source tests\compiler\itemcoin_vfn_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh" --incdir include `
+      --define kItemCoinValue=0x10184fb8
+
+A MATCH means the platform compiler produces the game's three instructions for this function. A DIFFERENT line names the
+first differing word.
+
+## ItemCoin tail call (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02132ae4 --size 12 `
+      --source tests\compiler\itemcoin_tail_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include `
+      --define FUN_023f8f88=0x023f8f88
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
