@@ -2,7 +2,9 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02066730,SoundEffectNames_Init,game_func,,0,0,1,0
 0x02072608,GroundSound_UpdateTerrain,game_func,,0,0,1,0
 0x02080d0c,GroundSound_GetBankName,game_func,,0,0,1,0
+0x020ec384,RailHolder_Load_020ec384,game_func,,0,0,0,1
 0x020ec494,RailHolder_Dispatch_020ec494,game_func,,0,0,0,1
+0x020ec4c8,RailHolder_LoadWide_020ec4c8,game_func,,0,0,0,1
 0x02101f84,RailHolder_GetPoint_02101f84,game_func,,0,0,0,1
 0x021090a8,RailPoint_LinkNext_021090a8,game_func,,0,0,0,1
 0x0211b4c4,ItemNameTable_user,game_func,,0,0,1,0

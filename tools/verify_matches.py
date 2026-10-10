@@ -22,7 +22,7 @@ import rpxlib  # noqa: E402
 
 
 def defines_from(flags):
-    return re.findall(r'(FUN_[0-9a-zA-Z_]+)=(0x[0-9a-fA-F]+)', flags)
+    return re.findall(r'([A-Za-z_][0-9A-Za-z_]*)=(0x[0-9a-fA-F]+)', flags)
 
 
 def main():
