@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Compile one source file and compare its .text with the original bytes in your RPX.
+"""Compile one C/C++ source file and compare its .text with the original bytes in your RPX.
 
 usage: python tools/bytematch.py --orig orig/Turbo.rpx --address 0x02132ff0 --size 4 \
-           --source src/Game/Item/ItemCoin_Empty.cpp [--cc powerpc-linux-gnu-gcc] [--cflags "-O2"]
+           --source src/Game/Item/ItemCoin_Empty.cpp [--cc powerpc-eabi-gcc] [--cflags "-O2"]
 
-The original bytes come from the .text section of your own dump. Exit status 0 means identical.
-A match only shows that this compiler produces these bytes for this function. It does not prove the
-game's own toolchain was used.
+Comparison is exact. Calls and data references are not masked. A match here only shows that this compiler and these
+flags produce these bytes for this function. It does not prove the game's own toolchain was used.
 """
 import argparse
 import os
@@ -18,8 +17,6 @@ import tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rpxlib  # noqa: E402
 
-TEXT_BASE = None  # taken from the .text section header at run time
-
 
 def main():
     ap = argparse.ArgumentParser()
@@ -27,7 +24,7 @@ def main():
     ap.add_argument('--address', required=True, help='hex address of the function in the original binary')
     ap.add_argument('--size', required=True, type=int, help='size of the function in bytes')
     ap.add_argument('--source', required=True)
-    ap.add_argument('--cc', default='powerpc-linux-gnu-gcc')
+    ap.add_argument('--cc', default='powerpc-eabi-gcc')
     ap.add_argument('--cflags', default='-O2')
     a = ap.parse_args()
 

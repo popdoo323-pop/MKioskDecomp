@@ -1,4 +1,6 @@
 #pragma once
+
+#include <cstdint>
 // HAND-WRITTEN, NOT YET MATCHED. Point format from the BYAML reader and the rail builder (docs/rail_points.md).
 // Field offsets in comments are the observed ones. Names are placeholders.
 
@@ -23,6 +25,7 @@ public:
     float rotation[9] = {};    // +0x30 .. +0x50
     float prm1 = 0.0f;         // +0x54, editor Param 1 (use not yet known)
     float prm2 = 0.0f;         // +0x58, editor Param 2 (use not yet known)
+    uint32_t pad5c = 0;        // +0x5c, unidentified 4 bytes; present so the fields below sit at their game offsets
     int baseValue = 0;         // +0x60
     int nextValue = 0;         // +0x64
     float segmentRecip = 0.0f; // +0x68
