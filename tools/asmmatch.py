@@ -76,7 +76,7 @@ def main():
 
     with tempfile.TemporaryDirectory() as tmp:
         obj = os.path.join(tmp, 'out.o')
-        r = subprocess.run([a.assembler, '-mbig', '-a32', '-mregnames', '-o', obj, a.source], capture_output=True, text=True)
+        r = subprocess.run([a.assembler, '-mbig', '-a32', '-mregnames', '-mgekko', '-o', obj, a.source], capture_output=True, text=True)
         if r.returncode != 0:
             print('assemble failed:\n' + r.stderr)
             return 2
