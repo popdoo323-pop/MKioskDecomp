@@ -148,3 +148,10 @@ ItemCoin_Tail_02132ae4 (12 bytes: li, or, b to FUN_023f8f88) is byte-identical a
 Like the getter, it does not separate the three levels. -Ospace produced runtime helper calls for LinkNext (ruled out:
 the game's LinkNext has none). The level is still not identified; a function with a stack frame and register saves, such as
 ItemCoin_Message_02132ff4 or the ItemCoin bind emitter, is the next test that can separate the levels.
+
+## ItemCoin message handler: structure matched, registers not (2026-10-10)
+
+The switch form of ItemCoin_Message_02132ff4 gives the original's branch structure at -Ogeneral and -Ospeed (the two levels
+produce identical code here). -Ospace produces a different structure. The remaining difference is register assignment:
+three source variants did not reproduce the original's registers, so the function is recorded as structure-matched, not
+byte-matched. This narrows the game's optimisation level to -Ogeneral or -Ospeed.

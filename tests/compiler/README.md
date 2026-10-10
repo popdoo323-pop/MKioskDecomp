@@ -46,3 +46,17 @@ first differing word.
       --define FUN_023f8f88=0x023f8f88
 
 Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
+
+## ItemCoin message handler (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02132ff4 --size 68 `
+      --source tests\compiler\itemcoin_message_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
+
+## ItemCoin message handler, version 2 (switch form)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02132ff4 --size 68 `
+      --source tests\compiler\itemcoin_message_v2_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include
