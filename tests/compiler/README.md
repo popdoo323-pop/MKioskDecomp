@@ -60,3 +60,12 @@ Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
     python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02132ff4 --size 68 `
       --source tests\compiler\itemcoin_message_v2_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
       --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include
+
+## ItemCoin bind emitter (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x02132ac4 --size 32 `
+      --source tests\compiler\itemcoin_bindemitter_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include `
+      --define FUN_020db0e4=0x020db0e4 --define kBindEmitterName=0x10015f70
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.

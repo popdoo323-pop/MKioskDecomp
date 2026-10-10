@@ -155,3 +155,14 @@ The switch form of ItemCoin_Message_02132ff4 gives the original's branch structu
 produce identical code here). -Ospace produces a different structure. The remaining difference is register assignment:
 three source variants did not reproduce the original's registers, so the function is recorded as structure-matched, not
 byte-matched. This narrows the game's optimisation level to -Ogeneral or -Ospeed.
+
+## Third C++ byte match: ItemCoin bind emitter (2026-10-10)
+
+ItemCoin_BindEmitter_02132ac4 (32 bytes: conditional early return, then a tail call) is byte-identical at -Ogeneral,
+-Ospeed and -Ospace. It does not separate the levels.
+
+Level evidence so far:
+- -Ogeneral and -Ospeed: identical on every function tested, and both match the message handler's structure.
+- -Ospace: matches the getter, the tail call and the bind emitter, but produced helper calls for LinkNext and a different
+  structure for the message handler. It is less likely, but not ruled out by these tests.
+- No level has yet matched LinkNext, so its source shape may still differ.
