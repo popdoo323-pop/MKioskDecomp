@@ -1,0 +1,5 @@
+name,address,notes
+FUN_023f8f88,0x023f8f88,ItemCoin tail-call target (C linkage)
+FUN_020db0e4,0x020db0e4,ItemCoin bind target (C linkage)
+kItemCoinValue,0x10184fb8,float constant returned by the ItemCoin getter
+kBindEmitterName,0x10015f70,string constant passed by the bind emitter
