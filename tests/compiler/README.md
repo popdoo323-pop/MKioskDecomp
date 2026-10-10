@@ -79,3 +79,16 @@ Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
       --define SysGetter=0x0261c858 --define g_sys_ptr=0x1015265c --define kPoolName=0x101063b0
 
 Change -Ogeneral to -Ospeed or -Ospace to test the other levels.
+
+## ItemCoin effects setup (C++ test)
+
+    python tools\bytematch.py --orig orig\Turbo.rpx --address 0x021212c4 --size 448 `
+      --source tests\compiler\itemcoin_effects_test.cpp --cc "C:\Nintendo\GHS\multi5327\cxppc.exe" `
+      --cflags "-pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral" --incdir include `
+      --define SetupFx1=0x020dabc8 --define SetupFx2=0x020da780 --define AttachEffect=0x020db0e4 `
+      --define AddSlot=0x0205e498 --define FxInit=0x026200ec --define MemCpyAlias=0x029abc88 `
+      --define kEffName1=0x100149ec --define kEffName2=0x100149f8 --define kEffName3=0x10014a04 `
+      --define kSoundTable=0x10172400 --define kStrA=0x101797d8 --define kStrB=0x1014c450 `
+      --define kFlagB=0x101798cb --define kFlagA=0x10170f84 --define kFlagAnext=0x10170f88
+
+Change -Ogeneral to -Ospeed or -Ospace to test the other levels.

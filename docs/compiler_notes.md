@@ -177,3 +177,15 @@ ItemCoin_PoolInit_02133314 (376 bytes, loop with a varargs setup call) is not by
 
 -Ospeed is the leading candidate for the game's optimisation level. This is evidence from one function, not a match, and
 the remaining differences may be source-shape choices rather than the level.
+
+## Effects setup: level evidence (2026-10-10)
+
+ItemCoin_Effects_021212c4 (448 bytes, loop over seven entries) is not matched at any level.
+- -Ospace: ruled out again, since it calls _savesmall_40 and _restsmall_40, which the game's version doesn't.
+- -Ogeneral: 408 bytes with a smaller frame.
+- -Ospeed: 448 bytes, the same length as the original, but an 80-byte frame where the original has 56, so it saves a
+  different set of registers.
+
+This function does not favour either remaining level. The frame difference points to the source holding fewer live values
+across calls than the original, which is a source-shape problem. Combined with the pool initialiser (-Ospeed matched the
+length there), the level is still not determined.
