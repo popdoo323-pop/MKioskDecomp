@@ -50,6 +50,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,1
 0x0218153c,TrailManager_0218153c,game_func,,0,0,0,1
+0x021825cc,TrailManager_Next_021825cc,game_func,,0,0,0,1
 0x021a7bb4,Wheel_Callback_021a7bb4,game_func,,0,0,0,1
 0x021a7c7c,Wheel_Helper_021a7c7c,game_func,,0,0,0,1
 0x021a7c9c,Wheel_Gap_021a7c9c,game_func,,0,0,0,1
@@ -84,6 +85,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x022ee384,ObjTire_Reset,game_func,,0,0,1,1
 0x022ee4bc,ObjTire_Update,game_func,,0,0,1,1
 0x023839d4,KartTireModel_Load,game_func,,0,0,1,1
+0x02385be0,KartPartBuilder_Next_02385be0,game_func,,0,0,0,1
 0x0238fbd4,RacePreload_CommonResources,game_func,,0,0,1,0
 0x02392930,GroundSound_LoadAllBanks,game_func,,0,0,1,0
 0x0239993c,RaceKartChecker_ctor,game_func,,0,0,1,1
