@@ -32,3 +32,9 @@ Return types of `OSSendMessage` and `OSReceiveMessage` are `int` in the repo and
 - The four C standard library entries are not in WUT, so they cannot be checked here.
 - Ghidra's applied types come from the WUT archive, so these differences are in the repo's JSON record, not necessarily
   in Ghidra. Check the Ghidra prototype before changing it.
+
+## Applied in Ghidra (2026-10-10)
+The nine differences were re-applied in Ghidra and read back to confirm. Ghidra cannot resolve WUT's `MEMHeapHandle`,
+`MEMBaseHeapType`, `OSThreadEntryPointFn` and `OSMessageFlags`, so those use the same-size stand-ins listed in the
+JSON notes. Storage is unchanged; the return type of `MEMDestroyFrmHeap` and the flags width of `MEMCreateFrmHeapEx`
+and `OSCreateThread` now match WUT.
