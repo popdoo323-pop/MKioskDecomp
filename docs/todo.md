@@ -17,6 +17,37 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 - [x] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
       Recorded 2026-10-10 in docs/compiler_notes.md: large test at 8 mod 16 gives Green Hills 38.9%, devkitPPC GCC 66.7%, game 46.5%. Green Hills is favoured. The prologue-shape check is still open (see Blocked).
 
+## Speed-up plan (goal: readable C++ in src/, every function byte-verified)
+Ordered by how much each step speeds up the work. Items 1 to 4 need no decision and remove most of the manual steps.
+
+- [ ] 1. Export every function boundary from Ghidra to `symbols/functions_ghidra.csv` (address, name, size, call count),
+      in one paged pass over search_functions. Then sizes and boundaries come from the file, not one Ghidra call each.
+      Finishes when the file has about 32,800 rows.
+- [ ] 2. Write `tools/batch_match.py`: take addresses from functions_ghidra.csv, convert each with disasm_to_asm.py, check
+      with asmmatch.py, record every MATCH in symbols/matches.csv and list the failures. Replaces the hand-run scripts.
+      Finishes when one command matches a batch of 100 functions and writes the record.
+- [ ] 3. Add one command, `tools/make_verify.py`, that runs verify_matches, verify_units, build_units and progress and
+      prints a one-line summary. Finishes when one command gives the same numbers as the separate scripts.
+- [ ] 4. Export Ghidra decompiler output for matched functions to `src/decompiled/<area>/<name>.c` as drafts, using
+      batch_decompile in groups of 20. Gives every matched function a readable starting point.
+- [ ] 5. Add a "decompiled" status to symbols/matches.csv and the progress tool, counted separately from matched bytes
+      (already in section 1). Finishes when progress.md shows both counts.
+- [ ] 6. Create `symbols/names.csv` (address, name). disasm_to_asm.py and the export use it, so generated labels and C++
+      calls read as names instead of addresses. Finishes when the converter uses the file.
+- [ ] 7. Write `tools/scan_vtables.py`: find class vtables and their method lists automatically, writing
+      `symbols/classes.csv`. Replaces the manual vtable reads (bird, tire, ground state). Finishes when the bird and ObjTire
+      tables are found without manual steps.
+- [ ] 8. Group by class: one unit and one source file per class (`src/Game/<area>/<Class>.cpp` and `.hpp`) holding its
+      matched functions, with the header generated from symbols/classes.csv. Finishes when the first class file builds.
+- [ ] 9. Decision needed: enable Ghidra scripting (GHIDRA_MCP_ALLOW_SCRIPTS=1). It lets renames, type changes and the
+      import alias pass run in one call instead of one call per item. Turn it off afterwards.
+- [ ] 10. BLOCKER for C++ byte matches: identify the game's compiler settings. Write `tools/flag_search.py` to compile the
+       C++ sources of matched functions over a flag matrix (-O levels, -signedptr/-unsignedptr, register options) with
+       cxppc, and rank the settings by matches. Run it on the maintainer's PC. Finishes when one setting byte-matches a
+       function that has register choices, which the assembly route cannot show.
+- [ ] 11. C++ for each function: clean the decompiled draft, compile with the confirmed setting, and verify. Starts only
+       after item 10. Until then, matching stays in assembly, which is verified now.
+
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
 - [x] `symbols/coreinit_signatures.json`: all 91 entries compared against WUT at commit b98f8fc (docs/coreinit_prototype_check.md). Done 2026-10-10. `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` match. `memcpy`, `memmove`, `memset` and `exit` are C library functions, not in WUT, so they cannot be checked against it. The nine real differences were fixed in Ghidra and in the record.
