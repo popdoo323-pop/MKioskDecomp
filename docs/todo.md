@@ -51,7 +51,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
 - [x] `symbols/coreinit_signatures.json`: all 91 entries compared against WUT at commit b98f8fc (docs/coreinit_prototype_check.md). Done 2026-10-10. `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` match. `memcpy`, `memmove`, `memset` and `exit` are C library functions, not in WUT, so they cannot be checked against it. The nine real differences were fixed in Ghidra and in the record.
-- [ ] `symbols/ground_state_fields.csv`: field offsets for 11 of 12 fields are unknown. Reflection registers names only.
+- [ ] `symbols/ground_state_fields.csv`: field offsets for 11 of 12 fields are unknown. Checked 2026-10-10: the constructor FUN_023c9460 registers each field through FUN_023b70d0, which stores only the value pointer, not the field name or an offset. Only mGndAttr (+0x5c) can be read from the constructor. The other 11 need the code that reads the object (access tracing).
 - [ ] `include/Game/Item/ItemCoin.hpp`: the base class `ItemBase_` is unnamed.
 - [ ] `include/Game/Race/RaceKartChecker.hpp`: the meaning of the value 999 at +0x38 is unknown.
 - [x] `include/Game/UI/LapCoinLayout.hpp`: offsets +0x54 and +0x65, the size 0x6c and the constant 3 verified against FUN_02525904 (decompiled 2026-10-10).
