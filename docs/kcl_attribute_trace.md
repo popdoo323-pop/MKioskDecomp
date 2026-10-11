@@ -39,3 +39,12 @@ The editor-to-binary mapping, including material and special options, is in
 - No ground: both fields are set to `0xFFFFFFFF`. `FUN_02072608` returns early on a negative value, which matches.
 - This closes the chain: `FUN_021c1d00` writes `+0x1e0` of the object that `FUN_0218624c` reads through `obj+0x24`.
 - Evidence: the mask and the store sit next to each other, the sentinel matches the reader's check, and the variant matches `+0x214`. The field names are our proposals; the offsets come from the decompile.
+
+## Checked against real data 2026-10-10: Gu_MarioCircuit course.kcl
+
+Method: the OBJ export (Gu_MarioCircuit-coursekcl.obj) names each face group `COL_<hex attribute>`. Counting faces per attribute gives 27 distinct values over 37,256 faces. The KCL binary header was not decoded, so this check is through the OBJ export, not the raw prisms.
+
+- Terrain index `attr & 0x1F`: the top groups are WALL (17), ROAD (0), LWALL (20), RESQ (16), DIRT (6). The single biggest attribute is `0x000` (ROAD), with 5,404 faces. Named groups fit their names: RESQ = 0x030, OUTF = 0x017, ITROAD = 0x00F, ZONE (31) is used.
+- Variant `(attr >> 5) & 7`: observed values 0 to 5, all within the 0 to 7 range.
+- Bit 11 (`0x800`) is set on the LWALL and WALL groups (0x854, 0x851) and is separate from the terrain and variant fields.
+- Conclusion: the low five bits are the 32-name terrain index and bits 5 to 7 are the variant, as `FUN_021c1d00` expects. Limit: this is inferred from the OBJ export, not from the raw KCL prisms.
