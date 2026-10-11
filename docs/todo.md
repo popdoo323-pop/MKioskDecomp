@@ -12,7 +12,8 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 
 ## Next up (in order)
 - [ ] Push the local work to GitHub. Earlier batches are pushed; the kart batch 4 (three functions) is still to commit.
-- [ ] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond) in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
+- [x] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond) in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
+      Checked 2026-10-10: no 1-byte placeholders remain under these names. The eight types are the full WUT types (OSThread 1696 bytes, FSClient 5888, FSCmdBlock 2688, and so on). OSCond is not in the program. Prototypes spot-checked: OSLockMutex(OSMutex *) and FSInitCmdBlock(FSCmdBlock *). The other coreinit prototypes have not been re-checked one by one.
 - [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
 
 ## Repo and notes
