@@ -1,0 +1,66 @@
+# Converted from the disassembly of 0x02045030 (248 bytes). Name is a placeholder.
+    .text
+    .globl Batch_02045030
+Batch_02045030:
+    mflr    r0
+    stwu    r1,-16(r1)
+    stw     r31,12(r1)
+    stw     r30,8(r1)
+    mr      r30,r5
+    mr      r31,r3
+    stw     r0,20(r1)
+    bl      ext_02630ab0
+    lis     r3,5
+    mr      r5,r30
+    lis     r4,4120
+    addi    r3,r3,-20480
+    li      r6,1
+    addi    r4,r4,-9752
+    li      r7,0
+    bl      ext_026197d4
+    stw     r3,60(r31)
+    mr      r3,r31
+    bl      ext_02044f64
+    lwz     r3,60(r31)
+    lwz     r12,12(r3)
+    lwz     r0,44(r12)
+    mtctr   r0
+    bctrl
+    lis     r4,4120
+    li      r6,1
+    mr      r5,r30
+    addi    r4,r4,-9744
+    li      r7,0
+    lis     r3,16
+    bl      ext_026197d4
+    stw     r3,64(r31)
+    lis     r4,4120
+    mr      r5,r30
+    li      r7,0
+    addi    r4,r4,-9736
+    lis     r3,16
+    li      r6,1
+    bl      ext_026197d4
+    stw     r3,68(r31)
+    lis     r4,4120
+    mr      r5,r30
+    li      r7,0
+    addi    r4,r4,-9728
+    lis     r3,16
+    li      r6,1
+    bl      ext_026197d4
+    stw     r3,72(r31)
+    lis     r4,4120
+    mr      r5,r30
+    li      r6,1
+    addi    r4,r4,-9720
+    li      r7,0
+    lis     r3,16
+    bl      ext_026197d4
+    stw     r3,76(r31)
+    lwz     r0,20(r1)
+    lwz     r31,12(r1)
+    mtlr    r0
+    lwz     r30,8(r1)
+    addi    r1,r1,16
+    blr

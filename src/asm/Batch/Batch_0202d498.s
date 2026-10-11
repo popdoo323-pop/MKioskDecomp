@@ -1,0 +1,111 @@
+# Converted from the disassembly of 0x0202d498 (408 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0202d498
+Batch_0202d498:
+    mflr    r0
+    stwu    r1,-72(r1)
+    stfd    f31,56(r1)
+    ps_merge10 f31,f31,f31
+    stfd    f30,40(r1)
+    stw     r31,36(r1)
+    ps_merge10 f30,f30,f30
+    stfs    f31,64(r1)
+    stfs    f30,48(r1)
+    mr      r31,r3
+    stw     r0,76(r1)
+    lis     r9,4096
+    stw     r30,32(r1)
+    lwz     r12,44(r31)
+    lfs     f30,14072(r9)
+    lwz     r3,84(r12)
+    fmr     f31,f30
+    bl      ext_02185d64
+    lis     r30,4120
+    lfsu    f13,-12728(r30)
+    fcmpu   cr0,f1,f13
+    bge-    L0202d514
+    lwz     r3,56(r31)
+    bl      ext_020267c8
+    cmpwi   r3,0
+    beq-    L0202d514
+    lwz     r11,44(r31)
+    lwz     r3,84(r11)
+    bl      ext_02185d70
+    lfs     f0,0(r30)
+    fdivs   f31,f0,f1
+L0202d514:
+    lwz     r3,44(r31)
+    bl      ext_02031a28
+    cmpwi   r3,0
+    beq-    L0202d550
+    lwz     r12,44(r31)
+    lwz     r3,84(r12)
+    bl      ext_02185df8
+    cmpwi   r3,0
+    beq-    L0202d550
+    lis     r7,4120
+    lfs     f31,64(r31)
+    lfs     f0,-12720(r7)
+    fcmpu   cr0,f31,f0
+    ble-    L0202d550
+    fmr     f31,f0
+L0202d550:
+    lwz     r12,44(r31)
+    lwz     r3,84(r12)
+    bl      ext_02185cd8
+    lwz     r11,24(r3)
+    stw     r11,20(r1)
+    lwz     r7,28(r3)
+    lwz     r6,44(r31)
+    stw     r7,24(r1)
+    lwz     r8,32(r3)
+    stw     r11,8(r1)
+    stw     r8,28(r1)
+    stw     r7,12(r1)
+    stw     r8,16(r1)
+    lwz     r3,84(r6)
+    bl      ext_02186214
+    psq_l   f12,8(r1),0,0
+    psq_l   f13,0(r3),0,0
+    ps_mul  f11,f12,f13
+    ps_sum0 f12,f11,f11,f11
+    lfs     f11,8(r3)
+    lfs     f0,16(r1)
+    fmadds  f12,f0,f11,f12
+    fcmpu   cr0,f12,f30
+    mfcr    r0
+    srwi.   r0,r0,31
+    lwz     r8,40(r31)
+    bne-    L0202d5c8
+    lbz     r6,68(r31)
+    cmpwi   r6,0
+    beq-    L0202d5d0
+L0202d5c8:
+    lis     r12,4120
+    lfs     f31,-12724(r12)
+L0202d5d0:
+    stb     r0,68(r31)
+    lbz     r7,189(r8)
+    cmpwi   r7,0
+    lwz     r12,44(r31)
+    beq-    L0202d600
+    lwz     r10,36(r31)
+    lwz     r11,4(r10)
+    lbz     r8,80(r11)
+    cmpwi   r8,0
+    beq-    L0202d600
+    lis     r10,4120
+    lfs     f31,-12712(r10)
+L0202d600:
+    stfs    f31,144(r12)
+    lfs     f31,64(r1)
+    lfs     f30,48(r1)
+    lfd     f31,56(r1)
+    lfd     f30,40(r1)
+    lwz     r31,36(r1)
+    lwz     r30,32(r1)
+    isync
+    lwz     r0,76(r1)
+    mtlr    r0
+    addi    r1,r1,72
+    blr

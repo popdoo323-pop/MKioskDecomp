@@ -1,0 +1,93 @@
+# Converted from the disassembly of 0x020263f0 (340 bytes). Name is a placeholder.
+    .text
+    .globl Batch_020263f0
+Batch_020263f0:
+    mflr    r0
+    stwu    r1,-48(r1)
+    stw     r29,36(r1)
+    stw     r31,44(r1)
+    stw     r30,40(r1)
+    mr      r31,r4
+    stw     r0,52(r1)
+    lbz     r11,0(r31)
+    cmpwi   r11,0
+    mr      r30,r3
+    beq-    L02026454
+    lis     r10,4096
+    lfs     f0,10636(r10)
+    stfs    f0,96(r30)
+    lhz     r6,2(r31)
+    lhz     r8,4(r31)
+    rlwimi  r29,r6,16,0,15
+    rlwimi  r29,r8,0,16,31
+    addi    r4,r1,8
+    stw     r29,8(r1)
+    bl      ext_0202598c
+    mr      r3,r30
+    mr      r4,r31
+    bl      ext_02026184
+    b       L02026528
+L02026454:
+    lwz     r12,48(r30)
+    lhz     r11,132(r12)
+    sth     r11,2(r31)
+    lhz     r0,134(r12)
+    sth     r0,4(r31)
+    lwz     r9,52(r30)
+    lhz     r8,132(r9)
+    sth     r8,6(r31)
+    lhz     r9,134(r9)
+    sth     r9,8(r31)
+    lwz     r10,40(r30)
+    lwz     r12,60(r10)
+    lwz     r6,88(r12)
+    lwz     r7,84(r6)
+    lwz     r5,240(r7)
+    cmpwi   r5,-1
+    mr      r4,r31
+    beq-    L020264dc
+    bl      ext_02025794
+    stw     r3,12(r1)
+    lhz     r0,12(r1)
+    lhz     r6,14(r1)
+    sth     r0,16(r1)
+    sth     r6,18(r1)
+    lwz     r0,16(r1)
+    rlwimi  r29,r0,0,0,15
+    mr      r3,r30
+    rlwimi  r29,r0,0,16,31
+    addi    r4,r1,28
+    stw     r29,28(r1)
+    bl      ext_02025ac0
+    lwz     r7,16(r31)
+    stw     r7,76(r30)
+    b       L0202651c
+L020264dc:
+    li      r5,-1
+    bl      ext_02025794
+    stw     r3,20(r1)
+    lhz     r10,20(r1)
+    lhz     r12,22(r1)
+    sth     r10,24(r1)
+    sth     r12,26(r1)
+    lwz     r0,24(r1)
+    rlwimi  r29,r0,0,0,15
+    mr      r3,r30
+    rlwimi  r29,r0,0,16,31
+    addi    r4,r1,28
+    stw     r29,28(r1)
+    bl      ext_02025ac0
+    lwz     r7,16(r31)
+    stw     r7,76(r30)
+L0202651c:
+    mr      r3,r30
+    mr      r4,r31
+    bl      ext_02026184
+L02026528:
+    lwz     r29,36(r1)
+    lwz     r0,52(r1)
+    lwz     r30,40(r1)
+    mtlr    r0
+    lwz     r31,44(r1)
+    addi    r1,r1,48
+    blr

@@ -1,0 +1,183 @@
+# Converted from the disassembly of 0x0200c810 (680 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0200c810
+Batch_0200c810:
+    stwu    r1,-72(r1)
+    stmw    r24,40(r1)
+    mflr    r0
+    stw     r0,76(r1)
+    mr      r28,r5
+    mr      r27,r4
+    lwz     r5,0(r27)
+    lwz     r8,4(r27)
+    addi    r4,r1,28
+    stw     r5,28(r1)
+    mr      r25,r3
+    stw     r8,32(r1)
+    bl      ext_0200b2e4
+    lbz     r31,5(r27)
+    lwz     r24,0(r27)
+    lis     r29,4119
+    mr.     r30,r3
+    lbz     r26,4(r27)
+    bne-    L0200c9fc
+    lwz     r31,12(r27)
+    cmpwi   r31,-1
+    beq-    L0200c948
+    clrlwi  r31,r31,24
+    lwz     r10,0(r25)
+    mr      r7,r31
+    cmplw   r7,r10
+    li      r30,0
+    bge-    L0200c88c
+    lwz     r6,8(r25)
+    slwi    r12,r7,2
+    lwzx    r30,r12,r6
+L0200c88c:
+    lwz     r8,28(r30)
+    lwz     r0,20(r8)
+    mtctr   r0
+    mr      r3,r30
+    bctrl
+    cmpwi   r3,0
+    beq-    L0200c974
+    mr      r3,r25
+    bl      ext_0200c74c
+    mr      r5,r3
+    mr      r4,r30
+    mr      r3,r25
+    bl      ext_0200c5b4
+    mr      r3,r25
+    bl      ext_0200c504
+    lwz     r8,-4780(r29)
+    stb     r3,8(r1)
+    lwz     r3,24(r8)
+    addi    r4,r1,8
+    bl      ext_027b6c3c
+    mr      r3,r30
+    stb     r31,9(r1)
+    mr      r4,r27
+    lwz     r0,0(r28)
+    addi    r5,r1,8
+    addi    r6,r1,9
+    addi    r7,r1,20
+    stw     r0,20(r1)
+    bl      ext_027ae830
+    lwz     r24,4(r30)
+    mr      r3,r25
+    lbz     r26,8(r30)
+    lbz     r31,9(r30)
+    bl      ext_0200b938
+    lwz     r12,-4780(r29)
+    lwz     r3,16(r12)
+    lwz     r6,100(r3)
+    lwz     r9,436(r6)
+    mtctr   r9
+    li      r4,0
+    bctrl
+    lwz     r5,-4780(r29)
+    lwz     r3,16(r5)
+    lwz     r7,4(r3)
+    cmplw   r24,r7
+    beq-    L0200ca6c
+    b       L0200ca94
+L0200c948:
+    mr      r3,r25
+    bl      ext_0200c74c
+    mr      r31,r3
+    lwz     r0,0(r25)
+    mr      r7,r31
+    cmplw   r7,r0
+    li      r30,0
+    bge-    L0200c974
+    lwz     r10,8(r25)
+    slwi    r8,r7,2
+    lwzx    r30,r8,r10
+L0200c974:
+    mr      r3,r25
+    bl      ext_0200c504
+    lwz     r8,-4780(r29)
+    stb     r3,8(r1)
+    lwz     r3,24(r8)
+    addi    r4,r1,8
+    bl      ext_027b6c3c
+    mr      r3,r30
+    stb     r31,9(r1)
+    mr      r4,r27
+    lwz     r0,0(r28)
+    addi    r5,r1,8
+    addi    r6,r1,9
+    addi    r7,r1,20
+    stw     r0,20(r1)
+    bl      ext_027ae830
+    lwz     r24,4(r30)
+    mr      r3,r25
+    lbz     r26,8(r30)
+    lbz     r31,9(r30)
+    bl      ext_0200b938
+    lwz     r12,-4780(r29)
+    lwz     r3,16(r12)
+    lwz     r6,100(r3)
+    lwz     r9,436(r6)
+    mtctr   r9
+    li      r4,0
+    bctrl
+    lwz     r5,-4780(r29)
+    lwz     r3,16(r5)
+    lwz     r7,4(r3)
+    cmplw   r24,r7
+    beq-    L0200ca6c
+    b       L0200ca94
+L0200c9fc:
+    lwz     r9,0(r30)
+    cmpwi   r9,0
+    bne-    L0200ca44
+    lwz     r0,0(r28)
+    cmpwi   r0,1
+    bne-    L0200ca48
+    lbz     r0,12(r30)
+    stb     r0,10(r1)
+    lbz     r12,13(r30)
+    mr      r3,r30
+    mr      r4,r27
+    addi    r5,r1,10
+    stb     r12,11(r1)
+    lwz     r0,0(r28)
+    addi    r6,r1,11
+    addi    r7,r1,24
+    stw     r0,24(r1)
+    bl      ext_027ae830
+L0200ca44:
+    lwz     r0,0(r28)
+L0200ca48:
+    cmpwi   r0,3
+    bne-    L0200ca58
+    lwz     r9,0(r28)
+    stw     r9,0(r30)
+L0200ca58:
+    lwz     r5,-4780(r29)
+    lwz     r3,16(r5)
+    lwz     r7,4(r3)
+    cmplw   r24,r7
+    bne-    L0200ca94
+L0200ca6c:
+    lbz     r9,8(r3)
+    cmplw   r26,r9
+    bne-    L0200ca94
+    lbz     r10,9(r3)
+    cmplw   r31,r10
+    bne-    L0200ca94
+    lwz     r12,100(r3)
+    lwz     r0,412(r12)
+    mtctr   r0
+    bctrl
+L0200ca94:
+    stb     r31,17(r1)
+    stb     r26,16(r1)
+    lwz     r4,16(r1)
+    mr      r3,r24
+    lmw     r24,40(r1)
+    lwz     r0,76(r1)
+    mtlr    r0
+    addi    r1,r1,72
+    blr

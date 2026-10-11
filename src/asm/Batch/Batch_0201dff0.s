@@ -1,0 +1,93 @@
+# Converted from the disassembly of 0x0201dff0 (340 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0201dff0
+Batch_0201dff0:
+    mflr    r0
+    stwu    r1,-80(r1)
+    stw     r29,68(r1)
+    stw     r28,64(r1)
+    stw     r30,72(r1)
+    stw     r31,76(r1)
+    stw     r0,84(r1)
+    lwz     r10,76(r3)
+    lwz     r8,0(r10)
+    lwz     r0,364(r8)
+    lhz     r11,132(r8)
+    stw     r0,48(r1)
+    lwz     r9,368(r8)
+    stw     r9,52(r1)
+    lwz     r0,372(r8)
+    psq_l   f0,48(r1),0,0
+    stw     r0,56(r1)
+    psq_l   f10,364(r4),0,0
+    lis     r12,4117
+    lfs     f13,56(r1)
+    ps_mul  f12,f0,f10
+    lfs     f10,372(r4)
+    ps_sum0 f11,f12,f12,f12
+    lwz     r12,-3296(r12)
+    lis     r7,4096
+    fmadds  f13,f13,f10,f11
+    lfs     f0,9380(r7)
+    lwz     r7,424(r12)
+    fcmpu   cr0,f13,f0
+    li      r31,0
+    mfcr    r12
+    cmpwi   r7,3
+    lhz     r28,132(r4)
+    mr      r30,r5
+    mr      r0,r31
+    srwi    r6,r12,31
+    bne-    L0201e090
+    cmpwi   r6,0
+    beq-    L0201e090
+    li      r0,1
+L0201e090:
+    cmplw   r11,r28
+    clrlwi  r0,r0,24
+    beq-    L0201e0a4
+    cmpwi   r0,0
+    beq-    L0201e0ac
+L0201e0a4:
+    li      r3,1
+    b       L0201e124
+L0201e0ac:
+    lis     r9,4120
+    lwz     r9,-13736(r9)
+    stw     r9,36(r1)
+    lhz     r5,36(r1)
+    li      r29,0
+    lhz     r10,134(r4)
+    lwz     r3,60(r3)
+    sth     r10,12(r1)
+    addi    r4,r1,8
+    stb     r29,8(r1)
+    stb     r29,28(r1)
+    sth     r5,14(r1)
+    stw     r9,32(r1)
+    lhz     r0,38(r1)
+    sth     r28,10(r1)
+    li      r5,-1
+    sth     r0,16(r1)
+    stw     r29,24(r1)
+    stw     r29,20(r1)
+    bl      ext_02025794
+    stw     r3,40(r1)
+    lhz     r0,40(r1)
+    lhz     r6,42(r1)
+    sth     r0,44(r1)
+    sth     r6,46(r1)
+    lwz     r9,44(r1)
+    srwi    r0,r9,16
+    sth     r9,2(r30)
+    mr      r3,r31
+    sth     r0,0(r30)
+L0201e124:
+    lwz     r28,64(r1)
+    lwz     r29,68(r1)
+    lwz     r0,84(r1)
+    lwz     r30,72(r1)
+    mtlr    r0
+    lwz     r31,76(r1)
+    addi    r1,r1,80
+    blr

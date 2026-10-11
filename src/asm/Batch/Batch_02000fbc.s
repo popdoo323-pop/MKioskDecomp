@@ -1,0 +1,83 @@
+# Converted from the disassembly of 0x02000fbc (304 bytes). Name is a placeholder.
+    .text
+    .globl Batch_02000fbc
+Batch_02000fbc:
+    mflr    r0
+    stwu    r1,-72(r1)
+    stw     r30,64(r1)
+    mr      r30,r3
+    addi    r3,r1,16
+    stw     r31,68(r1)
+    stw     r28,56(r1)
+    mr      r4,r30
+    li      r31,0
+    stw     r29,60(r1)
+    stw     r0,76(r1)
+    bl      ext_02000ed0
+    lwz     r7,68(r30)
+    lwz     r3,84(r7)
+    bl      ext_02185cb4
+    addi    r4,r1,16
+    bl      ext_025579b0
+    lis     r8,4120
+    lfs     f0,-15756(r8)
+    lwz     r7,68(r30)
+    fmuls   f0,f0,f0
+    lwz     r3,84(r7)
+    lbz     r29,249(r30)
+    fcmpu   cr0,f1,f0
+    ble-    L02001024
+    li      r31,1
+L02001024:
+    bl      ext_02185c38
+    lwz     r12,68(r30)
+    mr      r28,r3
+    lwz     r3,84(r12)
+    bl      ext_02185cd8
+    lwz     r8,12(r3)
+    stw     r8,40(r1)
+    lwz     r9,16(r3)
+    stw     r9,44(r1)
+    lwz     r0,20(r3)
+    addi    r6,r1,28
+    stw     r8,28(r1)
+    mr      r5,r28
+    stw     r0,36(r1)
+    addi    r4,r1,16
+    lwz     r3,68(r30)
+    mr      r8,r29
+    stw     r9,32(r1)
+    li      r7,0
+    stw     r0,48(r1)
+    bl      ext_020151bc
+    stw     r3,8(r1)
+    lhz     r0,8(r1)
+    lhz     r9,10(r1)
+    sth     r0,12(r1)
+    sth     r9,14(r1)
+    lwz     r29,12(r1)
+    srwi    r0,r29,16
+    cmplwi  r0,65535
+    beq-    L020010c4
+    clrlwi  r0,r29,16
+    cmplwi  r0,65535
+    beq-    L020010c4
+    lwz     r3,68(r30)
+    bl      ext_02015194
+    clrlwi  r5,r29,16
+    srwi    r4,r29,16
+    bl      ext_020062f0
+    stw     r3,116(r30)
+    b       L020010c8
+L020010c4:
+    li      r31,1
+L020010c8:
+    lwz     r28,56(r1)
+    lwz     r29,60(r1)
+    lwz     r0,76(r1)
+    mr      r3,r31
+    lwz     r30,64(r1)
+    mtlr    r0
+    lwz     r31,68(r1)
+    addi    r1,r1,72
+    blr

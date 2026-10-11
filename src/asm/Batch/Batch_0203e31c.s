@@ -1,0 +1,171 @@
+# Converted from the disassembly of 0x0203e31c (640 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0203e31c
+Batch_0203e31c:
+    mflr    r0
+    stwu    r1,-48(r1)
+    stfd    f30,16(r1)
+    ps_merge10 f30,f30,f30
+    stfd    f31,32(r1)
+    stfs    f30,24(r1)
+    ps_merge10 f31,f31,f31
+    stw     r31,12(r1)
+    stfs    f31,40(r1)
+    mr      r31,r3
+    stw     r0,52(r1)
+    lbz     r0,220(r31)
+    lis     r12,4096
+    cmpwi   r0,0
+    lfs     f31,19508(r12)
+    beq-    L0203e54c
+    lis     r12,4117
+    lwz     r12,1072(r12)
+    cmpwi   r12,5
+    beq-    L0203e54c
+    mr      r3,r31
+    fmr     f30,f31
+    bl      ext_0203d410
+    lwz     r11,240(r3)
+    lbz     r0,177(r11)
+    cmpwi   r0,0
+    beq-    L0203e400
+    lis     r4,4096
+    lwz     r3,40(r31)
+    addi    r4,r4,19656
+    bl      ext_02051068
+    lwz     r4,148(r31)
+    mr      r5,r3
+    addi    r3,r31,36
+    li      r6,0
+    bl      ext_020547c8
+    lwz     r3,144(r31)
+    bl      ext_02046b44
+    lis     r12,4120
+    lwz     r11,0(r31)
+    lfs     f31,-10600(r12)
+    stfs    f31,156(r31)
+    lwz     r0,188(r11)
+    mtctr   r0
+    fmr     f1,f30
+    mr      r3,r31
+    bctrl
+    mr      r3,r31
+    bl      ext_0203ad80
+    lis     r12,4096
+    lwz     r3,224(r31)
+    lfs     f0,19504(r12)
+    stfs    f0,164(r31)
+    bl      ext_02040e90
+    mr      r3,r31
+    bl      ext_0203e2e0
+    b       L0203e574
+L0203e400:
+    lbz     r11,178(r11)
+    cmpwi   r11,0
+    lwz     r3,144(r31)
+    beq-    L0203e504
+    lbz     r0,16(r3)
+    cmpwi   r0,0
+    bne-    L0203e428
+    li      r4,0
+    bl      ext_02046b28
+    lwz     r3,144(r31)
+L0203e428:
+    bl      ext_02046920
+    lwz     r12,144(r31)
+    lbz     r11,16(r12)
+    cmpwi   r11,0
+    beq-    L0203e448
+    lbz     r0,32(r12)
+    cmpwi   r0,0
+    beq-    L0203e4a0
+L0203e448:
+    lis     r11,4120
+    lis     r12,4120
+    lfs     f12,-10580(r11)
+    fmr     f13,f31
+    lfs     f31,-10576(r12)
+    lwz     r11,0(r31)
+    stfs    f31,156(r31)
+    lwz     r0,188(r11)
+    mtctr   r0
+    fmuls   f1,f13,f12
+    mr      r3,r31
+    bctrl
+    mr      r3,r31
+    bl      ext_0203ad80
+    lis     r12,4096
+    lwz     r3,224(r31)
+    lfs     f0,19504(r12)
+    stfs    f0,164(r31)
+    bl      ext_02040e90
+    mr      r3,r31
+    bl      ext_0203e2e0
+    b       L0203e574
+L0203e4a0:
+    lfs     f0,24(r12)
+    lfs     f13,0(r12)
+    lfs     f12,28(r12)
+    lis     r12,4120
+    lis     r11,4120
+    lfs     f31,-10576(r12)
+    fmadds  f13,f13,f0,f12
+    lfs     f12,-10580(r11)
+    lwz     r11,0(r31)
+    stfs    f31,156(r31)
+    lwz     r0,188(r11)
+    mtctr   r0
+    fmuls   f1,f13,f12
+    mr      r3,r31
+    bctrl
+    mr      r3,r31
+    bl      ext_0203ad80
+    lis     r12,4096
+    lwz     r3,224(r31)
+    lfs     f0,19504(r12)
+    stfs    f0,164(r31)
+    bl      ext_02040e90
+    mr      r3,r31
+    bl      ext_0203e2e0
+    b       L0203e574
+L0203e504:
+    bl      ext_02046b44
+    lwz     r11,0(r31)
+    stfs    f31,156(r31)
+    lwz     r0,188(r11)
+    mtctr   r0
+    fmr     f1,f30
+    mr      r3,r31
+    bctrl
+    mr      r3,r31
+    bl      ext_0203ad80
+    lis     r12,4096
+    lwz     r3,224(r31)
+    lfs     f0,19504(r12)
+    stfs    f0,164(r31)
+    bl      ext_02040e90
+    mr      r3,r31
+    bl      ext_0203e2e0
+    b       L0203e574
+L0203e54c:
+    mr      r3,r31
+    stfs    f31,156(r31)
+    bl      ext_0203ad80
+    lis     r12,4096
+    lwz     r3,224(r31)
+    lfs     f0,19504(r12)
+    stfs    f0,164(r31)
+    bl      ext_02040e90
+    mr      r3,r31
+    bl      ext_0203e2e0
+L0203e574:
+    lwz     r31,12(r1)
+    lfs     f31,40(r1)
+    lfs     f30,24(r1)
+    lfd     f31,32(r1)
+    lfd     f30,16(r1)
+    isync
+    lwz     r0,52(r1)
+    mtlr    r0
+    addi    r1,r1,48
+    blr

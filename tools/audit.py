@@ -43,7 +43,7 @@ else:
 # 2. Every matched row has a source file that exists, and only known statuses are used.
 rows = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'matches.csv'), newline='')))
 statuses = {r['status'].strip() for r in rows}
-check('matches.csv statuses are matched or trivial', statuses <= {'matched', 'trivial'}, ', '.join(sorted(statuses)))
+check('matches.csv statuses are matched or trivial', statuses <= {'matched', 'roundtrip', 'trivial'}, ', '.join(sorted(statuses)))
 missing = [r['source'] for r in rows if not os.path.exists(os.path.join(ROOT, r['source']))]
 check('every matches.csv source file exists', not missing, ', '.join(missing))
 

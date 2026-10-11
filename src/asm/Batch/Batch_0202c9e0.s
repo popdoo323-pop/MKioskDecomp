@@ -1,0 +1,146 @@
+# Converted from the disassembly of 0x0202c9e0 (536 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0202c9e0
+Batch_0202c9e0:
+    mflr    r0
+    stwu    r1,-64(r1)
+    stfd    f31,48(r1)
+    ps_merge10 f31,f31,f31
+    stfs    f31,56(r1)
+    stw     r0,68(r1)
+    stmw    r23,12(r1)
+    mr.     r26,r4
+    mr      r27,r5
+    mr      r25,r3
+    beq-    L0202cbd8
+    lwz     r4,56(r26)
+    rlwinm. r0,r4,0,15,15
+    beq-    L0202cbd8
+    bl      ext_029aaf98
+    lis     r7,4124
+    slwi    r0,r3,2
+    addi    r7,r7,27408
+    lwzx    r28,r7,r0
+    li      r5,3
+    lwz     r3,64(r26)
+    mr      r4,r26
+    mr      r6,r28
+    bl      ext_02080b84
+    mr.     r23,r3
+    beq-    L0202cbd8
+    li      r24,1
+L0202ca4c:
+    mr      r3,r23
+    bl      ext_0225ef34
+    lwz     r10,4(r25)
+    lwz     r3,84(r10)
+    bl      ext_02185b9c
+    mr      r4,r3
+    li      r8,1
+    addi    r7,r26,72
+    mr      r6,r27
+    mr      r5,r23
+    mr      r3,r25
+    bl      ext_0202b76c
+    cmpwi   r3,0
+    bne-    L0202cbbc
+    mr      r3,r23
+    bl      ext_0225f5a0
+    lwz     r8,4(r25)
+    mr      r30,r3
+    lwz     r3,84(r8)
+    bl      ext_02185e5c
+    cmpwi   r3,0
+    mr      r3,r23
+    beq-    L0202cacc
+    bl      ext_0225f5ec
+    lwz     r8,4(r25)
+    mr      r29,r3
+    lwz     r3,84(r8)
+    li      r31,0
+    bl      ext_02186104
+    cmpwi   r3,0
+    beq-    L0202cb00
+    b       L0202caec
+L0202cacc:
+    bl      ext_0225f5b4
+    lwz     r8,4(r25)
+    mr      r29,r3
+    lwz     r3,84(r8)
+    li      r31,0
+    bl      ext_02186104
+    cmpwi   r3,0
+    beq-    L0202cb00
+L0202caec:
+    lwz     r3,4(r25)
+    bl      ext_0203052c
+    cmpwi   r3,4
+    ble-    L0202cb00
+    li      r31,1
+L0202cb00:
+    cmpwi   r29,0
+    clrlwi  r31,r31,24
+    beq-    L0202cbbc
+    lwz     r8,4(r25)
+    lwz     r3,84(r8)
+    bl      ext_021860b8
+    or.     r9,r3,r31
+    bne-    L0202cbbc
+    cmplwi  r30,3004
+    beq-    L0202cb40
+    cmplwi  r30,3006
+    beq-    L0202cb40
+    cmplwi  r30,3008
+    beq-    L0202cb40
+    cmplwi  r30,3016
+    bne-    L0202cbbc
+L0202cb40:
+    stb     r24,28(r27)
+    lwz     r0,16(r25)
+    cmpwi   r0,0
+    beq-    L0202cb64
+    lwz     r12,24(r25)
+    lwz     r8,0(r12)
+    cmplw   r26,r8
+    bne-    L0202cb64
+    stb     r24,30(r27)
+L0202cb64:
+    lwz     r10,4(r25)
+    lwz     r11,60(r10)
+    lwz     r12,88(r11)
+    lwz     r31,88(r12)
+    lwz     r3,80(r31)
+    lwz     r4,84(r31)
+    lwz     r5,88(r31)
+    bl      ext_02109bc0
+    fmr     f31,f1
+    lwz     r30,84(r31)
+    mr      r3,r23
+    lwz     r31,80(r31)
+    bl      ext_0225f590
+    mr      r4,r3
+    fmr     f1,f31
+    addi    r5,r30,4
+    addi    r6,r31,4
+    mr      r3,r25
+    bl      ext_0202bab0
+    cmpwi   r3,0
+    beq-    L0202cbbc
+    stb     r24,29(r27)
+L0202cbbc:
+    lwz     r3,64(r26)
+    li      r5,3
+    mr      r6,r28
+    mr      r4,r26
+    bl      ext_02080b84
+    mr.     r23,r3
+    bne+    L0202ca4c
+L0202cbd8:
+    lmw     r23,12(r1)
+    lfs     f31,56(r1)
+    lfd     f31,48(r1)
+    isync
+    lwz     r0,68(r1)
+    mtlr    r0
+    addi    r1,r1,64
+    blr

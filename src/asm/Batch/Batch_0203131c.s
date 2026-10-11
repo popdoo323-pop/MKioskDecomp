@@ -1,0 +1,123 @@
+# Converted from the disassembly of 0x0203131c (448 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0203131c
+Batch_0203131c:
+    mflr    r0
+    stwu    r1,-16(r1)
+    stw     r30,8(r1)
+    stw     r31,12(r1)
+    mr      r30,r3
+    stw     r0,20(r1)
+    lbz     r12,108(r30)
+    cmpwi   r12,0
+    mr      r31,r4
+    beq-    L02031394
+    ori     r31,r31,3
+    xori    r31,r31,1
+    clrlwi  r0,r31,31
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    mr      r3,r30
+    bl      ext_020312ec
+    rlwinm  r10,r31,0,30,30
+    addic   r12,r10,-1
+    subfe   r4,r12,r10
+    bl      ext_020312f8
+    rlwinm  r0,r31,0,28,28
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    bl      ext_02031304
+    rlwinm  r0,r31,0,29,29
+    addic   r11,r0,-1
+    subfe   r4,r11,r0
+    bl      ext_02031310
+    b       L020314c4
+L02031394:
+    lwz     r0,152(r30)
+    cmpwi   r0,-1
+    beq-    L0203146c
+    lis     r12,4120
+    lwz     r12,-12360(r12)
+    cmpw    r0,r12
+    lwz     r12,68(r30)
+    ori     r31,r31,1
+    lbz     r11,80(r12)
+    blt-    L020313c0
+    xori    r31,r31,1
+L020313c0:
+    cmpwi   r11,0
+    li      r11,0
+    beq-    L020313d0
+    li      r11,1
+L020313d0:
+    mr      r3,r30
+    clrlwi  r11,r11,24
+    bl      ext_020312d0
+    cmpwi   r3,0
+    beq-    L02031420
+    cmpwi   r11,0
+    bne-    L02031420
+    lbz     r0,148(r30)
+    xori    r0,r0,1
+    mr      r3,r30
+    stb     r0,148(r30)
+    bl      ext_02030568
+    lwz     r3,68(r30)
+    bl      ext_0201f07c
+    lwz     r3,84(r30)
+    bl      ext_02185cb4
+    mr      r4,r3
+    lwz     r3,60(r30)
+    li      r5,0
+    bl      ext_0202e7cc
+L02031420:
+    ori     r31,r31,8
+    clrlwi  r0,r31,31
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    mr      r3,r30
+    bl      ext_020312ec
+    rlwinm  r10,r31,0,30,30
+    addic   r12,r10,-1
+    subfe   r4,r12,r10
+    bl      ext_020312f8
+    rlwinm  r0,r31,0,28,28
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    bl      ext_02031304
+    rlwinm  r0,r31,0,29,29
+    addic   r11,r0,-1
+    subfe   r4,r11,r0
+    bl      ext_02031310
+    b       L020314c4
+L0203146c:
+    lwz     r11,140(r30)
+    cmpwi   r11,-1
+    beq-    L02031480
+    ori     r31,r31,1
+    xori    r31,r31,1
+L02031480:
+    clrlwi  r0,r31,31
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    mr      r3,r30
+    bl      ext_020312ec
+    rlwinm  r10,r31,0,30,30
+    addic   r12,r10,-1
+    subfe   r4,r12,r10
+    bl      ext_020312f8
+    rlwinm  r0,r31,0,28,28
+    addic   r9,r0,-1
+    subfe   r4,r9,r0
+    bl      ext_02031304
+    rlwinm  r0,r31,0,29,29
+    addic   r11,r0,-1
+    subfe   r4,r11,r0
+    bl      ext_02031310
+L020314c4:
+    lwz     r0,20(r1)
+    lwz     r30,8(r1)
+    mtlr    r0
+    lwz     r31,12(r1)
+    addi    r1,r1,16
+    blr

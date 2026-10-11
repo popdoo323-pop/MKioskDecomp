@@ -21,6 +21,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--orig', required=True)
+    ap.add_argument('--coverage-only', action='store_true', help='skip the byte check (run verify_matches.py separately)')
     args = ap.parse_args()
     matches = []
     for r in csv.reader(open(os.path.join(ROOT, 'symbols', 'matches.csv'), newline='')):
@@ -62,12 +63,15 @@ def main():
     if overlaps:
         print('overlapping matched functions:', overlaps)
         failed += len(overlaps)
-    r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'verify_matches.py'), '--orig', args.orig],
-                       capture_output=True, text=True)
-    last = r.stdout.strip().splitlines()[-1] if r.stdout.strip() else 'no output'
-    print('byte check:', last)
-    if 'failed: 0' not in last:
-        failed += 1
+    if args.coverage_only:
+        print('byte check: skipped (run tools/verify_matches.py)')
+    else:
+        r = subprocess.run([sys.executable, os.path.join(ROOT, 'tools', 'verify_matches.py'), '--orig', args.orig],
+                           capture_output=True, text=True)
+        last = r.stdout.strip().splitlines()[-1] if r.stdout.strip() else 'no output'
+        print('byte check:', last)
+        if 'failed: 0' not in last:
+            failed += 1
     return 1 if failed else 0
 
 

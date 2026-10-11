@@ -28,6 +28,8 @@ def defines_from(flags):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--orig', default=os.path.join(ROOT, 'orig', 'Turbo.rpx'))
+    ap.add_argument('--skip', type=int, default=0, help='verify rows starting at this index (for long runs)')
+    ap.add_argument('--take', type=int, default=None, help='verify at most this many rows')
     args = ap.parse_args()
     if not os.path.exists(args.orig):
         print('orig/Turbo.rpx not present; nothing to verify against')
@@ -39,7 +41,8 @@ def main():
         return asmmatch.EXIT_TOOLCHAIN_MISSING
 
     rows = list(csv.DictReader(open(os.path.join(ROOT, 'symbols', 'matches.csv'), newline='')))
-    matched = [r for r in rows if r['status'].strip() == 'matched']
+    matched = [r for r in rows if r['status'].strip() in ('matched', 'roundtrip')]
+    matched = matched[args.skip:(args.skip + args.take) if args.take else None]
     trivial = [r for r in rows if r['status'].strip() == 'trivial']
     failed = []
     for r in matched:

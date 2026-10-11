@@ -218,3 +218,48 @@ verified and does not depend on this question.
 
 The bird animation setup at 0x021fe554 returns at 0x021fe674, so it is 292 bytes. The earlier 336-byte estimate ran into
 the next method (Bird_Reset_021fe678, already matched).
+
+## Green Hills MULTI 5.3.27 result (2026-10-10, maintainer's PC)
+
+Compiler: `ccppc.exe` (Green Hills MULTI 5.3.27), `-pnone -Onoinline -gtws --unsigned_pointer --tdeh` with `-Ogeneral`,
+`-Ospeed` and `-Ospace`. Command: `ccppc <flags> -S tests\compiler\frame_test.c`, then `findstr stwu`.
+
+Frame sizes (identical at all three levels):
+
+    stwu sp,-32(sp)   0 mod 16
+    stwu sp,-32(sp)   0 mod 16
+    stwu sp,-40(sp)   8 mod 16
+    stwu sp,-24(sp)   8 mod 16
+    stwu sp,-56(sp)   8 mod 16
+    stwu sp,-48(sp)   0 mod 16
+
+Comparison:
+- devkitPPC GCC (above): 5 of 6 frames are 8 mod 16, and four sizes differ from Green Hills.
+- Green Hills: 3 of 6 frames are 8 mod 16. The game has 46% (11,395 of 24,489 frames).
+- The two compilers give different frame layouts for the same source, so this test separates them.
+- Six functions are too few to decide. Green Hills is still the leading candidate, and the 36-function test
+  (tests/compiler/frame_test_large.c) is the next check.
+
+## Green Hills MULTI 5.3.27, large frame test (2026-10-10, maintainer's PC)
+
+Command: `ccppc -pnone -Onoinline -gtws --unsigned_pointer --tdeh -Ogeneral -S tests\compiler\frame_test_large.c`,
+then `findstr stwu`. 36 frames, 14 of them 8 mod 16 (38.9%). The game has 46.5% (11,395 of 24,489).
+
+- The gap is 7.6 points. With 36 frames the sampling error on a 46% share is about 8 points, so this does not rule
+  Green Hills out. It is consistent with the game's share.
+- Default GCC/EABI, which keeps every frame at 16 bytes, is ruled out by the control test above.
+- The devkitPPC GCC result on the large test is still missing. It is the comparison that would decide between the two
+  candidates. Frame share alone cannot separate them if both come out near 40 to 50%.
+- The prologue-shape check (mflr/stwu order and register saves) is not done.
+
+## devkitPPC GCC, large frame test (2026-10-10, maintainer's PC)
+
+Command: `powerpc-eabi-gcc -O2 -S tests\compiler\frame_test_large.c`, then `findstr stwu`. 36 frames, 24 of them 8 mod 16
+(66.7%). The game has 46.5%, and Green Hills gave 38.9% on the same test.
+
+- Green Hills is 7.6 points from the game. devkitPPC GCC is 20.2 points away, about 2.5 times the sampling error for 36
+  frames. Green Hills is the closer match.
+- The earlier control (GCC 13.3, powerpc-linux-gnu) kept every frame at 16 bytes. This devkitPPC GCC does not, so the
+  control rules out default GCC/EABI, not devkitPPC.
+- Result: Green Hills is favoured. This is a frame-share comparison only. The prologue-shape check (mflr/stwu order and
+  register saves) is still needed before the compiler is confirmed.

@@ -1,0 +1,82 @@
+# Converted from the disassembly of 0x0202669c (300 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0202669c
+Batch_0202669c:
+    stwu    r1,-32(r1)
+    stmw    r27,12(r1)
+    mflr    r0
+    stw     r0,36(r1)
+    mr      r29,r3
+    lwz     r9,44(r29)
+    lwz     r10,56(r29)
+    lwz     r30,0(r9)
+    lhz     r4,132(r10)
+    mr      r3,r30
+    lhz     r5,134(r10)
+    li      r31,0
+    bl      ext_020062f0
+    lwz     r11,52(r29)
+    lhz     r5,134(r11)
+    mr      r27,r3
+    lhz     r4,132(r11)
+    mr      r3,r30
+    bl      ext_020062f0
+    lwz     r12,48(r29)
+    lhz     r4,132(r12)
+    mr      r28,r3
+    lhz     r5,134(r12)
+    mr      r3,r30
+    bl      ext_020062f0
+    lha     r0,824(r28)
+    mr      r30,r3
+    lha     r11,824(r30)
+    xori    r10,r0,1
+    lha     r9,824(r27)
+    cntlzw  r8,r10
+    xori    r12,r11,1
+    srwi    r10,r8,5
+    cntlzw  r8,r12
+    cmpwi   r9,1
+    srwi    r8,r8,5
+    beq-    L02026738
+    or.     r11,r10,r8
+    beq-    L0202673c
+L02026738:
+    li      r31,1
+L0202673c:
+    mr      r5,r30
+    mr      r4,r27
+    mr      r3,r28
+    bl      ext_02109bc0
+    psq_l   f0,160(r28),0,0
+    fabs    f13,f1
+    psq_l   f11,160(r30),0,0
+    lis     r12,4120
+    ps_mul  f12,f0,f11
+    lfs     f0,-13368(r12)
+    ps_sum0 f12,f12,f12,f12
+    lfs     f11,168(r30)
+    fmr     f10,f12
+    lfs     f12,168(r28)
+    lis     r10,4120
+    fcmpu   cr0,f13,f0
+    lfs     f13,-13364(r10)
+    fmadds  f12,f12,f11,f10
+    mfcr    r0
+    fcmpu   cr0,f12,f13
+    mfcr    r11
+    srwi    r12,r0,31
+    lwz     r8,40(r29)
+    srwi    r10,r11,31
+    lbz     r0,132(r8)
+    or      r9,r12,r10
+    or.     r0,r9,r0
+    beq-    L020267b0
+    li      r31,0
+L020267b0:
+    mr      r3,r31
+    lmw     r27,12(r1)
+    lwz     r0,36(r1)
+    mtlr    r0
+    addi    r1,r1,32
+    blr

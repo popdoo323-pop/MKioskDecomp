@@ -1,0 +1,59 @@
+# Converted from the disassembly of 0x02037f98 (216 bytes). Name is a placeholder.
+    .text
+    .globl Batch_02037f98
+Batch_02037f98:
+    mflr    r0
+    stwu    r1,-24(r1)
+    stw     r31,20(r1)
+    stw     r30,16(r1)
+    mr.     r30,r3
+    mr      r31,r4
+    stw     r29,12(r1)
+    stw     r0,28(r1)
+    beq-    L02038054
+    lis     r12,4096
+    lis     r29,516
+    lis     r10,4096
+    addi    r12,r12,17488
+    lwz     r3,448(r30)
+    li      r4,-1
+    addi    r6,r29,-26712
+    stw     r12,4(r30)
+    addi    r10,r10,17368
+    lis     r0,4096
+    li      r7,1
+    stw     r10,0(r30)
+    addic   r0,r0,17520
+    li      r8,0
+    li      r5,24
+    stw     r0,332(r30)
+    bl      ext_0292e5dc
+    lwz     r3,452(r30)
+    li      r5,24
+    li      r7,1
+    li      r8,0
+    li      r4,-1
+    addi    r6,r29,-26712
+    bl      ext_0292e5dc
+    lwz     r3,456(r30)
+    addi    r6,r29,-26712
+    li      r4,-1
+    li      r5,24
+    li      r7,1
+    li      r8,0
+    bl      ext_0292e5dc
+    mr      r3,r30
+    li      r4,0
+    bl      ext_0263237c
+    clrlwi. r0,r31,31
+    beq-    L02038054
+    mr      r3,r30
+    bl      ext_026014bc
+L02038054:
+    lwz     r29,12(r1)
+    lwz     r0,28(r1)
+    lwz     r30,16(r1)
+    mtlr    r0
+    lwz     r31,20(r1)
+    addi    r1,r1,24
+    blr

@@ -1,0 +1,162 @@
+# Converted from the disassembly of 0x0201dd74 (588 bytes). Name is a placeholder.
+    .text
+    .globl Batch_0201dd74
+Batch_0201dd74:
+    mflr    r0
+    stwu    r1,-48(r1)
+    stw     r31,44(r1)
+    li      r31,0
+    stw     r29,36(r1)
+    stw     r30,40(r1)
+    stw     r0,52(r1)
+    mr      r29,r3
+    bl      ext_0201d478
+    lwz     r11,52(r29)
+    lwz     r3,84(r11)
+    lwz     r30,60(r29)
+    bl      ext_02185cb4
+    psq_l   f0,0(r3),0,0
+    psq_l   f13,100(r30),0,0
+    ps_sub  f12,f13,f0
+    psq_st  f12,20(r1),0,0
+    lfs     f11,24(r1)
+    lfs     f8,8(r3)
+    fmuls   f9,f11,f11
+    lfs     f7,108(r30)
+    lis     r10,4096
+    lwz     r7,20(r1)
+    lfs     f13,20(r1)
+    fsubs   f8,f7,f8
+    stw     r7,8(r1)
+    lfs     f0,8(r1)
+    fmadds  f9,f13,f13,f9
+    lfs     f12,9368(r10)
+    fmr     f13,f0
+    stfs    f8,28(r1)
+    lwz     r0,28(r1)
+    fmadds  f10,f8,f8,f9
+    lwz     r8,24(r1)
+    fcmpu   cr0,f12,f13
+    stw     r0,16(r1)
+    stfs    f10,88(r29)
+    stw     r8,12(r1)
+    bgt-    L0201de20
+    lis     r8,4096
+    lfs     f10,9376(r8)
+    fcmpu   cr0,f13,f10
+    ble-    L0201de2c
+L0201de20:
+    lfs     f13,12(r1)
+    lfs     f7,16(r1)
+    b       L0201de90
+L0201de2c:
+    lfs     f13,12(r1)
+    fmr     f7,f13
+    fcmpu   cr0,f12,f7
+    bgt-    L0201de8c
+    fcmpu   cr0,f7,f10
+    bgt-    L0201de8c
+    lfs     f7,16(r1)
+    fmr     f9,f7
+    fcmpu   cr0,f12,f9
+    bgt-    L0201de90
+    fcmpu   cr0,f9,f10
+    bgt-    L0201de90
+    lis     r10,4124
+    lfsu    f0,26780(r10)
+    lfs     f13,4(r10)
+    lfs     f7,8(r10)
+    stfs    f0,92(r29)
+    stfs    f13,96(r29)
+    mr      r3,r29
+    stfs    f7,100(r29)
+    bl      ext_0201d754
+    cmpwi   r3,0
+    beq-    L0201df08
+    b       L0201df9c
+L0201de8c:
+    lfs     f7,16(r1)
+L0201de90:
+    fmuls   f11,f13,f13
+    fmadds  f12,f0,f0,f11
+    lis     r7,4096
+    fmadds  f8,f7,f7,f12
+    lfs     f11,9356(r7)
+    fcmpu   cr0,f8,f11
+    ble-    L0201deec
+    lis     r12,4096
+    lis     r11,4096
+    lfs     f0,9372(r12)
+    lfs     f13,9364(r11)
+    frsqrte f9,f8
+    fmuls   f10,f9,f9
+    fmuls   f11,f9,f13
+    fnmsubs f10,f10,f8,f0
+    fmuls   f9,f10,f11
+    psq_l   f0,8(r1),0,0
+    lfs     f7,16(r1)
+    ps_muls0 f12,f0,f9
+    psq_st  f12,8(r1),0,0
+    lfs     f0,8(r1)
+    fmuls   f7,f7,f9
+    lfs     f13,12(r1)
+L0201deec:
+    stfs    f13,96(r29)
+    mr      r3,r29
+    stfs    f7,100(r29)
+    stfs    f0,92(r29)
+    bl      ext_0201d754
+    cmpwi   r3,0
+    bne-    L0201df9c
+L0201df08:
+    cmpwi   r31,0
+    bne-    L0201dfa0
+    mr      r3,r29
+    bl      ext_0201d87c
+    lwz     r11,52(r29)
+    cmpwi   r3,0
+    lwz     r3,84(r11)
+    beq-    L0201df2c
+    li      r31,1
+L0201df2c:
+    bl      ext_02186008
+    cmpwi   r3,0
+    bne-    L0201df8c
+    lwz     r30,52(r29)
+    lwz     r3,84(r30)
+    bl      ext_02185f5c
+    cmpwi   r3,0
+    beq-    L0201df78
+    lwz     r3,84(r30)
+    bl      ext_0218608c
+    cmpwi   r3,0
+    bne-    L0201df78
+    lwz     r0,124(r30)
+    cmpwi   r0,60
+    ble-    L0201df78
+    lwz     r3,84(r30)
+    bl      ext_0218641c
+    cmpwi   r3,30
+    bgt-    L0201df8c
+L0201df78:
+    lwz     r12,52(r29)
+    lwz     r3,84(r12)
+    bl      ext_02185fdc
+    cmpwi   r3,0
+    beq-    L0201dfa0
+L0201df8c:
+    mr      r3,r29
+    bl      ext_0201db88
+    cmpwi   r3,0
+    beq-    L0201dfa0
+L0201df9c:
+    li      r31,1
+L0201dfa0:
+    lwz     r29,36(r1)
+    lwz     r0,52(r1)
+    mr      r3,r31
+    lwz     r30,40(r1)
+    mtlr    r0
+    lwz     r31,44(r1)
+    addi    r1,r1,48
+    blr

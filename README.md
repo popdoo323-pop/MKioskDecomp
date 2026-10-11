@@ -35,7 +35,7 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 | Game (Turbo.rpx `.text`) | 0.4406% | 44,644 / 10,132,008 | 88 / 32,782 | 23 / 201 |
 
 Code matched counts bytes of functions whose assembled bytes equal the original. Data is not measured yet.
-**Source files:** 8 reconstructions (C++, unmatched), 88 assembly-first files, 3 host tests. Reconstructions are counted separately from matches.
+**Source files:** 8 reconstructions (C++, unmatched), 928 assembly-first files, 3 host tests. Reconstructions are counted separately from matches.
 <!-- progress:end -->
 
 ## Layout
