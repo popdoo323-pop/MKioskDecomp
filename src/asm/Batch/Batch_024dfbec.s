@@ -1,0 +1,95 @@
+# Converted from the disassembly of 0x024dfbec (348 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024dfbec
+Batch_024dfbec:
+    stwu    r1,-40(r1)
+    mflr    r0
+    stmw    r27,20(r1)
+    li      r4,12
+    mr      r27,r3
+    stw     r0,44(r1)
+    bl      ext_0248c860
+    lis     r29,4107
+    li      r0,1
+    addi    r29,r29,-12272
+    lis     r30,4107
+    stw     r29,12(r1)
+    addi    r30,r30,-12144
+    stb     r0,26(r27)
+    li      r3,96
+    stw     r30,8(r1)
+    bl      ext_0260128c
+    lis     r31,4107
+    mr.     r28,r3
+    addi    r31,r31,-24120
+    beq-    L024dfc58
+    mr      r3,r28
+    li      r4,96
+    bl      ext_02933d98
+    mr      r3,r28
+    bl      ext_0248473c
+    stw     r31,84(r28)
+L024dfc58:
+    addi    r6,r1,8
+    li      r5,6
+    mr      r4,r28
+    mr      r3,r27
+    bl      ext_0248d340
+    stw     r30,8(r1)
+    li      r3,96
+    stw     r29,12(r1)
+    stw     r28,200(r27)
+    bl      ext_0260128c
+    mr.     r30,r3
+    beq-    L024dfca0
+    mr      r3,r30
+    li      r4,96
+    bl      ext_02933d98
+    mr      r3,r30
+    bl      ext_0248473c
+    stw     r31,84(r30)
+L024dfca0:
+    addi    r6,r1,8
+    li      r5,9
+    mr      r4,r30
+    mr      r3,r27
+    bl      ext_0248d340
+    stw     r30,204(r27)
+    lis     r0,4107
+    stw     r29,12(r1)
+    addic   r0,r0,-12124
+    li      r3,92
+    stw     r0,8(r1)
+    bl      ext_0260128c
+    mr.     r31,r3
+    beq-    L024dfcf8
+    mr      r3,r31
+    li      r4,92
+    bl      ext_02933d98
+    mr      r3,r31
+    bl      ext_0248473c
+    lis     r10,4107
+    addi    r10,r10,-24008
+    stw     r10,84(r31)
+L024dfcf8:
+    addi    r6,r1,8
+    li      r5,6
+    mr      r4,r31
+    mr      r3,r27
+    bl      ext_0248d340
+    stw     r31,208(r27)
+    lwz     r0,12(r31)
+    cmpwi   r0,0
+    bne-    L024dfd28
+    lwz     r0,16(r31)
+    ori     r0,r0,512
+    stw     r0,16(r31)
+L024dfd28:
+    li      r0,0
+    stw     r0,212(r27)
+    lwz     r0,212(r27)
+    lmw     r27,20(r1)
+    lwz     r0,44(r1)
+    mtlr    r0
+    addi    r1,r1,40
+    blr

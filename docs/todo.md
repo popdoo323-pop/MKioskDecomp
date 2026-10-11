@@ -49,7 +49,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
        after item 10. Until then, matching stays in assembly, which is verified now.
 
 ## Bugs found 2026-10-10
-- [ ] symbols/functions_ghidra.csv was cut off at 0x024b2636 (from a section size field). The code section ends at 0x029a9a48, so the file had 13,699 functions instead of 31,507. The batch matcher only drew from the first part. The file is now corrected and batch_match.py uses the right end. Re-run the batch over the rest, and check the 3 call sites that still have no enclosing function.
+- [ ] symbols/functions_ghidra.csv was cut off at 0x024b2636 (from a section size field). The code section ends at 0x029a9a48, so the file had 13,699 functions instead of 31,507. The file and batch_match.py range are now fixed. Checked 2026-10-10: the 3 call sites that had no enclosing function (0x02212d68, 0x02212df0, 0x023d6dd4) lie outside every function in the full export, so they are not in defined code. Batch re-run progress: 2 chunks of 250 in the missed range gave 495 matched and 5 failed (assembler range error on long branches, logged in batch_failures.csv). About 13,300 candidates remain. Still open: run the batch over the rest, for example python tools\batch_match.py --orig orig\Turbo.rpx --start 0x024b2636 --end 0x029a9a48 --limit 14000 --max-size 512.
 
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Caller search 2026-10-10: all 100 virtual calls through offset +0x28 checked. None refers to the trail code directly. FUNC_021825cc has no direct references. 32 call sites are in loops, and the one examined (FUN_0216bbc4) calls slot +0xfc on its children, so the loop filter gives false positives. Caller not confirmed. Still open.
@@ -73,7 +73,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [x] Imports alias pass, verified 2026-10-10: 621 import stubs in the export. 619 now have an alias (21 existed, 598 created by CreateImportAliases.java, verified by CheckImportAliases.java). The 2 left out, Finalize__Q2_2nn3ndmFv (0xc00100a8) and ResumeDaemons__Q2_2nn3ndmFUi (0xc0010128), map to 0x040100a8 and 0x04010128, which are outside the .import_alias block (0x04000000 to 0x0400ffff). Adding those would change the memory map, so they stay out unless you decide to extend the block.
 
 ## Blocked
-- [x] Byte matches for game functions: 88 matched in assembly (see `symbols/matches.csv`). C++ matching is still limited, because the original compiler is not identified. Stack-frame evidence rules out default GCC/EABI (see docs/compiler_notes.md).
+- [x] Byte matches for game functions: 88 matched in assembly (see `symbols/matches.csv`). Compiler candidate: Green Hills MULTI 5.3.27 with -Ogeneral. verify_cpp.py byte-matches three C++ functions with it (ItemCoin_Vfn, ItemCoin_Tail, ItemCoin_BindEmitter). The frame test favours GHS over GCC (38.9% against 66.7% for devkitPPC GCC, game 46.5%, see docs/compiler_notes.md). Still open: confirm the settings across the game (speed-up item 10, flag_search.py). The earlier note that the compiler is not identified is out of date.
 - [ ] Progress against decomp.dev: matched functions now exist in the repo. Not yet submitted or compared there.
 
 ## Needs your input

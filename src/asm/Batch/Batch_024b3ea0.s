@@ -1,0 +1,49 @@
+# Converted from the disassembly of 0x024b3ea0 (180 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024b3ea0
+Batch_024b3ea0:
+    mflr    r0
+    stwu    r1,-64(r1)
+    stw     r31,60(r1)
+    mr      r31,r3
+    stw     r0,68(r1)
+    lfs     f0,20(r31)
+    lfs     f13,4(r31)
+    stfs    f0,28(r1)
+    lfs     f12,16(r31)
+    lfs     f0,44(r31)
+    stfs    f13,8(r1)
+    lfs     f13,28(r31)
+    stfs    f12,12(r1)
+    lfs     f12,40(r31)
+    stfs    f13,16(r1)
+    lfs     f13,8(r31)
+    stfs    f13,24(r1)
+    lfs     f13,32(r31)
+    lwz     r12,0(r31)
+    stfs    f13,32(r1)
+    stfs    f12,20(r1)
+    lfs     f12,12(r31)
+    lfs     f13,24(r31)
+    stfs    f12,40(r1)
+    stfs    f13,44(r1)
+    lfs     f13,36(r31)
+    stfs    f0,36(r1)
+    lfs     f0,48(r31)
+    stfs    f13,48(r1)
+    stfs    f0,52(r1)
+    lbz     r0,117(r12)
+    addi    r3,r1,8
+    ori     r0,r0,8
+    addi    r4,r12,56
+    stb     r0,117(r12)
+    bl      ext_02557b98
+    lwz     r3,0(r31)
+    bl      ext_0272f954
+    lwz     r3,0(r31)
+    bl      ext_0272fa94
+    lwz     r0,68(r1)
+    lwz     r31,60(r1)
+    mtlr    r0
+    addi    r1,r1,64
+    blr

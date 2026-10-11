@@ -1,1 +1,6 @@
 address,size,reason
+0x024bb5a0,320,src/asm/Batch/Batch_024bb5a0.s:20: Error: operand out of range (0x24bb600 is not between 0xffffffffffff8000 and 0x7ffc)
+0x024bb708,320,src/asm/Batch/Batch_024bb708.s:20: Error: operand out of range (0x24bb768 is not between 0xffffffffffff8000 and 0x7ffc)
+0x024bb5a0,320,src/asm/Batch/Batch_024bb5a0.s:20: Error: operand out of range (0x24bb600 is not between 0xffffffffffff8000 and 0x7ffc)
+0x024bb708,320,src/asm/Batch/Batch_024bb708.s:20: Error: operand out of range (0x24bb768 is not between 0xffffffffffff8000 and 0x7ffc)
+0x024c8c10,320,src/asm/Batch/Batch_024c8c10.s:20: Error: operand out of range (0x24c8c70 is not between 0xffffffffffff8000 and 0x7ffc)

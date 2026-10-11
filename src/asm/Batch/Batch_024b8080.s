@@ -1,0 +1,131 @@
+# Converted from the disassembly of 0x024b8080 (476 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024b8080
+Batch_024b8080:
+    stwu    r1,-72(r1)
+    mflr    r0
+    stmw    r19,20(r1)
+    mr      r30,r3
+    li      r31,0
+    lis     r28,4107
+    lis     r22,4119
+    mr      r26,r31
+    addi    r27,r30,108
+    addi    r28,r28,-32752
+    lis     r25,4119
+    lis     r24,4119
+    addi    r22,r22,28464
+    lis     r23,4120
+    li      r21,1
+    lis     r20,4120
+    li      r19,2
+    stw     r0,76(r1)
+L024b80c8:
+    cmplwi  r31,2
+    lwz     r12,28452(r25)
+    bge-    L024b80ec
+    slwi    r10,r31,2
+    cmpwi   r12,0
+    lwz     r0,28448(r24)
+    add     r29,r27,r10
+    beq-    L024b80fc
+    b       L024b8104
+L024b80ec:
+    cmpwi   r12,0
+    lwz     r0,28448(r24)
+    mr      r29,r27
+    bne-    L024b8104
+L024b80fc:
+    stb     r26,-18242(r20)
+    stw     r21,28452(r25)
+L024b8104:
+    cmpwi   r0,0
+    bne-    L024b8124
+    lis     r4,4117
+    addi    r3,r23,-18257
+    li      r5,15
+    addi    r4,r4,4336
+    stw     r21,28448(r24)
+    bl      ext_029abc88
+L024b8124:
+    cmplwi  r31,2
+    blt-    L024b815c
+    stw     r28,12(r1)
+    li      r0,0
+    lwz     r3,0(r30)
+    addi    r4,r1,8
+    stw     r0,8(r1)
+    bl      ext_0272fe8c
+    addic.  r19,r19,-1
+    stw     r3,16(r1)
+    addi    r31,r31,1
+    stw     r3,0(r29)
+    bne+    L024b80c8
+    b       L024b81ac
+L024b815c:
+    lbz     r0,-18242(r20)
+    cmpwi   r0,0
+    bne-    L024b817c
+    li      r5,2
+    addi    r4,r23,-18257
+    mr      r3,r22
+    bl      ext_026200ec
+    stb     r21,-18242(r20)
+L024b817c:
+    slwi    r12,r31,2
+    stw     r28,12(r1)
+    lwzx    r0,r12,r22
+    lwz     r3,0(r30)
+    addi    r4,r1,8
+    stw     r0,8(r1)
+    bl      ext_0272fe8c
+    addic.  r19,r19,-1
+    stw     r3,16(r1)
+    addi    r31,r31,1
+    stw     r3,0(r29)
+    bne+    L024b80c8
+L024b81ac:
+    lis     r31,4124
+    lfsu    f13,26744(r31)
+    lis     r7,4107
+    stfs    f13,128(r30)
+    lfs     f12,4(r31)
+    lfs     f0,-32228(r7)
+    stfs    f12,132(r30)
+    lfs     f11,8(r31)
+    stfs    f12,148(r30)
+    stfs    f11,136(r30)
+    stfs    f13,144(r30)
+    stfs    f11,152(r30)
+    stfs    f0,156(r30)
+    mr      r3,r30
+    stfs    f0,140(r30)
+    bl      ext_024b8000
+    li      r8,0
+    li      r9,-1
+    stb     r8,160(r30)
+    stw     r9,168(r30)
+    stw     r9,164(r30)
+    lwz     r6,0(r31)
+    stw     r6,172(r30)
+    lwz     r0,4(r31)
+    lis     r7,4124
+    stw     r0,176(r30)
+    lwz     r9,8(r31)
+    addi    r7,r7,25372
+    stw     r9,180(r30)
+    psq_l   f12,0(r7),0,0
+    psq_st  f12,184(r30),0,0
+    psq_l   f13,8(r7),0,0
+    psq_st  f13,192(r30),0,0
+    psq_l   f0,16(r7),0,0
+    psq_st  f0,200(r30),0,0
+    psq_l   f13,24(r7),0,0
+    psq_st  f13,208(r30),0,0
+    lfs     f12,32(r7)
+    stfs    f12,216(r30)
+    lmw     r19,20(r1)
+    lwz     r0,76(r1)
+    mtlr    r0
+    addi    r1,r1,72
+    blr

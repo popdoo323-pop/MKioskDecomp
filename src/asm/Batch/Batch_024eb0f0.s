@@ -1,0 +1,89 @@
+# Converted from the disassembly of 0x024eb0f0 (324 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024eb0f0
+Batch_024eb0f0:
+    mflr    r0
+    stwu    r1,-16(r1)
+    stw     r31,12(r1)
+    stw     r30,8(r1)
+    mr.     r31,r3
+    stw     r0,20(r1)
+    bne-    L024eb11c
+    li      r3,832
+    bl      ext_0260128c
+    mr.     r31,r3
+    beq-    L024eb218
+L024eb11c:
+    mr.     r30,r31
+    bne-    L024eb134
+    li      r3,832
+    bl      ext_0260128c
+    mr.     r30,r3
+    beq-    L024eb1f0
+L024eb134:
+    mr      r3,r30
+    bl      ext_0248c63c
+    lis     r12,4107
+    lis     r0,4107
+    addi    r12,r12,-8712
+    addic   r0,r0,-8456
+    stw     r12,196(r30)
+    addi    r3,r30,204
+    stw     r0,200(r30)
+    bl      ext_024884bc
+    lis     r8,4106
+    addi    r8,r8,18900
+    addi    r3,r30,232
+    stw     r8,228(r30)
+    bl      ext_024884bc
+    lis     r10,4106
+    addi    r10,r10,18756
+    addi    r3,r30,260
+    stw     r10,256(r30)
+    bl      ext_024893b0
+    addi    r3,r30,364
+    bl      ext_02492dd4
+    lis     r6,591
+    li      r4,4
+    addi    r3,r30,396
+    addi    r6,r6,-18616
+    li      r5,28
+    bl      ext_0292e4a4
+    addi    r3,r30,508
+    bl      ext_024884bc
+    lis     r0,4106
+    lis     r6,591
+    li      r4,4
+    addic   r0,r0,19044
+    addi    r6,r6,-18412
+    li      r11,-1
+    stw     r0,532(r30)
+    li      r5,8
+    addi    r3,r30,672
+    stw     r11,668(r30)
+    bl      ext_0292e4a4
+    lis     r6,591
+    li      r4,4
+    addi    r3,r30,704
+    addi    r6,r6,-18352
+    li      r5,32
+    bl      ext_0292e4a4
+L024eb1f0:
+    lis     r7,4107
+    lis     r9,4107
+    addi    r7,r7,-8168
+    addi    r9,r9,-7912
+    stw     r7,196(r31)
+    li      r11,4
+    stw     r9,200(r31)
+    li      r12,0
+    stw     r11,660(r31)
+    stb     r12,664(r31)
+L024eb218:
+    lwz     r0,20(r1)
+    mr      r3,r31
+    lwz     r31,12(r1)
+    mtlr    r0
+    lwz     r30,8(r1)
+    addi    r1,r1,16
+    blr

@@ -1,0 +1,87 @@
+# Converted from the disassembly of 0x024ba918 (320 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024ba918
+Batch_024ba918:
+    mflr    r0
+    stwu    r1,-32(r1)
+    stw     r31,28(r1)
+    mr      r31,r3
+    stw     r30,24(r1)
+    addi    r30,r31,1872
+    stw     r29,20(r1)
+    stw     r0,36(r1)
+    li      r29,2
+L024ba93c:
+    mr      r3,r30
+    bl      ext_024b8668
+    addic.  r29,r29,-1
+    addi    r30,r30,220
+    bne+    L024ba93c
+    lbz     r11,2033(r31)
+    cmpwi   r11,0
+    beq-    L024baa3c
+    lbz     r0,2253(r31)
+    cmpwi   r0,0
+    beq-    L024baa3c
+    addi    r3,r31,2016
+    addi    r4,r31,2236
+    bl      ext_026143b4
+    cmpwi   r3,0
+    bne-    L024ba9b8
+    addi    r3,r31,2016
+    addi    r4,r31,2220
+    bl      ext_026143b4
+    cmpwi   r3,0
+    bne-    L024ba9b8
+    addi    r3,r31,2000
+    addi    r4,r31,2236
+    bl      ext_026143b4
+    cmpwi   r3,0
+    bne-    L024ba9b8
+    addi    r3,r31,2000
+    addi    r4,r31,2220
+    bl      ext_026143b4
+    cmpwi   r3,0
+    beq-    L024baa3c
+L024ba9b8:
+    lfs     f9,2188(r31)
+    lwz     r0,1944(r31)
+    fneg    f8,f9
+    lfs     f7,1972(r31)
+    lwz     r8,2164(r31)
+    stw     r0,2164(r31)
+    lfs     f0,1976(r31)
+    fneg    f9,f7
+    stfs    f8,2188(r31)
+    fneg    f10,f0
+    stw     r8,1944(r31)
+    stfs    f9,1972(r31)
+    lwz     r9,2156(r31)
+    lwz     r11,1940(r31)
+    lfs     f13,2196(r31)
+    stw     r11,12(r1)
+    fneg    f12,f13
+    lfs     f6,1968(r31)
+    lfs     f11,2192(r31)
+    lwz     r10,1936(r31)
+    stw     r9,1936(r31)
+    fneg    f0,f6
+    stfs    f12,2196(r31)
+    stfs    f10,1976(r31)
+    stfs    f0,1968(r31)
+    lwz     r12,2160(r31)
+    stw     r10,8(r1)
+    stw     r12,1940(r31)
+    stw     r10,2156(r31)
+    stw     r0,16(r1)
+    fneg    f10,f11
+    stw     r11,2160(r31)
+    stfs    f10,2192(r31)
+L024baa3c:
+    lwz     r29,20(r1)
+    lwz     r0,36(r1)
+    lwz     r30,24(r1)
+    mtlr    r0
+    lwz     r31,28(r1)
+    addi    r1,r1,32
+    blr

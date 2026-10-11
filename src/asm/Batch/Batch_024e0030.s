@@ -1,0 +1,72 @@
+# Converted from the disassembly of 0x024e0030 (264 bytes). Name is a placeholder.
+    .text
+    .globl Batch_024e0030
+Batch_024e0030:
+    stwu    r1,-48(r1)
+    mflr    r0
+    stmw    r27,28(r1)
+    li      r4,12
+    mr      r30,r3
+    stw     r0,52(r1)
+    bl      ext_0248c860
+    lis     r28,4107
+    li      r11,1
+    addi    r28,r28,-12272
+    stb     r11,26(r30)
+    li      r12,0
+    stw     r28,16(r1)
+    lis     r27,4107
+    stw     r12,8(r1)
+    addi    r27,r27,-12100
+    lwz     r0,8(r1)
+    stw     r27,12(r1)
+    lis     r29,4107
+    addi    r29,r29,-24216
+    li      r3,124
+    stw     r0,20(r1)
+    bl      ext_0260128c
+    mr.     r31,r3
+    beq-    L024e00b0
+    mr      r3,r31
+    bl      ext_0248473c
+    addi    r3,r31,88
+    stw     r29,84(r31)
+    bl      ext_02482ea4
+    lwz     r0,20(r1)
+    stw     r0,120(r31)
+L024e00b0:
+    addi    r6,r1,12
+    li      r5,6
+    mr      r4,r31
+    mr      r3,r30
+    bl      ext_0248d340
+    stw     r31,200(r30)
+    li      r8,1
+    stw     r28,16(r1)
+    stw     r8,8(r1)
+    lwz     r0,8(r1)
+    stw     r27,12(r1)
+    li      r3,124
+    stw     r0,24(r1)
+    bl      ext_0260128c
+    mr.     r31,r3
+    beq-    L024e010c
+    mr      r3,r31
+    bl      ext_0248473c
+    addi    r3,r31,88
+    stw     r29,84(r31)
+    bl      ext_02482ea4
+    lwz     r10,24(r1)
+    stw     r10,120(r31)
+L024e010c:
+    addi    r6,r1,12
+    li      r5,9
+    mr      r4,r31
+    mr      r3,r30
+    bl      ext_0248d340
+    stw     r31,204(r30)
+    lmw     r27,28(r1)
+    lwz     r0,52(r1)
+    mtlr    r0
+    addi    r1,r1,48
+    blr
