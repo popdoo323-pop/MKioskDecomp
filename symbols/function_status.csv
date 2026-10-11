@@ -55,6 +55,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x021a7ce8,Wheel_Return_021a7ce8,game_func,,0,0,0,1
 0x021a7cec,Wheel_Gap_021a7cec,game_func,,0,0,0,1
 0x021a7dd8,Wheel_Callback_021a7dd8,game_func,,0,0,0,1
+0x021a82b4,TrailChild_Ctor_021a82b4,game_func,,0,0,0,1
 0x021f9bb8,Bird_CreateHelper_021f9bb8,game_func,,0,0,0,1
 0x021f9c50,Bird_Refresh_021f9c50,game_func,,0,0,0,1
 0x021f9d20,Bird_Blend_021f9d20,game_func,,0,0,0,1
@@ -81,7 +82,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x023839d4,KartTireModel_Load,game_func,,0,0,1,0
 0x0238fbd4,RacePreload_CommonResources,game_func,,0,0,1,0
 0x02392930,GroundSound_LoadAllBanks,game_func,,0,0,1,0
-0x0239993c,RaceKartChecker_ctor,game_func,,0,0,1,0
+0x0239993c,RaceKartChecker_ctor,game_func,,0,0,1,1
 0x023a3800,KartResourceSet_ctor,game_func,,0,0,1,0
 0x023c6b98,ItemNameTable_user2,game_func,,0,0,1,0
 0x0249e9fc,Driver_Register3_0249e9fc,game_func,,0,0,0,1
