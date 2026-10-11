@@ -2,7 +2,7 @@
 // Offsets are observed, not verified against a matching build. Do not treat as final.
 #pragma once
 // Coin/lap HUD object ("L_LapCoin_00"). Class name (invented).
-// VERIFIED (FUN_0251046c): +0x58 +0x5c +0x60 +0x66 +0x67.  NOT RE-VERIFIED: +0x54, +0x65, size 0x6c, constant 3 (all from FUN_02525904).
+// VERIFIED (FUN_0251046c): +0x58 +0x5c +0x60 +0x66 +0x67.  VERIFIED (FUN_02525904, 2026-10-10): +0x54, +0x65, size 0x6c, initial value 3.
 
 class LapCoinLayout {
 public:
@@ -10,11 +10,11 @@ public:
     void BindPanes();                // 0x0251046c
 private:
     // +0x1c / +0x20 count and array used for animation entries
-    // +0x54 vtable-like pointer (0x100b3588)   [not re-verified]
+    // +0x54 vtable-like pointer (0x100b3588)   [verified: FUN_02525904 stores &DAT_100b3588]
     // +0x58 pointer fetched from a per-player table (index = +0x67)
     // +0x5c T_Coin_00 pane   +0x60 T_Molec_00 pane
-    // +0x65 u8 = 1 [not re-verified]
-    // +0x66 u8 value formatted into T_Denomi_00 (initial value 3 per the HUD builder, not re-verified)
+    // +0x65 u8 = 1 [verified: FUN_02525904]
+    // +0x66 u8 value formatted into T_Denomi_00 (initial value 3, verified: FUN_02525904 stores 3)
     // +0x67 u8 player/screen index
-    // sizeof == 0x6c [not re-verified]
+    // sizeof == 0x6c [verified: FUN_02525904 allocates 0x6c]
 };

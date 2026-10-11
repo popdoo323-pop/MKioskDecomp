@@ -54,7 +54,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [ ] `symbols/ground_state_fields.csv`: field offsets for 11 of 12 fields are unknown. Reflection registers names only.
 - [ ] `include/Game/Item/ItemCoin.hpp`: the base class `ItemBase_` is unnamed.
 - [ ] `include/Game/Race/RaceKartChecker.hpp`: the meaning of the value 999 at +0x38 is unknown.
-- [ ] `include/Game/UI/LapCoinLayout.hpp`: offsets +0x54 and +0x65, the size 0x6c and the constant 3 are unverified.
+- [x] `include/Game/UI/LapCoinLayout.hpp`: offsets +0x54 and +0x65, the size 0x6c and the constant 3 verified against FUN_02525904 (decompiled 2026-10-10).
 - [ ] `include/Obj/ObjTire.hpp`: class name unconfirmed.
 - [ ] `docs/terrain_types_crossref.md`: Glider Activator and Invisible Wall have no binary name. Materials Tec Road, Ocean Floor and Rainbow Road are unmapped. "Rainbow Road (Glass Sound)" is a lead to SNDG_GND_GLASS, not confirmed.
 - [ ] `docs/terrain_types_crossref.md`: the "Bouncy?" special has no binary counterpart.
