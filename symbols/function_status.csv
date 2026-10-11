@@ -5,6 +5,8 @@ address,name,kind,library,signed,aliased,documented,matched
 0x020e24f8,Scan_Wrapper_020e24f8,game_func,,0,0,0,1
 0x020e2520,Scan_Field8_Forward_020e2520,game_func,,0,0,0,1
 0x020e2558,Scan_Wrapper_020e2558,game_func,,0,0,0,1
+0x020e2580,Scan_Gap_020e2580,game_func,,0,0,0,1
+0x020e25ac,Scan_Gap_020e25ac,game_func,,0,0,0,1
 0x020e25d8,Scan_Wrapper_020e25d8,game_func,,0,0,0,1
 0x020e2600,Scan_Wrapper_020e2600,game_func,,0,0,0,1
 0x020e2628,Scan_Field4_Forward_020e2628,game_func,,0,0,0,1
@@ -17,6 +19,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x020f0808,Scan_Wrapper_020f0808,game_func,,0,0,0,1
 0x020f7f24,Scan_Wrapper_020f7f24,game_func,,0,0,0,1
 0x020f81b8,Scan_Wrapper_020f81b8,game_func,,0,0,0,1
+0x020f81dc,Scan_Gap_020f81dc,game_func,,0,0,0,1
 0x020f8274,Scan_Wrapper_020f8274,game_func,,0,0,0,1
 0x020f9b3c,Scan_Wrapper_020f9b3c,game_func,,0,0,0,1
 0x020fd9d8,Scan_Wrapper_020fd9d8,game_func,,0,0,0,1
@@ -24,7 +27,9 @@ address,name,kind,library,signed,aliased,documented,matched
 0x020fecc4,Scan_ArrayElem88_020fecc4,game_func,,0,0,0,1
 0x02101f84,RailHolder_GetPoint_02101f84,game_func,,0,0,0,1
 0x021090a8,RailPoint_LinkNext_021090a8,game_func,,0,0,0,1
+0x02109108,RailPath_Gap_02109108,game_func,,0,0,0,1
 0x02109198,RailPath_Build_02109198,game_func,,0,0,0,1
+0x021092f4,RailPath_Gap_021092f4,game_func,,0,0,0,1
 0x0210941c,RailHolder_NewPoint_0210941c,game_func,,0,0,0,1
 0x02119264,ItemCoin_SharedReset_02119264,game_func,,0,0,0,1
 0x021193f8,ItemCoin_StateCheck_021193f8,game_func,,0,0,0,1
@@ -39,12 +44,16 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02132ff0,ItemCoin_Empty,game_func,,0,0,0,0
 0x02132ff4,ItemCoin_Message_02132ff4,game_func,,0,0,0,1
 0x02133298,ItemCoin_Vfn_02133298,game_func,,0,0,0,1
+0x021332a4,ItemCoin_Gap_021332a4,game_func,,0,0,0,1
 0x02133314,ItemCoin_PoolInit,game_func,,0,0,1,1
 0x02133970,ItemCoin_Create,game_func,,0,0,1,1
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,1
 0x021a7bb4,Wheel_Callback_021a7bb4,game_func,,0,0,0,1
 0x021a7c7c,Wheel_Helper_021a7c7c,game_func,,0,0,0,1
+0x021a7c9c,Wheel_Gap_021a7c9c,game_func,,0,0,0,1
+0x021a7ce8,Wheel_Return_021a7ce8,game_func,,0,0,0,1
+0x021a7cec,Wheel_Gap_021a7cec,game_func,,0,0,0,1
 0x021a7dd8,Wheel_Callback_021a7dd8,game_func,,0,0,0,1
 0x021f9bb8,Bird_CreateHelper_021f9bb8,game_func,,0,0,0,1
 0x021f9c50,Bird_Refresh_021f9c50,game_func,,0,0,0,1

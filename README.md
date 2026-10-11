@@ -28,14 +28,14 @@ Analysis stage. Headers are layout placeholders. Each file says which items are 
 <!-- progress:start -->
 ![Progress map](docs/treemap.svg)
 
-**0.2110% matched** (21,376 of 10,132,008 bytes of code, 66 of about 32,782 functions)
+**0.2219% matched** (22,484 of 10,132,008 bytes of code, 75 of about 32,782 functions)
 
 | Library | Code matched | Bytes | Functions | Units done |
 | --- | --- | --- | --- | --- |
-| Game (Turbo.rpx `.text`) | 0.2110% | 21,376 / 10,132,008 | 66 / 32,782 | 1 / 157 |
+| Game (Turbo.rpx `.text`) | 0.2219% | 22,484 / 10,132,008 | 75 / 32,782 | 21 / 197 |
 
 Code matched counts bytes of functions whose assembled bytes equal the original. Data is not measured yet.
-**Source files:** 8 reconstructions (C++, unmatched), 66 assembly-first files, 3 host tests. Reconstructions are counted separately from matches.
+**Source files:** 8 reconstructions (C++, unmatched), 75 assembly-first files, 3 host tests. Reconstructions are counted separately from matches.
 <!-- progress:end -->
 
 ## Layout
