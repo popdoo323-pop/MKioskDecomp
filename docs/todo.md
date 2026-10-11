@@ -48,8 +48,11 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [ ] 11. C++ for each function: clean the decompiled draft, compile with the confirmed setting, and verify. Starts only
        after item 10. Until then, matching stays in assembly, which is verified now.
 
+## Bugs found 2026-10-10
+- [ ] symbols/functions_ghidra.csv was cut off at 0x024b2636 (from a section size field). The code section ends at 0x029a9a48, so the file had 13,699 functions instead of 31,507. The batch matcher only drew from the first part. The file is now corrected and batch_match.py uses the right end. Re-run the batch over the rest, and check the 3 call sites that still have no enclosing function.
+
 ## Repo and notes
-- [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Checked 2026-10-10: FUN_021825cc (matched) is a render-pass candidate, not confirmed. Caller search: the binary has 12 virtual calls through offset +0x28, none near the trail code. FUN_022e279c (0x022e28ec) is a collision update, not the caller. Still open.
+- [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Caller search 2026-10-10: all 100 virtual calls through offset +0x28 checked. None refers to the trail code directly. FUNC_021825cc has no direct references. 32 call sites are in loops, and the one examined (FUN_0216bbc4) calls slot +0xfc on its children, so the loop filter gives false positives. Caller not confirmed. Still open.
 - [x] `symbols/coreinit_signatures.json`: all 91 entries compared against WUT at commit b98f8fc (docs/coreinit_prototype_check.md). Done 2026-10-10. `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` match. `memcpy`, `memmove`, `memset` and `exit` are C library functions, not in WUT, so they cannot be checked against it. The nine real differences were fixed in Ghidra and in the record.
 - [x] `symbols/ground_state_fields.csv`: verified 2026-10-10. Only mGndAttr (+0x5c) has a fixed offset. The other 11 are reflection list entries (FUN_023b70d0 appends them to the list at +0x84), so they have no fixed offset.
 - [ ] `include/Game/Item/ItemCoin.hpp`: the base class `ItemBase_` is unnamed.

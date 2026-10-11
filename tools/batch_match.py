@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')
-TEXT_LO, TEXT_HI = 0x02000020, 0x024b2636
+TEXT_LO, TEXT_HI = 0x02000020, 0x029a9a48   # true .text end: base + 10132008 bytes (fixed 2026-10-10; was 0x024b2636)
 
 
 def matched_addresses():
