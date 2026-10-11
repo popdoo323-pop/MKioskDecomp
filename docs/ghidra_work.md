@@ -22,3 +22,20 @@
 - Writers of mCoinNum (RaceKartChecker +0x40).
 - The .bfgrp loader.
 - Import aliases: needs your decision on GHIDRA_MCP_ALLOW_SCRIPTS=1.
+
+## Tire map object bounce response: open (2026-10-10)
+
+Corrections to the lead in the todo:
+- The todo's ObjTire vtable address `0x100722a0` is not in any section of the game file. The matching ObjTire function
+  pointers are at `.rodata` 0x100722fc to 0x10072344: `ObjTire_CreateHelper` at 0x100722fc, `ObjTire_SoundSetup` at
+  0x1007231c, `ObjTire_Helper_b` at 0x10072324 and `ObjTire_FrameUpdate` at 0x10072344.
+- Those pointers sit in a mixed list. Bird methods (0x021f9bb8, 0x021f9c50, 0x021f9d20, ...) are interleaved with them,
+  so it is a registration list, not the ObjTire class vtable on its own.
+
+Findings:
+- No pointer in the data points to the ObjTire class table on its own, so the class vtable is not found yet.
+- The binary has no strings containing "bounce" (searched in .rodata and .data). The bounce logic is probably keyed to a
+  terrain attribute value, not a name.
+
+Next: find the ObjTire class vtable from the constructor, or find the bounce method from the terrain attribute
+values read by the collision code (see docs/kcl_attribute_trace.md).

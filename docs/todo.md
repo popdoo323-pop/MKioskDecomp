@@ -30,7 +30,7 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 
 ## Ghidra work (no compiler needed)
 - [ ] Tire mark generator. `RecorderKartTireMark` has no references. Search for the code that calls the TireMark.bfres loader and its slot.
-- [ ] Tire map object bounce response. Start from the vtable slots of `ObjTire`, around 0x100722a0.
+- [ ] Tire map object bounce response. Start from the vtable slots of `ObjTire`, around 0x100722a0. Checked 2026-10-10: that address is not in the game file. ObjTire function pointers are at 0x100722fc to 0x10072344, in a mixed registration list. No "bounce" strings in the binary. Still open (docs/ghidra_work.md).
 - [ ] Writer of the terrain type read by `FUN_02072608`. Start from `mpCollidedGround` and the ground-hit code. See `docs/kcl_attribute_trace.md`.
 - [ ] Writers of `mCoinNum` (RaceKartChecker +0x40): coin add, cap and loss.
 - [x] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`. Done 2026-10-10 (docs/ghidra_work.md): the only coin sounds are the two COIN_THROWN effects on the N64 train and Bodysand ship; the coin pickup sound is not in these functions.
