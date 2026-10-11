@@ -33,7 +33,7 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 - [ ] Tire map object bounce response. Start from the vtable slots of `ObjTire`, around 0x100722a0.
 - [ ] Writer of the terrain type read by `FUN_02072608`. Start from `mpCollidedGround` and the ground-hit code. See `docs/kcl_attribute_trace.md`.
 - [ ] Writers of `mCoinNum` (RaceKartChecker +0x40): coin add, cap and loss.
-- [ ] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`.
+- [x] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`. Done 2026-10-10 (docs/ghidra_work.md): the only coin sounds are the two COIN_THROWN effects on the N64 train and Bodysand ship; the coin pickup sound is not in these functions.
 - [ ] Callers of the ItemCoin message handler at 0x02132ff4.
 - [ ] `.bfgrp` loader: find the code that loads `content/audio/ground/*.bfgrp` and `mapobj/*/GROUP_*.bfgrp`.
 - [ ] Imports: 662 of 668 still have no alias. Covering them needs GHIDRA_MCP_ALLOW_SCRIPTS=1 (your decision).
