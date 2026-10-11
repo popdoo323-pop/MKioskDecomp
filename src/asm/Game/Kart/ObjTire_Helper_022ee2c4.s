@@ -1,0 +1,52 @@
+# Converted from the disassembly of 0x022ee2c4 (192 bytes). Name is a placeholder.
+    .text
+    .globl ObjTire_Helper_022ee2c4
+ObjTire_Helper_022ee2c4:
+    stwu    r1,-32(r1)
+    lwz     r12,196(r3)
+    lfs     f6,8(r12)
+    stfs    f6,48(r3)
+    lfs     f7,12(r12)
+    stfs    f7,52(r3)
+    lfs     f12,16(r12)
+    stfs    f12,56(r3)
+    lfs     f0,20(r12)
+    stfs    f0,60(r3)
+    lfs     f0,24(r12)
+    stfs    f0,64(r3)
+    lfs     f8,28(r12)
+    stfs    f8,68(r3)
+    lfs     f0,32(r12)
+    stfs    f0,72(r3)
+    lfs     f0,36(r12)
+    stfs    f0,76(r3)
+    lfs     f9,40(r12)
+    stfs    f9,80(r3)
+    lfs     f0,44(r12)
+    stfs    f0,84(r3)
+    lfs     f0,48(r12)
+    lfs     f11,456(r3)
+    stfs    f0,88(r3)
+    lfs     f10,52(r12)
+    fmuls   f0,f12,f11
+    stfs    f6,8(r1)
+    stfs    f7,12(r1)
+    psq_l   f12,8(r1),0,0
+    fmadds  f0,f1,f8,f0
+    psq_l   f13,60(r3),0,0
+    ps_muls0 f12,f12,f11
+    lfs     f8,460(r3)
+    ps_madds0 f11,f13,f1,f12
+    psq_l   f12,72(r3),0,0
+    lhz     r0,116(r3)
+    fmadds  f0,f8,f9,f0
+    psq_l   f13,84(r3),0,0
+    ps_madds0 f12,f12,f8,f11
+    ori     r0,r0,3
+    ps_add  f13,f13,f12
+    sth     r0,116(r3)
+    fadds   f0,f10,f0
+    psq_st  f13,84(r3),0,0
+    stfs    f0,92(r3)
+    addi    r1,r1,32
+    blr

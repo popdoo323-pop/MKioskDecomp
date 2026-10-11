@@ -57,7 +57,7 @@ def main():
             if tgt in inside and tgt != pc:
                 labels.add(tgt)
                 ins = ins[:m.start(2)-2] + f'L{tgt:08x}'
-            elif tgt not in inside and ins.split()[0].startswith('bl'):
+            elif tgt not in inside:   # calls and tail jumps to code outside the function
                 externals[tgt] = f'ext_{tgt:08x}'
                 ins = ins[:m.start(2)-2] + f'ext_{tgt:08x}'
         body.append((pc, ins))

@@ -49,6 +49,7 @@ address,name,kind,library,signed,aliased,documented,matched
 0x02133970,ItemCoin_Create,game_func,,0,0,1,1
 0x0216e7d0,KartEffect_BindEmitters,game_func,,0,0,1,0
 0x021814a4,TrailManager_LoadTireMarkResource,game_func,,0,0,1,1
+0x0218153c,TrailManager_0218153c,game_func,,0,0,0,1
 0x021a7bb4,Wheel_Callback_021a7bb4,game_func,,0,0,0,1
 0x021a7c7c,Wheel_Helper_021a7c7c,game_func,,0,0,0,1
 0x021a7c9c,Wheel_Gap_021a7c9c,game_func,,0,0,0,1
@@ -70,6 +71,8 @@ address,name,kind,library,signed,aliased,documented,matched
 0x021fe554,Bird_SetupAnims_021fe554,game_func,,0,0,0,1
 0x021fe678,Bird_Reset_021fe678,game_func,,0,0,0,1
 0x021fe6a4,Bird_FrameUpdate_021fe6a4,game_func,,0,0,0,1
+0x021fe848,Bird_Method_021fe848,game_func,,0,0,0,1
+0x021fe8a4,Bird_Method_021fe8a4,game_func,,0,0,0,1
 0x02201cc4,Bird_Empty_02201cc4,game_func,,0,0,0,1
 0x02201cc8,Bird_Empty_02201cc8,game_func,,0,0,0,1
 0x02232a34,CourseObject_LoadModels,game_func,,0,0,1,0
@@ -77,9 +80,10 @@ address,name,kind,library,signed,aliased,documented,matched
 0x022d0ab8,BDSandShip_CoinThrown_SE_user,game_func,,0,0,1,0
 0x022ee1e4,ObjTire_CreateHelper,game_func,,0,0,1,1
 0x022ee224,ObjTire_InitSoundParams,game_func,,0,0,1,1
-0x022ee384,ObjTire_Reset,game_func,,0,0,1,0
+0x022ee2c4,ObjTire_Helper_022ee2c4,game_func,,0,0,0,1
+0x022ee384,ObjTire_Reset,game_func,,0,0,1,1
 0x022ee4bc,ObjTire_Update,game_func,,0,0,1,1
-0x023839d4,KartTireModel_Load,game_func,,0,0,1,0
+0x023839d4,KartTireModel_Load,game_func,,0,0,1,1
 0x0238fbd4,RacePreload_CommonResources,game_func,,0,0,1,0
 0x02392930,GroundSound_LoadAllBanks,game_func,,0,0,1,0
 0x0239993c,RaceKartChecker_ctor,game_func,,0,0,1,1
