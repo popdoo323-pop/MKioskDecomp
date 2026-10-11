@@ -11,14 +11,15 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 - Matching: 88 functions matched and verified from source (see `symbols/matches.csv`). 23 of 201 units done (see `symbols/units.csv`).
 
 ## Next up (in order)
-- [ ] Push the local work to GitHub. Earlier batches are pushed; the kart batch 4 (three functions) is still to commit.
+- [x] Push the local work to GitHub. Checked 2026-10-10: GitHub's `symbols/matches.csv` lists 88 matched functions, which includes the kart batch 4.
 - [x] Remove the 1-byte placeholders (OSThread, OSMutex, OSEvent, OSAlarm, OSMessageQueue, OSFastMutex, FSClient, FSCmdBlock, OSCond) in the Data Type Manager, then re-apply the WUT prototypes so the decompile reads properly.
       Checked 2026-10-10: no 1-byte placeholders remain under these names. The eight types are the full WUT types (OSThread 1696 bytes, FSClient 5888, FSCmdBlock 2688, and so on). OSCond is not in the program. Prototypes spot-checked: OSLockMutex(OSMutex *) and FSInitCmdBlock(FSCmdBlock *). The other coreinit prototypes have not been re-checked one by one.
-- [ ] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
+- [x] Run the frame test on the maintainer's PC (tests/compiler/frame_test.c) and paste the `findstr stwu` output so it can be recorded in docs/compiler_notes.md.
+      Recorded 2026-10-10 in docs/compiler_notes.md: large test at 8 mod 16 gives Green Hills 38.9%, devkitPPC GCC 66.7%, game 46.5%. Green Hills is favoured. The prologue-shape check is still open (see Blocked).
 
 ## Repo and notes
 - [ ] `include/Effect/TireMark.hpp`: the one literal TODO in code. Needs the tire mark update and render functions.
-- [ ] `symbols/coreinit_signatures.json`: argument types for 71 are not fully compared. Five remain: `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` exist in WUT but were not compared; `memcpy`, `memmove` and `exit` are standard C.
+- [x] `symbols/coreinit_signatures.json`: all 91 entries compared against WUT at commit b98f8fc (docs/coreinit_prototype_check.md). Done 2026-10-10. `MEMAllocFromExpHeapEx` and `MEMAllocFromFrmHeapEx` match. `memcpy`, `memmove`, `memset` and `exit` are C library functions, not in WUT, so they cannot be checked against it. The nine real differences were fixed in Ghidra and in the record.
 - [ ] `symbols/ground_state_fields.csv`: field offsets for 11 of 12 fields are unknown. Reflection registers names only.
 - [ ] `include/Game/Item/ItemCoin.hpp`: the base class `ItemBase_` is unnamed.
 - [ ] `include/Game/Race/RaceKartChecker.hpp`: the meaning of the value 999 at +0x38 is unknown.
