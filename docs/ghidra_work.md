@@ -39,3 +39,25 @@ Findings:
 
 Next: find the ObjTire class vtable from the constructor, or find the bounce method from the terrain attribute
 values read by the collision code (see docs/kcl_attribute_trace.md).
+
+## Bounce response: correction and new findings (2026-10-10)
+
+Correction: the earlier note said the todo address 0x100722a0 is not in the game file. That was wrong. It came from the
+section size field, which is 0x60086 for .rodata, while the data is 1345144 bytes (.rodata runs to 0x10148678). The address
+is in the data, and the todo's lead was right.
+
+The table at 0x100722a0 is an 8-byte list of (method pointer, zero) pairs. It mixes methods from more than one class:
+bird methods (0x021f9bb8, 0x021f9c50, ...) and ObjTire methods (0x022ee1e4, 0x022ee224, 0x022ee4bc). Three entries are
+neither, and they are the new candidates for the bounce response:
+
+- 0x022f23f4 (entry at 0x100722c4): loads the sub-object at +184, then tail-calls slot +164 through its table. A forwarder.
+  Defined in Ghidra as `ObjTire_Forward_022f23f4` (placeholder name).
+- 0x022f2404 (entry at 0x100722cc): `lhz r0,118(r3); ori r0,r0,2; sth r0,118(r3); blr`. Sets bit 0x2 of the halfword at +118.
+  This is a candidate for a flag set by bounce. Defined in Ghidra as `ObjTire_SetFlag2_022f2404` (placeholder name).
+- 0x022f2414 (entry at 0x100722ec): an empty return.
+
+Ghidra had no function at the first two addresses, so I defined them. Neither has direct callers: they are reached through
+the table. The caller that sets or uses the flag at +118 is the next thing to find.
+
+Also checked: the ground-state constructor FUN_023c9460 (see docs/kcl_attribute_trace.md) confirms mGndAttr is a byte at
+object +0x5c, initialised to 0, registered as a reflection field.
