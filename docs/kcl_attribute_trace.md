@@ -29,3 +29,13 @@ Binary SHA-256 `4dd6b212...409c8d`. Names are proposals; the binary is stripped.
 
 The editor-to-binary mapping, including material and special options, is in
 `docs/terrain_types_crossref.md`.
+
+## Resolved 2026-10-10: terrain writer is FUN_021c1d00
+
+- `FUN_021c1d00` (0x021c1d00, 4884 bytes) is the ground-hit and tracker update. Its `param_1` is the kart ground-state object.
+- It reads the collision result for the current triangle. The KCL attribute is a 16-bit field at `+4` of that triangle record.
+- Terrain: `param_1+0x1e0 = attr & 0x1F` (0 to 31, the name table index).
+- Variant: `param_1+0x1e4 = (attr >> 5) & 7`, the value the tracker reads at `+0x214`.
+- No ground: both fields are set to `0xFFFFFFFF`. `FUN_02072608` returns early on a negative value, which matches.
+- This closes the chain: `FUN_021c1d00` writes `+0x1e0` of the object that `FUN_0218624c` reads through `obj+0x24`.
+- Evidence: the mask and the store sit next to each other, the sentinel matches the reader's check, and the variant matches `+0x214`. The field names are our proposals; the offsets come from the decompile.
