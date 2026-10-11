@@ -20,10 +20,10 @@ Last updated 2026-10-10. Each item says what remains and what would close it.
 ## Speed-up plan (goal: readable C++ in src/, every function byte-verified)
 Ordered by how much each step speeds up the work. Items 1 to 4 need no decision and remove most of the manual steps.
 
-- [ ] 1. Export every function boundary from Ghidra to `symbols/functions_ghidra.csv` (address, name, size, call count),
+- [x] 1. Export every function boundary from Ghidra to `symbols/functions_ghidra.csv` (address, name, size, call count),
       in one paged pass over search_functions. Then sizes and boundaries come from the file, not one Ghidra call each.
       Finishes when the file has about 32,800 rows.
-- [ ] 2. Write `tools/batch_match.py`: take addresses from functions_ghidra.csv, convert each with disasm_to_asm.py, check
+- [x] 2. Write `tools/batch_match.py`: take addresses from functions_ghidra.csv, convert each with disasm_to_asm.py, check
       with asmmatch.py, record every MATCH in symbols/matches.csv and list the failures. Replaces the hand-run scripts.
       Finishes when one command matches a batch of 100 functions and writes the record.
 - [ ] 3. Add one command, `tools/make_verify.py`, that runs verify_matches, verify_units, build_units and progress and
@@ -39,7 +39,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
       tables are found without manual steps.
 - [ ] 8. Group by class: one unit and one source file per class (`src/Game/<area>/<Class>.cpp` and `.hpp`) holding its
       matched functions, with the header generated from symbols/classes.csv. Finishes when the first class file builds.
-- [ ] 9. Decision needed: enable Ghidra scripting (GHIDRA_MCP_ALLOW_SCRIPTS=1). It lets renames, type changes and the
+- [x] 9. Decision made 2026-10-10: Ghidra scripting is enabled and stays on (export and alias pass need it). Previously: enable Ghidra scripting (GHIDRA_MCP_ALLOW_SCRIPTS=1). It lets renames, type changes and the
       import alias pass run in one call instead of one call per item. Turn it off afterwards.
 - [ ] 10. BLOCKER for C++ byte matches: identify the game's compiler settings. Write `tools/flag_search.py` to compile the
        C++ sources of matched functions over a flag matrix (-O levels, -signedptr/-unsignedptr, register options) with
@@ -67,12 +67,11 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [x] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`. Done 2026-10-10 (docs/ghidra_work.md): the only coin sounds are the two COIN_THROWN effects on the N64 train and Bodysand ship; the coin pickup sound is not in these functions.
 - [ ] Callers of the ItemCoin message handler at 0x02132ff4.
 - [ ] `.bfgrp` loader: find the code that loads `content/audio/ground/*.bfgrp` and `mapobj/*/GROUP_*.bfgrp`.
-- [ ] Imports: 662 of 668 still have no alias. Covering them needs GHIDRA_MCP_ALLOW_SCRIPTS=1 (your decision).
+- [ ] Imports: 662 of 668 still have no alias. Scripting is now enabled, so the alias pass can run.
 
 ## Blocked
 - [x] Byte matches for game functions: 88 matched in assembly (see `symbols/matches.csv`). C++ matching is still limited, because the original compiler is not identified. Stack-frame evidence rules out default GCC/EABI (see docs/compiler_notes.md).
 - [ ] Progress against decomp.dev: matched functions now exist in the repo. Not yet submitted or compared there.
 
 ## Needs your input
-- [ ] Enable Ghidra scripting for the alias pass (yes or no).
-- [ ] Source of a Green Hills sample, if you have one, to test frame layout.
+- [x] Enable Ghidra scripting for the alias pass: yes, enabled 2026-10-10 and kept on.
