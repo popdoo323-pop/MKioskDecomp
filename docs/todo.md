@@ -74,7 +74,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 
 ## Blocked
 - [x] Byte matches for game functions: 88 matched in assembly (see `symbols/matches.csv`). Compiler candidate: Green Hills MULTI 5.3.27 with -Ogeneral. verify_cpp.py byte-matches three C++ functions with it (ItemCoin_Vfn, ItemCoin_Tail, ItemCoin_BindEmitter). The frame test favours GHS over GCC (38.9% against 66.7% for devkitPPC GCC, game 46.5%, see docs/compiler_notes.md). Still open: confirm the settings across the game (speed-up item 10, flag_search.py). The earlier note that the compiler is not identified is out of date.
-- [ ] Progress against decomp.dev: matched functions now exist in the repo. Not yet submitted or compared there.
+- [x] Progress against decomp.dev: declined by the maintainer 2026-10-10. The repo will not be submitted or compared there. Nothing further to do.
 
 ## Needs your input
 - [x] Enable Ghidra scripting for the alias pass: yes, enabled 2026-10-10 and kept on.
