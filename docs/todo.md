@@ -59,8 +59,8 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [x] `include/Game/Race/RaceKartChecker.hpp`: the value 999 at +0x38 verified 2026-10-10. It is the milliseconds part of the 9:59.999 maximum-time sentinel (minutes 9 at +0x34, seconds 59 at +0x36). The constructor sets it, and FUN_0239a810 sets it when a time overflows. Not a coin cap.
 - [x] `include/Game/UI/LapCoinLayout.hpp`: offsets +0x54 and +0x65, the size 0x6c and the constant 3 verified against FUN_02525904 (decompiled 2026-10-10).
 - [ ] `include/Obj/ObjTire.hpp`: class name unconfirmed.
-- [ ] `docs/terrain_types_crossref.md`: Glider Activator and Invisible Wall have no binary name. Materials Tec Road, Ocean Floor and Rainbow Road are unmapped. "Rainbow Road (Glass Sound)" is a lead to SNDG_GND_GLASS, not confirmed.
-- [ ] `docs/terrain_types_crossref.md`: the "Bouncy?" special has no binary counterpart.
+- [x] `docs/terrain_types_crossref.md`: Glider Activator, Invisible Wall, Tec Road and Ocean Floor have no binary name. Checked 2026-10-10: the strings Activator, Invisible, InvisibleWall, TecRoad and OceanFloor appear nowhere in the executable (code or data). Rainbow Road appears only as course asset names (RainbowRoad_00), not as a surface type, so it has no terrain mapping. The Glass lead (SNDG_GND_GLASS for Rainbow Road) is not a mapping and is kept only as a note.
+- [x] `docs/terrain_types_crossref.md`: the "Bouncy?" special has no binary counterpart. Checked 2026-10-10: the strings Bouncy and Bounce appear nowhere in the executable.
 
 ## Ghidra work (no compiler needed)
 - [x] Tire mark generator: the caller of the TireMark.bfres loader is the trail manager FUN_0218153c (its loader call is at 0x021815ec). The loader registers the resource at +0x330 of that object. The trail manager is vtable slot 4 of 0x1001e318. Checked 2026-10-10. Still open: RecorderKartTireMark has no references, so that class name is unconfirmed. A second caller, FUN_024159b0, is in a vtable at 0x10099b94 with no builder found.
