@@ -70,7 +70,7 @@ Ordered by how much each step speeds up the work. Items 1 to 4 need no decision 
 - [x] Decompile the coin audio functions `FUN_022980cc`, `FUN_022d0ab8` and `FUN_02066730`. Done 2026-10-10 (docs/ghidra_work.md): the only coin sounds are the two COIN_THROWN effects on the N64 train and Bodysand ship; the coin pickup sound is not in these functions.
 - [ ] Callers of the ItemCoin message handler at 0x02132ff4.
 - [ ] `.bfgrp` loader: find the code that loads `content/audio/ground/*.bfgrp` and `mapobj/*/GROUP_*.bfgrp`.
-- [ ] Imports: 662 of 668 still have no alias. Scripting is now enabled, so the alias pass can run.
+- [x] Imports alias pass, verified 2026-10-10: 621 import stubs in the export. 619 now have an alias (21 existed, 598 created by CreateImportAliases.java, verified by CheckImportAliases.java). The 2 left out, Finalize__Q2_2nn3ndmFv (0xc00100a8) and ResumeDaemons__Q2_2nn3ndmFUi (0xc0010128), map to 0x040100a8 and 0x04010128, which are outside the .import_alias block (0x04000000 to 0x0400ffff). Adding those would change the memory map, so they stay out unless you decide to extend the block.
 
 ## Blocked
 - [x] Byte matches for game functions: 88 matched in assembly (see `symbols/matches.csv`). C++ matching is still limited, because the original compiler is not identified. Stack-frame evidence rules out default GCC/EABI (see docs/compiler_notes.md).
